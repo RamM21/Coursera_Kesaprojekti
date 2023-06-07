@@ -1,0 +1,26 @@
+.box{
+    border: 1px solid black;
+    height: 250px;
+    width: 300px;
+    margin-left: 40%;
+    margin-top: 5%;
+}
+.input{
+    margin-left: 20%;
+    margin-bottom: 10%;
+    width: 170px;
+    height: 20px;
+}
+.button{
+    
+
+}
+.link{
+    margin-left: 40%;
+}
+.title{
+    margin-left: 35%;
+}
+.title2{
+    margin-left: 40%;
+}

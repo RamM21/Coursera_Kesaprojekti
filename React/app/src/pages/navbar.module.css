@@ -1,0 +1,38 @@
+.nav{
+    background-color: lightseagreen;
+    border-bottom: 1px;
+    width: auto;
+    max-width: inherit;
+    height: fit-content;
+}
+.link{
+    margin-left: 20%;
+    font-size: large;
+    
+}
+.mypage{
+    font-size: large;
+    margin-left: 100%;
+}
+.content{
+    display: flex;
+    padding-top: 1%;
+    padding-left: 5%;
+}
+.loginbut{
+    border-radius: 5px;
+    background-color: white;
+    font-size: large;
+}
+.signupbut{
+    border-radius: 5px;
+    background-color: white;
+    font-size: large;
+    width: 90px;
+}
+.signup{
+    margin-left: 20%;
+}
+.login{
+    margin-left: 20%;
+}
