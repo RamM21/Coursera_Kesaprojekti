@@ -29,7 +29,7 @@ export default class custom extends React.Component{
                 <div>
                     <h1 style={{marginLeft:"2%"}}>Custom</h1>
                     <div style={{display:"flex",width:"100%",flexWrap:'wrap'}}>
-                        {this.state.custom.slice(0,5).map(e=><Link className={style.card}>
+                        {this.state.custom.map(e=><Link className={style.card}>
                             <img src={pic} className={style.img}></img>
                             <h3 className={style.title}>{e.title}</h3>
                             <p className={style.text}>{e.paragraph}</p>

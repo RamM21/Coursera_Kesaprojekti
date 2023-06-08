@@ -1,17 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Navbar from './navbar'
 import style from './signup.module.css'
 
 
-export default function signup(){
+export default function Signup(){
     
+    const navigate = useNavigate()
     const[email,setEmail]=useState('')
-
+    const[name,setName]=useState('')
+    const[done,setDone]=useState(false)
+    
     function handlesingup(){
-        sessionStorage.setItem("user",email)
+        console.log(email+" "+name)
+        setDone(true)
     }
+
+    useEffect(()=>{
+        if(done){
+            navigate("/login")
+        }
+    })
 
         return (
             <div>
@@ -21,10 +31,11 @@ export default function signup(){
                         <h1 className={style.title}>Sign up</h1>
                         <div>
                         <h3 className={style.title2}>Email</h3>
-                        <input onChange={(event)=>{()=>setEmail(event.target.value)}} className={style.input}/>
-
+                        <input onChange={(event)=>setEmail(event.target.value)} className={style.input}/>
+                        <h3 className={style.title2}>Name</h3>
+                        <input onChange={(event)=>setName(event.target.value)} className={style.input}/>
                         </div>
-                        <Link className={style.link}><button >Sign up</button></Link>
+                        <button onClick={()=>handlesingup()} className={style.but}>Sign up</button>
                     </form>
                 </div>
             </div>

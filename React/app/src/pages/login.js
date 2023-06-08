@@ -1,17 +1,27 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Navbar from './navbar'
 import style from './login.module.css'
 
 
-export default function Login(){
-    
+export default function Login(props){
+        const navigate = useNavigate()
         const[email,setEmail]=useState('')
+        const[login,setLogin]=useState(false)
 
-    function login(){
-        sessionStorage.setItem("user",email)
+    function handlelogin(){
+        if(email!==""){
+            sessionStorage.setItem("user",email)
+            props.log(true)
+            setLogin(true)
+        }
     }
+    useEffect(()=>{
+        if(login){
+            navigate('/')
+        }
+    })
 
     
         return (
@@ -22,7 +32,7 @@ export default function Login(){
                     <div>
                     <h3 className={style.title2}>Email</h3>
                     <input onChange={(event)=>setEmail(event.target.value)} className={style.input} type='text' />
-                    <Link className={style.link} to='/'><button onClick={()=>login()} className={style.button}>Login</button></Link>
+                    <button onClick={()=>handlelogin()} className={style.button}>Login</button>
                     </div>
                 </div>
             </div>

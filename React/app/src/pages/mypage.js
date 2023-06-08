@@ -34,7 +34,7 @@ export default class mypage extends React.Component{
                 <div>
                     <h1 style={{marginLeft:"2%"}}>My saved data</h1>
                     <div style={{display:"flex",width:"100%",flexWrap:'wrap'}}>
-                            {this.state.myrecipes.slice(0,5).map(e=><Link className={style.card}>
+                            {this.state.myrecipes.map(e=><Link className={style.card}>
                                 <img src={pic} className={style.img}></img>
                                 <h3 className={style.title}>{e.title}</h3>
                                 <p className={style.text}>{e.desc}</p>

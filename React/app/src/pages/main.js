@@ -5,6 +5,7 @@ import Navbar from './navbar'
 import data from './data.json'
 import style from './main.module.css'
 import pic from '../logo512.png'
+import Recipepage from './recipe'
 
 export default class main extends React.Component{
     constructor(props){
@@ -21,6 +22,7 @@ export default class main extends React.Component{
         this.getttrpg()
         this.getcustom()
     }
+    
 
     getRecipes=()=>{
         this.setState({recipes:data.recipes})
@@ -41,8 +43,8 @@ export default class main extends React.Component{
                 <Navbar />
                 <div>
                     <h1 style={{marginLeft:"2%"}}>Recipes</h1>
-                    <div style={{display:"flex",width:"100%"}}>
-                        {this.state.recipes.slice(0,5).map(e=><Link className={style.card}>
+                    <div style={{display:"flex",width:"100%",overflow:"auto"}}>
+                        {this.state.recipes.map(e=><Link to='/recipepage' state={e.id} className={style.card}>
                             <img src={pic} className={style.img}></img>
                             <h3 className={style.title}>{e.title}</h3>
                             <p className={style.text}>{e.desc}</p>
@@ -50,8 +52,8 @@ export default class main extends React.Component{
                         </Link>)}
                     </div>
                     <h1 style={{marginLeft:"2%"}}>Ttrpg</h1>
-                    <div style={{display:"flex",width:"100%"}}>
-                        {this.state.ttrpg.slice(0,5).map(e=><Link className={style.card}>
+                    <div style={{display:"flex",width:"100%",overflow:"auto"}}>
+                        {this.state.ttrpg.map(e=><Link onClick={()=>this.handleclick(e)} className={style.card}>
                             <img src={pic} className={style.img}></img>
                             <h3 className={style.title}>Name {e.name}</h3>
                             <p className={style.text}>Class {e.class}</p>
@@ -59,8 +61,8 @@ export default class main extends React.Component{
                         </Link>)}
                     </div>
                     <h1 style={{marginLeft:"2%"}}>Custom</h1>
-                    <div style={{display:"flex",width:"100%"}}>
-                        {this.state.custom.slice(0,5).map(e=><Link className={style.card}>
+                    <div style={{display:"flex",width:"100%",overflow:"auto"}}>
+                        {this.state.custom.map(e=><Link className={style.card}>
                             <img src={pic} className={style.img}></img>
                             <h3 className={style.title}>{e.title}</h3>
                             <p className={style.text}>{e.paragraph}</p>
