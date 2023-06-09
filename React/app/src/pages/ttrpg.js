@@ -29,7 +29,7 @@ export default class ttrpg extends React.Component{
                 <div>
                     <h1 style={{marginLeft:"2%"}}>Ttrpg</h1>
                     <div style={{display:"flex",width:"100%",flexWrap:'wrap'}}>
-                        {this.state.ttrpg.map(e=><Link className={style.card}>
+                        {this.state.ttrpg.map(e=><Link to='/ttrpgpage' draggable={false} state={e.id} className={style.card}>
                             <img src={pic} className={style.img}></img>
                             <h3 className={style.title}>Name {e.name}</h3>
                             <p className={style.text}>Class {e.class}</p>

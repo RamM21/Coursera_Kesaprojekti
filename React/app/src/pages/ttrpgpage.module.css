@@ -1,0 +1,89 @@
+.page{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    border: 2px solid black;
+    width: fit-content;
+    background-color: beige;
+    width: 900px;
+}
+.pagetop{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    border: 1px solid black;
+    margin-bottom: 1%;
+}
+.box{
+    width: 33%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+    margin: 1%;
+}
+.profbox{
+    border: 1px solid black;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    display: flex;
+}
+.profbonus{
+    border: 1px solid black;
+    border-radius: 40%;
+    margin-left: auto;
+    margin-right: 2%;
+    font-size: large;
+}
+.proftext{
+    margin: 2%;
+    margin-left: 17%;
+    margin-right: auto;
+}
+.insbox{
+    border: 1px solid black;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    display: flex;
+}
+.insbonus{
+    border: 1px solid black;
+    margin-left: auto;
+    margin-right: 2%;
+    font-size: large;
+}
+.instext{
+    margin: 2%;
+    margin-left: 17%;
+    margin-right: auto;
+}
+.statbox{
+    margin-left: 2%;
+    margin-top: 1%;
+    margin-bottom: 2%;
+    display: flex;
+}
+.stat{
+    border: 1px solid black;
+    border-radius: 20%;
+    margin: 2%;
+    width: 30%;
+    height: fit-content;
+}
+.statbonus{
+    text-align: center;
+    margin-top: 2%;
+}
+.stattext{
+    text-align: center;
+    font-size: small;
+    font-weight: bold;
+    margin:5%;
+}
+.skilltext{
+    font-size: small;
+}

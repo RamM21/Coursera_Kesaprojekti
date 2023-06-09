@@ -169,14 +169,17 @@
         "background":"noble"
     }],
     "custom":[{
+        "id":"1",
         "title":"custom title",
         "image":"image",
         "paragraph":"text here"
     },{
+        "id":"2",
         "title":"custom title",
         "image":"image",
         "paragraph":"text here"
     },{
+        "id":"3",
         "title":"custom title",
         "image":"image",
         "paragraph":"text here"
