@@ -19,11 +19,11 @@
     width: 33%;
     margin-left: auto;
     margin-right: auto;
-    border: 1px solid black;
+    border: 2px solid black;
     margin: 1%;
 }
 .profbox{
-    border: 1px solid black;
+    border: 2px solid black;
     width: 80%;
     margin-left: auto;
     margin-right: auto;
@@ -43,7 +43,7 @@
     margin-right: auto;
 }
 .insbox{
-    border: 1px solid black;
+    border: 2px solid black;
     width: 80%;
     margin-left: auto;
     margin-right: auto;
@@ -61,16 +61,21 @@
     margin-left: 17%;
     margin-right: auto;
 }
+/*stat css*/
 .statbox{
     margin-left: 2%;
     margin-top: 1%;
     margin-bottom: 2%;
     display: flex;
+    border-top: 2px solid black;
+    background-color:lightgray;
 }
 .stat{
-    border: 1px solid black;
+    border: 2px solid black;
+    background-color: beige;
     border-radius: 20%;
     margin: 2%;
+    margin-top: 3%;
     width: 30%;
     height: fit-content;
 }
@@ -87,3 +92,160 @@
 .skilltext{
     font-size: small;
 }
+.skillbonus{
+    margin-left: 2%;
+    margin-right: 2%;
+    text-decoration: underline;
+}
+/*prof&language box css*/
+.langbox{
+    border: 2px solid black;
+    width: 95%;
+    height: 100%;
+    margin: 2%;
+}
+/*perception css*/
+.perbox{
+    border: 2px solid black;
+    display: flex;
+    margin: 2%;
+    font-size: large;
+}
+.perbonus{
+    border: 2px solid black;
+    border-radius: 50%;
+    margin: 2%;
+    padding: 1%;
+
+}
+/*armor,initiative,speed css*/
+.arbox{
+    border: 2px solid black;
+    background-color: beige;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-top: 5%;
+    width: 23%;
+}
+.chabox{
+    border: 2px solid black;
+    background-color: beige;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-top: 5%;
+    border-radius: 20%;
+    width: 25%;
+}
+/*hp box css*/
+.hpbox{
+    border: 2px solid black;
+    background-color: beige;
+    margin: 5%;
+    margin-bottom: 2%;
+    border-top-left-radius: 20%;
+    border-top-right-radius: 20%;
+}
+.maxhptext{
+    margin-left: 5%;
+    font-weight: bold;
+}
+.maxhpnum{
+    margin-left: 5%;
+}
+.curhptext{
+    text-align: center;
+    font-weight: bold;
+}
+.curhpnum{
+    text-align: center;
+}
+/*temp hp css*/
+.tempbox{
+    border: 2px solid black;
+    background-color: beige;
+    margin: 5%;
+    margin-top: 2%;
+    border-bottom-left-radius: 30%;
+    border-bottom-right-radius: 30%;
+    text-align: center;
+}
+.temphptext{
+    text-decoration: overline;
+    font-weight: bold;
+}
+/*hit dice and death save box*/
+.deathbox{
+    border: 2px solid black;
+    background-color: beige;
+    display: flex;
+    margin: 5%;
+    width: 90%;
+}
+.deathsavebox{
+    border: 1px solid black;
+    margin: 2%;
+    margin-left: 10%;
+}
+.hitdicebox{
+    border: 1px solid black;
+    margin: 2%;
+    text-align: center;
+    width: fit-content;
+    width: 40%;
+}
+.totalhitdice{
+    margin-left: 2%;
+}
+.hitdicetext{
+    font-weight: bold;
+    margin-left: 2%;
+}
+.deathtext{
+    font-weight: bold;
+}
+/*weapon box css*/
+.weaponbox{
+    border: 2px solid black;
+    margin: 5%;
+    min-height: 270px;
+    max-height: 270px;
+}
+.weaponcolumn{
+    border: 1px solid black;
+    background-color: beige;
+}
+.weaponother{
+    background-color: beige;
+    width: 235px;
+    height: 120px;
+    margin: 1%;
+    resize: none;
+}
+/*backpack css*/
+.bagbox{
+    border: 2px solid black;
+    margin: 5%;
+    height: 30%;
+}
+.coinbox{
+    border: 1px solid black;
+    display: flex;
+    width: 100%;
+}
+.coin{
+    width: 50%;
+    margin-left: 10%;
+}
+.backpack{
+    margin-left: 5%;
+    height: 200%;
+    width: 105%;
+}
+.backpacktext{
+    margin-top: 50%;
+    font-weight: bold;
+    text-align: center;
+}
+

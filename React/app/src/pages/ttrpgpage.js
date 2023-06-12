@@ -31,6 +31,7 @@ export default function Ttrpg(){
                                 <div>Class & Level</div>
                             </div>
                             <div>
+                                {arr.background}
                                 <div>Background</div>
                             </div>
                             <div>
@@ -83,11 +84,11 @@ export default function Ttrpg(){
                                             strength
                                         </div>
                                     </div>
-                                    <div>
+                                    <div style={{width:"65%",marginTop:"3%",backgroundColor:"beige"}}>
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
                                                 <input type='checkbox'/>
-                                                <div>
+                                                <div className={style.skillbonus}>
                                                     2
                                                 </div>
                                                 <div>
@@ -98,7 +99,7 @@ export default function Ttrpg(){
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
                                                 <input type='checkbox'/>
-                                                <div>
+                                                <div className={style.skillbonus}>
                                                     2
                                                 </div>
                                                 <div>
@@ -120,11 +121,11 @@ export default function Ttrpg(){
                                             dexterity
                                         </div>
                                     </div>
-                                    <div>
+                                    <div style={{width:"65%",marginTop:"3%",backgroundColor:"beige"}}>
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
                                                 <input type='checkbox'/>
-                                                <div>
+                                                <div className={style.skillbonus}>
                                                     2
                                                 </div>
                                                 <div>
@@ -135,7 +136,7 @@ export default function Ttrpg(){
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
                                                 <input type='checkbox'/>
-                                                <div>
+                                                <div className={style.skillbonus}>
                                                     2
                                                 </div>
                                                 <div>
@@ -146,10 +147,10 @@ export default function Ttrpg(){
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
                                                 <input type='checkbox'/>
-                                                <div>
+                                                <div className={style.skillbonus}>
                                                     2
                                                 </div>
-                                                <div>
+                                                <div style={{textAlignLast:"right"}}>
                                                     sleight of hand
                                                 </div>
                                             </div>
@@ -157,7 +158,7 @@ export default function Ttrpg(){
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
                                                 <input type='checkbox'/>
-                                                <div>
+                                                <div className={style.skillbonus}>
                                                     2
                                                 </div>
                                                 <div>
@@ -179,11 +180,11 @@ export default function Ttrpg(){
                                             constitution
                                         </div>
                                     </div>
-                                    <div>
+                                    <div style={{width:"65%",marginTop:"3%",backgroundColor:"beige"}}>
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
                                                 <input type='checkbox'/>
-                                                <div>
+                                                <div className={style.skillbonus}>
                                                     2
                                                 </div>
                                                 <div>
@@ -205,11 +206,11 @@ export default function Ttrpg(){
                                             intelligence
                                         </div>
                                     </div>
-                                    <div>
+                                    <div style={{width:"65%",marginTop:"3%",backgroundColor:"beige"}}>
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
                                                 <input type='checkbox'/>
-                                                <div>
+                                                <div className={style.skillbonus}>
                                                     2
                                                 </div>
                                                 <div>
@@ -220,7 +221,7 @@ export default function Ttrpg(){
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
                                                 <input type='checkbox'/>
-                                                <div>
+                                                <div className={style.skillbonus}>
                                                     2
                                                 </div>
                                                 <div>
@@ -231,7 +232,7 @@ export default function Ttrpg(){
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
                                                 <input type='checkbox'/>
-                                                <div>
+                                                <div className={style.skillbonus}>
                                                     2
                                                 </div>
                                                 <div>
@@ -242,7 +243,7 @@ export default function Ttrpg(){
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
                                                 <input type='checkbox'/>
-                                                <div>
+                                                <div className={style.skillbonus}>
                                                     2
                                                 </div>
                                                 <div>
@@ -253,7 +254,7 @@ export default function Ttrpg(){
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
                                                 <input type='checkbox'/>
-                                                <div>
+                                                <div className={style.skillbonus}>
                                                     2
                                                 </div>
                                                 <div>
@@ -264,7 +265,7 @@ export default function Ttrpg(){
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
                                                 <input type='checkbox'/>
-                                                <div>
+                                                <div className={style.skillbonus}>
                                                     2
                                                 </div>
                                                 <div>
@@ -286,11 +287,11 @@ export default function Ttrpg(){
                                             wisdom
                                         </div>
                                     </div>
-                                    <div>
+                                    <div style={{width:"65%",marginTop:"3%",backgroundColor:"beige"}}>
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
                                                 <input type='checkbox'/>
-                                                <div>
+                                                <div className={style.skillbonus}>
                                                     2
                                                 </div>
                                                 <div>
@@ -301,7 +302,7 @@ export default function Ttrpg(){
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
                                                 <input type='checkbox'/>
-                                                <div>
+                                                <div className={style.skillbonus}>
                                                     2
                                                 </div>
                                                 <div>
@@ -312,7 +313,7 @@ export default function Ttrpg(){
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
                                                 <input type='checkbox'/>
-                                                <div>
+                                                <div className={style.skillbonus}>
                                                     2
                                                 </div>
                                                 <div>
@@ -323,7 +324,7 @@ export default function Ttrpg(){
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
                                                 <input type='checkbox'/>
-                                                <div>
+                                                <div className={style.skillbonus}>
                                                     2
                                                 </div>
                                                 <div>
@@ -334,7 +335,7 @@ export default function Ttrpg(){
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
                                                 <input type='checkbox'/>
-                                                <div>
+                                                <div className={style.skillbonus}>
                                                     2
                                                 </div>
                                                 <div>
@@ -345,7 +346,7 @@ export default function Ttrpg(){
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
                                                 <input type='checkbox'/>
-                                                <div>
+                                                <div className={style.skillbonus}>
                                                     2
                                                 </div>
                                                 <div>
@@ -367,11 +368,11 @@ export default function Ttrpg(){
                                             charisma
                                         </div>
                                     </div>
-                                    <div>
+                                    <div style={{width:"65%",marginTop:"3%",backgroundColor:"beige"}}>
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
                                                 <input type='checkbox'/>
-                                                <div>
+                                                <div className={style.skillbonus}>
                                                     2
                                                 </div>
                                                 <div>
@@ -382,7 +383,7 @@ export default function Ttrpg(){
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
                                                 <input type='checkbox'/>
-                                                <div>
+                                                <div className={style.skillbonus}>
                                                     2
                                                 </div>
                                                 <div>
@@ -393,7 +394,7 @@ export default function Ttrpg(){
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
                                                 <input type='checkbox'/>
-                                                <div>
+                                                <div className={style.skillbonus}>
                                                     2
                                                 </div>
                                                 <div>
@@ -404,7 +405,7 @@ export default function Ttrpg(){
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
                                                 <input type='checkbox'/>
-                                                <div>
+                                                <div className={style.skillbonus}>
                                                     2
                                                 </div>
                                                 <div>
@@ -415,7 +416,7 @@ export default function Ttrpg(){
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
                                                 <input type='checkbox'/>
-                                                <div>
+                                                <div className={style.skillbonus}>
                                                     2
                                                 </div>
                                                 <div>
@@ -428,110 +429,139 @@ export default function Ttrpg(){
                             </div>
                         </div>
                         <div>
-                            <div>
-                                passive perception (wisdom)
+                            <div className={style.perbox}>
+                                <div className={style.perbonus}>15</div>
+                                <div style={{alignSelf:"center"}}>passive perception (wisdom)</div>
                             </div>
                             <div>
-                                proficiencies & languages
+                                <div className={style.langbox}>
+                                    <div style={{overflowWrap:"break-word"}}>stuffstuff</div>
+                                    <div>proficiencies & languages</div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div className={style.box}>
-                        <div>
+                        <div style={{backgroundColor:"lightgray"}}>
                             <div style={{display:"flex"}}>
-                                <div>
-                                    armor
+                                <div className={style.arbox}>
+                                    <div>12</div>
+                                    <div style={{fontWeight:"bold"}}>armor</div>
                                 </div>
-                                <div>
-                                    initiative
+                                <div className={style.chabox}>
+                                    <div>2</div>
+                                    <div style={{fontWeight:"bold"}}>initiative</div>
                                 </div>
-                                <div>
-                                    speed
-                                </div>
-                            </div>
-                            <div>
-                                <div>
-                                    hit poins maximum
-                                </div>
-                                <div>
-                                    current hit points
+                                <div className={style.chabox}>
+                                    <div>30</div>
+                                    <div style={{fontWeight:"bold"}}>speed</div>
                                 </div>
                             </div>
-                            <div>
-                                temporary hit points
-                            </div>
-                            <div style={{display:"flex"}}>
-                                <div>
-                                    <div>
-                                        total
-                                    </div>
-                                    <div>
-                                        hit dice
-                                    </div>
+                            <div className={style.hpbox}>
+                                <div style={{display:"flex",borderBottom:"1px solid black"}}>
+                                    <div className={style.maxhptext}>hit poins maximum</div>
+                                    <div className={style.maxhpnum}>30</div>
                                 </div>
                                 <div>
-                                    <div>
-                                        successes
+                                    <div className={style.curhpnum}>12</div>
+                                    <div className={style.curhptext}>current hit points</div>
+                                </div>
+                            </div>
+                            <div className={style.tempbox}>
+                                <div>2</div>
+                                <div className={style.temphptext}>temporary hit points</div>
+                            </div>
+                            <div className={style.deathbox}>
+                                <div className={style.hitdicebox}>
+                                    <div style={{display:"flex",textDecoration:"underline"}}>
+                                        <div className={style.hitdicetext}>total</div>
+                                        <div className={style.totalhitdice}>2d12</div>
                                     </div>
                                     <div>
-                                        failures
+                                        <div>1d8</div>
+                                        <div className={style.hitdicetext}>hit dice</div>
                                     </div>
-                                    death saves
+                                </div>
+                                <div className={style.deathsavebox}>
+                                    <div style={{display:"flex"}}>
+                                        <div className={style.deathtext}>successes</div>
+                                        <div style={{display:"flex"}}>
+                                            <input type='checkbox'/>
+                                            <input type='checkbox'/>
+                                            <input type='checkbox'/>
+                                        </div>
+                                    </div>
+                                    <div style={{display:"flex"}}>
+                                        <div className={style.deathtext} style={{marginRight:"12%"}}>failures</div>
+                                        <div style={{display:"flex"}}>
+                                            <input type='checkbox'/>
+                                            <input type='checkbox'/>
+                                            <input type='checkbox'/>
+                                        </div>
+                                    </div>
+                                    <div style={{textAlign:"center",}}>death saves</div>
                                 </div>
                             </div>
                         </div>
                         <div>
-                            <div>
-                                <div style={{display:"flex"}}>
-                                    <div>
-                                        name
-                                        <div>1</div>
-                                        <div>2</div>
-                                        <div>3</div>
-                                    </div>
-                                    <div>
-                                        atk bonus
-                                        <div>1</div>
-                                        <div>2</div>
-                                        <div>3</div>
-                                    </div>
-                                    <div>
-                                        damage/type
-                                        <div>1</div>
-                                        <div>2</div>
-                                        <div>3</div>
-                                    </div>
-                                </div>
+                            <div className={style.weaponbox}>
+                                <table style={{backgroundColor:"lightgrey",marginBottom:"2%"}}>
+                                    <tr>
+                                        <th style={{backgroundColor:"beige"}}>name</th>
+                                        <th style={{backgroundColor:"beige"}}>atk bonus</th>
+                                        <th style={{backgroundColor:"beige"}}>dagame/type</th>
+                                    </tr>
+                                    <tr>
+                                        <td className={style.weaponcolumn}>sword</td>
+                                        <td className={style.weaponcolumn}>+2</td>
+                                        <td className={style.weaponcolumn}>2 slash</td>
+                                    </tr>
+                                    <tr>
+                                        <td className={style.weaponcolumn}>bow</td>
+                                        <td className={style.weaponcolumn}>+2</td>
+                                        <td className={style.weaponcolumn}>2 piercing</td>
+                                    </tr>
+                                    <tr>
+                                        <td className={style.weaponcolumn}>dagger</td>
+                                        <td className={style.weaponcolumn}>+2</td>
+                                        <td className={style.weaponcolumn}>2 slash</td>
+                                    </tr>
+                                </table>
                                 <div>
-                                    other
+                                    <textarea className={style.weaponother}></textarea>
+                                    <div style={{textAlign:"center",fontWeight:"bold"}}>attacks and spellcasting</div>
                                 </div>
                             </div>
-                            attack & spellcasting
                         </div>
-                        <div>
+                        <div className={style.bagbox}>
                             <div style={{display:"flex"}}>
-                                <div>
-                                    <div>
-                                        cp
+                                <div style={{width:"20%"}}>
+                                    <div className={style.coinbox}>
+                                        <div>cp</div>
+                                        <input className={style.coin}/>
                                     </div>
-                                    <div>
-                                        sp
+                                    <div className={style.coinbox}>
+                                        <div>sp</div>
+                                        <input className={style.coin}/>
                                     </div>
-                                    <div>
-                                        ep
+                                    <div className={style.coinbox}>
+                                        <div>ep</div>
+                                        <input className={style.coin}/>
                                     </div>
-                                    <div>
-                                        gp
+                                    <div className={style.coinbox}>
+                                        <div>gp</div>
+                                        <input className={style.coin}/>
                                     </div>
-                                    <div>
-                                        pp
+                                    <div className={style.coinbox}>
+                                        <div>pp</div>
+                                        <input className={style.coin}/>
                                     </div>
                                 </div>
                                 <div>
-                                    other stuff
+                                    <textarea className={style.backpack}></textarea>
                                 </div>
                             </div>
-                            backpack
+                            <div className={style.backpacktext}>backpack</div>
                         </div>
                     </div>
                     <div className={style.box}> 
