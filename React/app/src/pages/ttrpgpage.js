@@ -19,38 +19,43 @@ export default function Ttrpg(){
             <Navbar />
             <div className={style.page}>  
                 <div className={style.pagetop}>
-                    <div>
-                        {arr.name}
-                        <div>Character Name</div>
-                    </div>
-                    <div>
-                        <div style={{display:'flex'}}>
-                            <div>
-                                {arr.class}{arr.level}
-                                
-                                <div>Class & Level</div>
+                        <div className={style.charnamebox}>
+                            <div className={style.charnametext}>{arr.name}</div>
+                            <div style={{textAlign:"center"}}>Character Name</div>
+                        </div>
+                        <div className={style.chardescbox}>
+                            <div style={{display:'flex'}}>
+                                <div className={style.charbox} style={{marginLeft:"5%"}}>
+                                    <div style={{display:"flex"}}>
+                                        <div className={style.chartext} style={{marginLeft:"5%"}}>{arr.class}</div>
+                                        <div className={style.chartext} style={{marginLeft:"10%"}}>{arr.level}</div>
+                                    </div>
+                                    <div className={style.charhead}>Class & Level</div>
+                                </div>
+                                <div className={style.charbox} style={{marginLeft:"10%"}}>
+                                    <div className={style.chartext}>{arr.background}</div>
+                                    <div className={style.charhead}>Background</div>
+                                </div>
+                                <div className={style.charbox} style={{marginLeft:"14%"}}>
+                                    <div className={style.chartext}>test dude</div>
+                                    <div className={style.charhead}>Player Name</div>
+                                </div>
                             </div>
-                            <div>
-                                {arr.background}
-                                <div>Background</div>
-                            </div>
-                            <div>
-                                <div>Player Name</div>
+                            <div style={{display:'flex'}}>
+                                <div className={style.charbox} style={{marginLeft:"5%"}}>
+                                    <div className={style.chartext}>{arr.race}</div>
+                                    <div className={style.charhead}>Race</div>
+                                </div>
+                                <div className={style.charbox} style={{marginLeft:"20%"}}>
+                                    <div className={style.chartext}>lawful good</div>
+                                    <div className={style.charhead}>Aligment</div>
+                                </div>
+                                <div className={style.charbox} style={{marginLeft:"15%"}}>
+                                    <div className={style.chartext}>3254</div>
+                                    <div className={style.charhead}>Experience Points</div>
+                                </div>
                             </div>
                         </div>
-                        <div style={{display:'flex'}}>
-                            <div>
-                                {arr.race}
-                                <div>Race</div>
-                            </div>
-                            <div>
-                                <div>Aligment</div>
-                            </div>
-                            <div>
-                                <div>Experience Points</div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div style={{display:"flex"}}>
                     <div className={style.box}>
@@ -87,7 +92,7 @@ export default function Ttrpg(){
                                     <div style={{width:"65%",marginTop:"3%",backgroundColor:"beige"}}>
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
-                                                <input type='checkbox'/>
+                                                <input disabled={true} checked={true} type='checkbox'/>
                                                 <div className={style.skillbonus}>
                                                     2
                                                 </div>
@@ -98,7 +103,7 @@ export default function Ttrpg(){
                                         </div>
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
-                                                <input type='checkbox'/>
+                                                <input disabled={true} checked={true} type='checkbox'/>
                                                 <div className={style.skillbonus}>
                                                     2
                                                 </div>
@@ -124,7 +129,7 @@ export default function Ttrpg(){
                                     <div style={{width:"65%",marginTop:"3%",backgroundColor:"beige"}}>
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
-                                                <input type='checkbox'/>
+                                                <input disabled={true} checked={true} type='checkbox'/>
                                                 <div className={style.skillbonus}>
                                                     2
                                                 </div>
@@ -135,7 +140,7 @@ export default function Ttrpg(){
                                         </div>
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
-                                                <input type='checkbox'/>
+                                                <input disabled={true} checked={true} type='checkbox'/>
                                                 <div className={style.skillbonus}>
                                                     2
                                                 </div>
@@ -146,8 +151,8 @@ export default function Ttrpg(){
                                         </div>
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
-                                                <input type='checkbox'/>
-                                                <div className={style.skillbonus}>
+                                                <input disabled={true} checked={true} type='checkbox'/>
+                                                <div  className={style.skillbonus}>
                                                     2
                                                 </div>
                                                 <div style={{textAlignLast:"right"}}>
@@ -157,7 +162,7 @@ export default function Ttrpg(){
                                         </div>
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
-                                                <input type='checkbox'/>
+                                                <input disabled={true} checked={true} type='checkbox'/>
                                                 <div className={style.skillbonus}>
                                                     2
                                                 </div>
@@ -183,7 +188,7 @@ export default function Ttrpg(){
                                     <div style={{width:"65%",marginTop:"3%",backgroundColor:"beige"}}>
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
-                                                <input type='checkbox'/>
+                                                <input disabled={true} checked={true} type='checkbox'/>
                                                 <div className={style.skillbonus}>
                                                     2
                                                 </div>
@@ -209,7 +214,7 @@ export default function Ttrpg(){
                                     <div style={{width:"65%",marginTop:"3%",backgroundColor:"beige"}}>
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
-                                                <input type='checkbox'/>
+                                                <input disabled={true} checked={true} type='checkbox'/>
                                                 <div className={style.skillbonus}>
                                                     2
                                                 </div>
@@ -220,7 +225,7 @@ export default function Ttrpg(){
                                         </div>
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
-                                                <input type='checkbox'/>
+                                                <input disabled={true} checked={true} type='checkbox'/>
                                                 <div className={style.skillbonus}>
                                                     2
                                                 </div>
@@ -231,7 +236,7 @@ export default function Ttrpg(){
                                         </div>
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
-                                                <input type='checkbox'/>
+                                                <input disabled={true} checked={true} type='checkbox'/>
                                                 <div className={style.skillbonus}>
                                                     2
                                                 </div>
@@ -242,7 +247,7 @@ export default function Ttrpg(){
                                         </div>
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
-                                                <input type='checkbox'/>
+                                                <input disabled={true} checked={true} type='checkbox'/>
                                                 <div className={style.skillbonus}>
                                                     2
                                                 </div>
@@ -253,7 +258,7 @@ export default function Ttrpg(){
                                         </div>
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
-                                                <input type='checkbox'/>
+                                                <input disabled={true} checked={true} type='checkbox'/>
                                                 <div className={style.skillbonus}>
                                                     2
                                                 </div>
@@ -264,7 +269,7 @@ export default function Ttrpg(){
                                         </div>
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
-                                                <input type='checkbox'/>
+                                                <input disabled={true} checked={true} type='checkbox'/>
                                                 <div className={style.skillbonus}>
                                                     2
                                                 </div>
@@ -290,7 +295,7 @@ export default function Ttrpg(){
                                     <div style={{width:"65%",marginTop:"3%",backgroundColor:"beige"}}>
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
-                                                <input type='checkbox'/>
+                                                <input disabled={true} checked={true} type='checkbox'/>
                                                 <div className={style.skillbonus}>
                                                     2
                                                 </div>
@@ -301,7 +306,7 @@ export default function Ttrpg(){
                                         </div>
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
-                                                <input type='checkbox'/>
+                                                <input disabled={true} checked={true} type='checkbox'/>
                                                 <div className={style.skillbonus}>
                                                     2
                                                 </div>
@@ -312,7 +317,7 @@ export default function Ttrpg(){
                                         </div>
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
-                                                <input type='checkbox'/>
+                                                <input disabled={true} checked={true} type='checkbox'/>
                                                 <div className={style.skillbonus}>
                                                     2
                                                 </div>
@@ -323,7 +328,7 @@ export default function Ttrpg(){
                                         </div>
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
-                                                <input type='checkbox'/>
+                                                <input disabled={true} checked={true} type='checkbox'/>
                                                 <div className={style.skillbonus}>
                                                     2
                                                 </div>
@@ -334,7 +339,7 @@ export default function Ttrpg(){
                                         </div>
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
-                                                <input type='checkbox'/>
+                                                <input disabled={true} checked={true} type='checkbox'/>
                                                 <div className={style.skillbonus}>
                                                     2
                                                 </div>
@@ -345,7 +350,7 @@ export default function Ttrpg(){
                                         </div>
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
-                                                <input type='checkbox'/>
+                                                <input disabled={true} checked={true} type='checkbox'/>
                                                 <div className={style.skillbonus}>
                                                     2
                                                 </div>
@@ -371,7 +376,7 @@ export default function Ttrpg(){
                                     <div style={{width:"65%",marginTop:"3%",backgroundColor:"beige"}}>
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
-                                                <input type='checkbox'/>
+                                                <input disabled={true} checked={true} type='checkbox'/>
                                                 <div className={style.skillbonus}>
                                                     2
                                                 </div>
@@ -382,7 +387,7 @@ export default function Ttrpg(){
                                         </div>
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
-                                                <input type='checkbox'/>
+                                                <input disabled={true} checked={true} type='checkbox'/>
                                                 <div className={style.skillbonus}>
                                                     2
                                                 </div>
@@ -393,7 +398,7 @@ export default function Ttrpg(){
                                         </div>
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
-                                                <input type='checkbox'/>
+                                                <input disabled={true} checked={true} type='checkbox'/>
                                                 <div className={style.skillbonus}>
                                                     2
                                                 </div>
@@ -404,7 +409,7 @@ export default function Ttrpg(){
                                         </div>
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
-                                                <input type='checkbox'/>
+                                                <input disabled={true} checked={true} type='checkbox'/>
                                                 <div className={style.skillbonus}>
                                                     2
                                                 </div>
@@ -415,7 +420,7 @@ export default function Ttrpg(){
                                         </div>
                                         <div className={style.skilltext}>
                                             <div style={{display:"flex"}}>
-                                                <input type='checkbox'/>
+                                                <input disabled={true} checked={true} type='checkbox'/>
                                                 <div className={style.skillbonus}>
                                                     2
                                                 </div>
@@ -535,65 +540,113 @@ export default function Ttrpg(){
                         </div>
                         <div className={style.bagbox}>
                             <div style={{display:"flex"}}>
-                                <div style={{width:"20%"}}>
+                                <div >
                                     <div className={style.coinbox}>
                                         <div>cp</div>
-                                        <input className={style.coin}/>
+                                        <div className={style.coin}>12</div>
                                     </div>
                                     <div className={style.coinbox}>
                                         <div>sp</div>
-                                        <input className={style.coin}/>
+                                        <div className={style.coin}>12</div>
                                     </div>
                                     <div className={style.coinbox}>
                                         <div>ep</div>
-                                        <input className={style.coin}/>
+                                        <div className={style.coin}>12</div>
                                     </div>
                                     <div className={style.coinbox}>
                                         <div>gp</div>
-                                        <input className={style.coin}/>
+                                        <div className={style.coin}>12</div>
                                     </div>
                                     <div className={style.coinbox}>
                                         <div>pp</div>
-                                        <input className={style.coin}/>
+                                        <div className={style.coin}>12</div>
                                     </div>
                                 </div>
                                 <div>
-                                    <textarea className={style.backpack}></textarea>
+                                    <div className={style.backpack}>stuffasdafawefawfawfawfawfaafafafafaf</div>
                                 </div>
                             </div>
                             <div className={style.backpacktext}>backpack</div>
                         </div>
                     </div>
                     <div className={style.box}> 
-                        <div>
-                            <div>
-                                personality
+                        <div className={style.identitybox}>
+                            <div className={style.idenbox} style={{borderTopLeftRadius:"20%",borderTopRightRadius:"20%"}}>
+                                <div className={style.identext} style={{height:"75px"}}>personality 1d</div>
+                                <div className={style.identext}>personality</div>
                             </div>
-                            <div>
-                                ideals
+                            <div className={style.idenbox}>
+                                <div className={style.identext} style={{height:"75px"}}>ideals 1</div>
+                                <div className={style.identext}>ideals</div>
                             </div>
-                            <div>
-                                bonds
+                            <div className={style.idenbox}>
+                                <div className={style.identext} style={{height:"75px"}}>bonds 1</div>
+                                <div className={style.identext}>bonds</div>
                             </div>
-                            <div>
-                                flaws
+                            <div className={style.idenbox} style={{borderBottomLeftRadius:"20%",borderBottomRightRadius:"20%"}}>
+                                <div className={style.identext} style={{height:"75px"}}>flaws 1</div>
+                                <div className={style.identext}>flaws</div>
                             </div>
                         </div>
-                        <div>
-                            features & traits
+                        <div className={style.traitbox}>
+                            <div className={style.traittext}>features and stuffda dgadfgsgsdfgs fdsafgsdgsgsdfdfdf</div>
+                            <div className={style.traithead}>features & traits</div>
                         </div>
                     </div>
                 </div>
             </div>
             <div className={style.page}>
-                <div>
-                    name & appearance
+                <div className={style.appearancebox}>
+                    <div className={style.charnamebox}>
+                            <div className={style.charnametext}>{arr.name}</div>
+                            <div style={{textAlign:"center"}}>Character Name</div>
+                        </div>
+                    <div className={style.appdescbox}>
+                        <div className={style.descbox}>
+                            <div className={style.desctext}>25</div>
+                            <div className={style.deschead}>age</div>
+                            <div className={style.desctext}>brown</div>
+                            <div className={style.deschead}>eyes</div>
+                        </div>
+                        <div className={style.descbox}>
+                            <div className={style.desctext}>183 cm</div>
+                            <div className={style.deschead}>height</div>
+                            <div className={style.desctext}>pale</div>
+                            <div className={style.deschead}>skin</div>
+                        </div>
+                        <div className={style.descbox}>
+                            <div className={style.desctext}>85 kg</div>
+                            <div className={style.deschead}>weight</div>
+                            <div className={style.desctext}>black</div>
+                            <div className={style.deschead}>hair</div>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    img & allies/organizations
+                <div style={{display:"flex"}}>
+                    <div className={style.imgbox}>
+                        <img className={style.img} src={pic}></img>
+                        <div className={style.imgtext}>character appearance</div>
+                    </div>
+                    <div className={style.alliesbox}>
+                        <div className={style.alliestext}>a</div>
+                        <div className={style.allieshead}>allies & organization</div>
+                    </div>
                 </div>
-                <div>
-                    backstory & additioal features & treasure
+                <div style={{display:"flex"}}>
+                    <div className={style.backstorybox}>
+                        <div className={style.backstorytext}>a</div>
+                        <div className={style.backstoryhead}>Character Backstory</div>
+                    </div>
+                    <div>
+                        <div className={style.additionalbox}>
+                            <div className={style.additionaltext}>a</div>
+                            <div className={style.additionalhead}>Additional Features & Traits</div>
+                        </div>
+                        <div className={style.treasurebox}>
+                            <div className={style.treasuretext}>a</div>
+                            <div className={style.treasurehead}>Treasure</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -22,6 +22,37 @@
     border: 2px solid black;
     margin: 1%;
 }
+/*character class box*/
+.charnamebox{
+    border: 1px solid black;
+    margin: 2%;
+    width: 40%;
+    border-radius: 50%;
+}
+.charhead{
+    font-weight: bold;
+}
+.charnametext{
+    font-weight: bold;
+    font-size: large;
+    text-align: center;
+    text-decoration: underline;
+    margin-top: 5%;
+}
+.chardescbox{
+    border: 1px solid black;
+    width: 60%;
+    margin: 1%;
+}
+.chartext{
+    text-decoration: underline;
+    
+}
+.charbox{
+    margin: 1%;
+    align-self: self-start;
+}
+/*prof and inspiration css*/
 .profbox{
     border: 2px solid black;
     width: 80%;
@@ -227,7 +258,8 @@
 .bagbox{
     border: 2px solid black;
     margin: 5%;
-    height: 30%;
+    height: 31%;
+    width: 90%;
 }
 .coinbox{
     border: 1px solid black;
@@ -235,17 +267,149 @@
     width: 100%;
 }
 .coin{
-    width: 50%;
+    background-color: lightgrey;
+    width: 80%;
     margin-left: 10%;
+    overflow-x: visible;
 }
 .backpack{
-    margin-left: 5%;
-    height: 200%;
-    width: 105%;
+    border: 1px solid black;
+    margin: 2%;
+    overflow-wrap: break-word;
+    height: 210%;
+    width: 75%;
 }
 .backpacktext{
-    margin-top: 50%;
+    margin-top: 51%;
     font-weight: bold;
     text-align: center;
 }
-
+/*character personality and trait css*/
+.identitybox{
+    border: 2px solid black;
+    margin: 2%;
+    background-color: lightgrey;
+}
+.idenbox{
+    border: 1px solid black;
+    margin: 2%;
+    background-color: beige;
+    height: 100px;
+}
+.identext{
+    text-align: center;
+    overflow-wrap: break-word;
+}
+.traitbox{
+    border: 2px solid black;
+    margin: 2%;
+    height: 47%;
+}
+.traittext{
+    text-align: start;
+    overflow-wrap: break-word;
+    margin-left: 2%;
+    height: 94%;
+}
+.traithead{
+    text-align: center;
+}
+/*character appearance background css*/
+.appearancebox{
+    border: 2px solid black;
+    margin: 2%;
+    display: flex;
+}
+.appdescbox{
+    border: 2px solid black;
+    margin: 5px;
+    display: flex;
+    width: 100%;
+}
+.descbox{
+    width: 33%;
+}
+.deschead{
+    border-top: 1px solid black;
+    font-weight: bold;
+    margin-left: 5%;
+}
+.desctext{
+    margin-left: 6%;
+}
+.img{
+    width: 300px;
+    height: 300px;
+}
+.imgbox{
+    border: 2px solid black;
+    margin-left: 2%;
+}
+.imgtext{
+    text-align: center;
+}
+.alliesbox{
+    border: 2px solid black;
+    margin-left: 2%;
+    width: 100%;
+    margin-right: 2%;
+}
+.allieshead{
+    text-align: center;
+}
+.alliestext{
+    border: 1px solid black;
+    margin: 1%;
+    width: 97%;
+    height: 90%;
+    overflow-wrap: break-word;
+    overflow-y: auto;
+}
+.backstorybox{
+    border: 2px solid black;
+    margin: 2%;
+    width: 300px;
+    height: 500px;
+}
+.backstoryhead{
+    text-align: center;
+}
+.backstorytext{
+    border: 1px solid black;
+    margin: 1%;
+    height: 94%;
+    overflow-wrap: break-word;
+    overflow-y: auto;
+}
+.additionalbox{
+    border: 2px solid black;
+    margin-top: 9%;
+    width: 270%;
+    height: 50%;
+}
+.additionalhead{
+    text-align: center;
+}
+.additionaltext{
+    border: 1px solid black;
+    margin: 1%;
+    height: 85%;
+    overflow-wrap: break-word;
+    overflow-y: auto;
+}
+.treasurebox{
+    border: 2px solid black;
+    margin-top: 9%;
+    width: 270%;
+    height: 39%;
+}
+.treasurehead{
+    text-align: center;
+}
+.treasuretext{
+    border: 1px solid black;
+    margin: 1%;
+    height: 85%;
+    overflow-wrap: break-word;
+    overflow-y: auto;
+}
