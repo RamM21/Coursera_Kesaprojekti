@@ -227,7 +227,7 @@
     width: 40%;
 }
 .totalhitdice{
-    margin-left: 2%;
+    margin-left: 10%;
 }
 .hitdicetext{
     font-weight: bold;
@@ -299,6 +299,7 @@
 .identext{
     text-align: center;
     overflow-wrap: break-word;
+    overflow-y: auto;
 }
 .traitbox{
     border: 2px solid black;
@@ -309,7 +310,8 @@
     text-align: start;
     overflow-wrap: break-word;
     margin-left: 2%;
-    height: 94%;
+    margin-top: 3%;
+    margin-bottom: auto;
 }
 .traithead{
     text-align: center;
@@ -393,9 +395,7 @@
 .additionaltext{
     border: 1px solid black;
     margin: 1%;
-    height: 85%;
     overflow-wrap: break-word;
-    overflow-y: auto;
 }
 .treasurebox{
     border: 2px solid black;

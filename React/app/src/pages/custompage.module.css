@@ -6,5 +6,19 @@
     border: 2px solid black;
     width: fit-content;
     background-color: beige;
-    width: 1500px;
+    width: 1000px;
+}
+.title{
+    margin: 5%;
+    text-decoration: underline;
+}
+.img{
+    width: 300px;
+    height: 300px;
+    margin-left: 2%;
+}
+.desc{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 2%;
 }

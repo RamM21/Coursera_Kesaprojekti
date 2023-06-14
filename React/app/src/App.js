@@ -9,10 +9,13 @@ import Custom from './pages/custom'
 import Custompage from './pages/custompage'
 import Signup from './pages/signUp'
 import Login from './pages/login'
-import { useState } from 'react'
+import Navbar from './pages/navbar'
+import { useEffect, useState } from 'react'
 
 function App() {
   const[logged,setLogged]=useState(false)
+  
+  
   if(logged){
   return (
     <BrowserRouter>
@@ -26,7 +29,7 @@ function App() {
         <Route path='/custom' element={<Custom/>}/>
         <Route path='/custompage' element={<Custompage/>}/>
         <Route path='/signup' element={<Signup/>}/>
-        <Route path='/login' element={<Login/>}/>
+        <Route path='/nav' element={<Navbar log={setLogged}/>}/>
       </Routes>
     </BrowserRouter>
   );}
@@ -42,10 +45,10 @@ function App() {
           <Route path='/custom' element={<Custom/>}/>
           <Route path='/custompage' element={<Custompage/>}/>
           <Route path='/signup' element={<Signup/>}/>
-          <Route path='/login' element={<Login log={setLogged}/>}/>
+          <Route path='/nav' element={<Navbar log={setLogged}/>}/>
+          <Route path='/login' element={<Login log={setLogged} logged={logged}/>}/>
         </Routes>
       </BrowserRouter>
   );}
 }
-
 export default App;

@@ -8,17 +8,18 @@ import style from './login.module.css'
 export default function Login(props){
         const navigate = useNavigate()
         const[email,setEmail]=useState('')
-        const[login,setLogin]=useState(false)
+        const[login,setlogin]=useState(false)
 
     function handlelogin(){
         if(email!==""){
             sessionStorage.setItem("user",email)
-            props.log(true)
-            setLogin(true)
+            setlogin(true)
         }
     }
     useEffect(()=>{
         if(login){
+            console.log("here");
+            props.log(true)
             navigate('/')
         }
     })
@@ -26,7 +27,7 @@ export default function Login(props){
     
         return (
             <div>
-                <Navbar />
+                <Navbar/>
                 <div className={style.box}>
                     <h1 className={style.title}>Login</h1>
                     <div>

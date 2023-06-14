@@ -18,7 +18,10 @@ export default function Custom(){
         <div>
             <Navbar />
             <div className={style.page}>  
-                
+                <h1 className={style.title}>{arr.title}</h1>
+                <img className={style.img} src={pic}></img>
+                <div style={{borderBottom:"2px solid black"}}></div>
+                <div className={style.desc}>{arr.paragraph}</div>
             </div>
         </div>
     )
