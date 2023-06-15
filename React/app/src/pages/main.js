@@ -39,7 +39,6 @@ export default class main extends React.Component{
     render(){
         return (
             <div>
-                <Navbar />
                 <div>
                     <h1 style={{marginLeft:"2%"}}>Recipes</h1>
                     <div style={{display:"flex",width:"100%",overflow:"auto"}}>

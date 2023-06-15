@@ -16,7 +16,6 @@ export default function Recipe(){
     
     return(
         <div>
-            <Navbar />
             <div className={style.page}>  
                 <h1 className={style.title}>{arr.title}</h1>
                 <img src={pic} className={style.img}></img>

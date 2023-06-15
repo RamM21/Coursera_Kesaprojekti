@@ -25,7 +25,6 @@ export default function Signup(){
 
         return (
             <div>
-                <Navbar />
                 <div className={style.box}>
                     <form>
                         <h1 className={style.title}>Sign up</h1>

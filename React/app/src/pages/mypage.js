@@ -30,7 +30,6 @@ export default class mypage extends React.Component{
     render(){
         return (
             <div>
-                <Navbar />
                 <div>
                     <h1 style={{marginLeft:"2%"}}>My saved data</h1>
                     <div style={{display:"flex",width:"100%",flexWrap:'wrap'}}>

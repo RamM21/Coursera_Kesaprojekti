@@ -11,8 +11,8 @@ export default function Navbar(props) {
     }
     useEffect(()=>{
         if(logout){
-            console.log("logout");
-            props.log(false)
+            props.login(false)
+            setlogout(false)
             navigate('/')
         }
     })

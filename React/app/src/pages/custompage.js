@@ -16,7 +16,6 @@ export default function Custom(){
     
     return(
         <div>
-            <Navbar />
             <div className={style.page}>  
                 <h1 className={style.title}>{arr.title}</h1>
                 <img className={style.img} src={pic}></img>

@@ -10,7 +10,7 @@ import Custompage from './pages/custompage'
 import Signup from './pages/signUp'
 import Login from './pages/login'
 import Navbar from './pages/navbar'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 function App() {
   const[logged,setLogged]=useState(false)
@@ -19,8 +19,9 @@ function App() {
   if(logged){
   return (
     <BrowserRouter>
+      <Navbar login={setLogged}/>
       <Routes>
-        <Route path='/' element={<Main />}/>
+        <Route path='/' element={<Main/>}/>
         <Route path='/recipe' element={<Recipes/>}/>
         <Route path='/recipepage'element={<Recipepage/>}/>
         <Route path='/ttrpg' element={<Ttrpg/>}/>
@@ -28,16 +29,15 @@ function App() {
         <Route path='/mypage' element={<Mypage/>}/>
         <Route path='/custom' element={<Custom/>}/>
         <Route path='/custompage' element={<Custompage/>}/>
-        <Route path='/signup' element={<Signup/>}/>
-        <Route path='/nav' element={<Navbar log={setLogged}/>}/>
       </Routes>
     </BrowserRouter>
   );}
   else{
     return (
       <BrowserRouter>
+        <Navbar/>
         <Routes>
-          <Route path='/' element={<Main />}/>
+          <Route path='/' element={<Main/>}/>
           <Route path='/recipe' element={<Recipes/>}/>
           <Route path='/recipepage'element={<Recipepage/>}/>
           <Route path='/ttrpg' element={<Ttrpg/>}/>
@@ -45,7 +45,6 @@ function App() {
           <Route path='/custom' element={<Custom/>}/>
           <Route path='/custompage' element={<Custompage/>}/>
           <Route path='/signup' element={<Signup/>}/>
-          <Route path='/nav' element={<Navbar log={setLogged}/>}/>
           <Route path='/login' element={<Login log={setLogged} logged={logged}/>}/>
         </Routes>
       </BrowserRouter>

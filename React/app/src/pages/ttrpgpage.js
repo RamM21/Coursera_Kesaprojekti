@@ -16,7 +16,6 @@ export default function Ttrpg(){
     
     return(
         <div>
-            <Navbar />
             <div className={style.page}>  
                 <div className={style.pagetop}>
                         <div className={style.charnamebox}>
