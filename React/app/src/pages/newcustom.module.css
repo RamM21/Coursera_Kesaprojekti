@@ -1,0 +1,45 @@
+.page{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    border: 2px solid black;
+    width: fit-content;
+    background-color: beige;
+    width: 1000px;
+}
+.title{
+    margin: 2%;
+    text-decoration: underline;
+}
+.image{
+    margin-left: 2%;
+}
+.img{
+    margin: 2%;
+
+}
+.desc{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 2%;
+}
+.inputTitle{
+    margin-left: 2%;
+    width: 200px;
+    height: 30px;
+    font-weight: bold;
+}
+.textarea{
+    margin-left: 2%;
+    width: 95%;
+    height: 200px;
+    resize: none;
+}
+.button{
+    margin: 2%;
+    width: 60px;
+    height: 40px;
+    font-weight: bold;
+    font-size: medium;
+}

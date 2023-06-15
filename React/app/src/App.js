@@ -10,6 +10,9 @@ import Custompage from './pages/custompage'
 import Signup from './pages/signUp'
 import Login from './pages/login'
 import Navbar from './pages/navbar'
+import Newcustom from './pages/newcustom'
+import Newttrpg from './pages/newttrpg'
+import Newrecipe from './pages/newrecipe'
 import { useState } from 'react'
 
 function App() {
@@ -29,6 +32,9 @@ function App() {
         <Route path='/mypage' element={<Mypage/>}/>
         <Route path='/custom' element={<Custom/>}/>
         <Route path='/custompage' element={<Custompage/>}/>
+        <Route path='/newrecipe' element={<Newrecipe/>}/>
+        <Route path='/newttrpg' element={<Newttrpg/>}/>
+        <Route path='/newcustom' element={<Newcustom/>}/>
       </Routes>
     </BrowserRouter>
   );}
