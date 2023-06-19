@@ -1,0 +1,30 @@
+.page{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    border: 2px solid black;
+    width: fit-content;
+    background-color: beige;
+    width: 1500px;
+}
+.img{
+    width: auto;
+    height: 512px;
+    margin-left: 2%;
+}
+.title{
+    margin-left: 3%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    font-size: large;
+    font-weight: bold;
+    width: 400px;
+    height: 50px;
+}
+.title2{
+    margin-left: 2%;
+}
+.text{
+    margin-left: 2%;
+}

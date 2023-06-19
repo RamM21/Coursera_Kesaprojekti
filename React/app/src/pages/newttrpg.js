@@ -6,14 +6,13 @@ import data from './data.json'
 import pic from '../logo512.png'
 import style from './newttrpg.module.css'
 
-export default function Ttrpg(){
-    
-    let arr = data.ttrpg[0]
+export default function Newttrpg(){
 
     const [image,setImage]=useState({})    
     const [features,setFeatures]=useState([])
     const [featuretitle,setFeaturetitle]=useState('')
     const [featuredesc,setFeaturedesc]=useState('')
+    const [additionalfeatures,setAdditionalfeatures]=useState([])
     const [name,setName]=useState('')
     const [clas,setClass]=useState('')
     const [level,setLevel]=useState('')
@@ -102,6 +101,7 @@ export default function Ttrpg(){
     const [intimidation,setIntimidation]=useState(false)
     const [performance,setPerformance]=useState(false)
     const [persuasion,setPersuasion]=useState(false)
+    const [savefile,setSavefile]=useState({})
 
 
     function handlefeature(){
@@ -113,6 +113,15 @@ export default function Ttrpg(){
         setFeatures(arr)
     }
 
+    function handleadditionalfeature(){
+        let arr = [...additionalfeatures]
+        arr.push({
+            title:featuretitle,
+            desc:featuredesc
+        })
+        setAdditionalfeatures(arr)
+    }
+
     function handleImage(e){
         setImage({
             name:e.target.files[0].name,
@@ -121,9 +130,127 @@ export default function Ttrpg(){
         })
         setAppearance(URL.createObjectURL(e.target.files[0]))
     }
+
+    function handlesave(){
+        sessionStorage.setItem("userId","2")
+        let save ={
+            "id":sessionStorage.getItem("userId"),
+            chardesc:{
+                "name":name,
+                "class":clas,
+                "race":race,
+                "level":level,
+                "background":background,
+                "player":player,
+                "aligment":aligment,
+                "experience":experience,
+                "age":age,
+                "height":height,
+                "weight":weight,
+                "eyes":eyes,
+                "skin":skin,
+                "hair":hair,
+                "allies":allies,
+                "backstory":backstory,
+                "appearance":image
+            },
+            "stats":{
+                "proficiency":proficiency,
+                "inspiration":inspiration,
+                "strength":strength,
+                "strengthbonus":strengthbonus,
+                "dexterity":dexterity,
+                "dexteritybonus":dexteritybonus,
+                "constitution":constitution,
+                "constitutionbonus":constitutionbonus,
+                "intelligence":intelligence,
+                "intelligencebonus":intelligencebonus,
+                "wisdom":wisdom,
+                "wisdombonus":wisdombonus,
+                "charisma":charisma,
+                "charismabonus":charismabonus,
+                "speed":speed,
+                "armor":armor,
+                "hpmax":hpmax,
+                "curhp":curhp,
+                "temphp":temphp,
+                "totalhitdice":totalhitdice,
+                "hitdice":hitdice,
+                "success1":success1,
+                "success2":success2,
+                "success3":success3,
+                "failure1":failure1,
+                "failure2":failure2,
+                "failure3":failure3
+            },
+            "traits":{
+                "personality":personality,
+                "ideals":ideals,
+                "bonds":bonds,
+                "flaws":flaws,
+                "features":features,
+                "profnlang":{
+                    "prof":prof,
+                    "lang":lang
+                },
+                "additionalfeatures":additionalfeatures
+            },
+            "backpack":{
+                "coins":{
+                    "cp":cp,
+                    "sp":sp,
+                    "ep":ep,
+                    "gp":gp,
+                    "pp":pp
+                },
+                "attack":{
+                    "weapon1":weapon1,
+                    "weapon1dmg":weapon1dmg,
+                    "weapon2":weapon2,
+                    "weapon2dmg":weapon2dmg,
+                    "weapon3":weapon3,
+                    "weapon3dmg":weapon3dmg,
+                    "other":weaponother
+                },
+                "items":items,
+                "treasure":treasure
+            },
+            "skills":{
+                "strengthsave":strengthsave,
+                "dexteritysave":dexteritysave,
+                "constitutionsave":constitutionsave,
+                "intelligencesave":intelligencesave,
+                "wisdomsave":wisdomsave,
+                "charismasave":charismasave,
+                "athletics":athletics,
+                "acrobatics":acrobatics,
+                "sleightofhand":sleightofhand,
+                "stealth":stealth,
+                "arcana":arcana,
+                "history":history,
+                "investigation":investigation,
+                "nature":nature,
+                "religion":religion,
+                "animalhandling":animalhandling,
+                "insight":insight,
+                "medicine":medicine,
+                "perception":perception,
+                "survival":survival,
+                "deception":deception,
+                "intimidation":intimidation,
+                "performance":performance,
+                "persuasion":persuasion
+            }
+        }
+        console.log(save);
+        setSavefile(save)
+    }
     
     return(
         <div>
+            <div>
+                <button style={{textAlign:"center",margin:"1%"}} onClick={()=>handlesave()}>save file</button>
+            </div>
             <div className={style.page}>  
                 <div className={style.pagetop}>
                         <div className={style.charnamebox}>
@@ -700,9 +827,9 @@ export default function Ttrpg(){
                             <div style={{height:"95%",overflowY:"auto"}}>
                                 <div>
                                     <div>
-                                    <input style={{marginLeft:"2%",marginTop:"2%"}} type='text' onChange={(event)=>setFeaturetitle(event.target.value)}/>
+                                    <input style={{marginLeft:"2%",marginTop:"2%"}} type='text' placeholder='feature title' onChange={(event)=>setFeaturetitle(event.target.value)}/>
                                     </div>
-                                    <textarea style={{width:"250px",height:"50px",resize:"none",marginLeft:"2%",marginTop:"2%"}} onChange={(event)=>setFeaturedesc(event.target.value)}/>
+                                    <textarea style={{width:"250px",height:"50px",resize:"none",marginLeft:"2%",marginTop:"2%"}} placeholder='feature description' onChange={(event)=>setFeaturedesc(event.target.value)}/>
                                     <button style={{marginLeft:"2%"}} onClick={()=>handlefeature()}>add feature</button>
                                 </div>
                                 {features.map(e=><div className={style.traittext}>
@@ -718,7 +845,7 @@ export default function Ttrpg(){
             <div className={style.page}>
                 <div className={style.appearancebox}>
                     <div className={style.charnamebox}>
-                            <div className={style.charnametext}>{arr.chardesc.name}</div>
+                            <div className={style.charnametext}>{name}</div>
                             <div style={{textAlign:"center"}}>Character Name</div>
                         </div>
                     <div className={style.appdescbox}>
@@ -748,19 +875,25 @@ export default function Ttrpg(){
                         <div className={style.imgtext}>character appearance</div>
                     </div>
                     <div className={style.alliesbox}>
-                        <div className={style.alliestext}>{arr.chardesc.allies}</div>
+                        <div className={style.alliestext}><textarea style={{resize:"none",height:"287px",width:"540px"}} placeholder='write allies and organizations here' onChange={(event)=>setAllies(event.target.value)}/></div>
                         <div className={style.allieshead}>allies & organization</div>
                     </div>
                 </div>
                 <div style={{display:"flex"}}>
                     <div className={style.backstorybox}>
-                        <div className={style.backstorytext}>{arr.chardesc.backstory}</div>
+                        <div className={style.backstorytext}><textarea style={{resize:"none",height:"460px",width:"285px"}} placeholder='character backstory here' onChange={(event)=>setBackstory(event.target.value)}/></div>
                         <div className={style.backstoryhead}>Character Backstory</div>
                     </div>
                     <div>
                         <div className={style.additionalbox}>
                             <div style={{overflowY:"auto",height:"87%"}}>
-                            {arr.traits.additionalfeatures.map(e=><div className={style.additionaltext}>
+                            <input style={{margin:"1%"}} placeholder='feature title' onChange={(event)=>setFeaturetitle(event.target.value)}/>
+                            <div></div>
+                            <div style={{width:"545px"}}>
+                            <textarea style={{margin:"1%",resize:"none",width:"520px",height:"50px"}} placeholder='feature description' onChange={(event)=>setFeaturedesc(event.target.value)}/>
+                            </div>
+                            <button style={{margin:"1%"}} onClick={()=>handleadditionalfeature()}>add feature</button>
+                            {additionalfeatures.map(e=><div className={style.additionaltext}>
                                 <div>{e.title}</div>
                                 <div>{e.desc}</div>
                             </div>)}
@@ -768,7 +901,7 @@ export default function Ttrpg(){
                             <div className={style.additionalhead}>Additional Features & Traits</div>
                         </div>
                         <div className={style.treasurebox}>
-                            <div className={style.treasuretext}>{arr.backpack.treasure}</div>
+                            <div className={style.treasuretext}><textarea placeholder='all characters treasures here' style={{resize:"none",width:"520px",height:"160px"}} onChange={(event)=>setTreasure(event.target.value)}/></div>
                             <div className={style.treasurehead}>Treasure</div>
                         </div>
                     </div>
