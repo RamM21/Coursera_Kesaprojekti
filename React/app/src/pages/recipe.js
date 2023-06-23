@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link,useLocation } from 'react-router-dom'
 import Navbar from './navbar'
@@ -9,27 +9,38 @@ import style from './recipe.module.css'
 export default function Recipe(){
     
     var location = useLocation()
-    
-    let arr = data.recipes.find(e=>e.id==location.state)
-    console.log(arr)
+    const [arr,setArr]=useState([])
 
+    useEffect(()=>{
+            if(arr.length==0){
+            axios.get("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/get-recipes.json?id="+location.state)
+            .then(response=>{
+                console.log(response.data.result[0])
+                setArr(response.data.result)
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+        }
+    })
     
     return(
         <div>
-            <div className={style.page}>  
-                <h1 className={style.title}>{arr.title}</h1>
+            {arr.length ? <div className={style.page}>  
+                <h1 className={style.title}>{arr[0].doc.title}</h1>
                 <img src={pic} className={style.img}></img>
                 <div style={{borderBottom:"2px solid black"}}/>
                 <h3 className={style.title2}>Description</h3>
-                <p className={style.text}>{arr.desc}</p>
+                <p className={style.text}>{arr[0].doc.desc}</p>
                 <h3 className={style.title2}>Preparing and make time</h3>
-                <p className={style.text}>{arr.prepntime}</p>
-                <p className={style.text}>Serving size {arr.servings}</p>
+                <p className={style.text}>{arr[0].doc.prepntime}</p>
+                <p className={style.text}>Serving size {arr[0].doc.servings}</p>
                 <h3 className={style.title2}>Ingredients</h3>
-                <p className={style.text}>{arr.ingredients}</p>
+                <p className={style.text}>{arr[0].doc.ingredients}</p>
                 <h3 className={style.title2}>Instructions</h3>
-                <p className={style.text}>{arr.instructions}</p>
-            </div>
+                <p className={style.text}>{arr[0].doc.instructions}</p>
+            </div>:<div/>}
+            
         </div>
     )
 }

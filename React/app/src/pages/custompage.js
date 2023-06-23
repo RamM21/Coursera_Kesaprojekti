@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Link,useLocation } from 'react-router-dom'
+import { Await, Link,useLocation } from 'react-router-dom'
 import Navbar from './navbar'
 import data from './data.json'
 import pic from '../logo512.png'
@@ -9,19 +9,30 @@ import style from './custompage.module.css'
 export default function Custom(){
     
     var location = useLocation()
-    
-    let arr = data.custom.find(e=>e.id==location.state)
-    console.log(arr)
+    const [arr,setArr]=useState([])
 
+    useEffect(()=>{
+            if(arr.length==0){
+            axios.get("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/get-custom.json?id="+location.state)
+            .then(response=>{
+                console.log(response.data.result[0])
+                setArr(response.data.result)
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+        }
+    })
+    
     
     return(
         <div>
-            <div className={style.page}>  
-                <h1 className={style.title}>{arr.title}</h1>
+            {arr.length ? <div className={style.page}>  
+                <h1 className={style.title}>{arr[0].doc.title}</h1>
                 <img className={style.img} src={pic}></img>
                 <div style={{borderBottom:"2px solid black"}}></div>
-                <div className={style.desc}>{arr.paragraph}</div>
-            </div>
+                <div className={style.desc}>{arr[0].doc.paragraph}</div>
+            </div>:<div/>}
         </div>
     )
 }
