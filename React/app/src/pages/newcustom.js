@@ -17,14 +17,32 @@ export default function Newcustom(){
         setImage({
             name:e.target.files[0].name,
             type:e.target.files[0].type,
-            file:e.target.files[0]
+            file:URL.createObjectURL(e.target.files[0])
         })
         setFile(URL.createObjectURL(e.target.files[0]))
     }
     function handleSubmit(){
-        console.log(title);
-        console.log(text);
-        console.log(image);
+        let document={
+            save:{
+            title:title,
+            paragraph:text,
+            userid:sessionStorage.getItem("id"),
+            image:image,
+            _attachments:{
+                name_of_attachment:image.name,
+                content_type:image.type,
+                data:image.file
+                }
+            }
+            }
+        
+        axios.post("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/post-custom.json",document)
+        .then(response=>{
+            console.log(response.data.result)
+        })
+        .catch(err=>{
+            console.log(err)
+        })
     }
 
     return(

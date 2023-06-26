@@ -15,7 +15,7 @@ export default function Recipe(){
             if(arr.length==0){
             axios.get("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/get-recipes.json?id="+location.state)
             .then(response=>{
-                console.log(response.data.result[0])
+                console.log(response.data.result)
                 setArr(response.data.result)
             })
             .catch(err=>{
@@ -28,7 +28,7 @@ export default function Recipe(){
         <div>
             {arr.length ? <div className={style.page}>  
                 <h1 className={style.title}>{arr[0].doc.title}</h1>
-                <img src={pic} className={style.img}></img>
+                <img src={arr[0].doc.image.file} className={style.img}></img>
                 <div style={{borderBottom:"2px solid black"}}/>
                 <h3 className={style.title2}>Description</h3>
                 <p className={style.text}>{arr[0].doc.desc}</p>

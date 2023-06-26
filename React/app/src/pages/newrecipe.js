@@ -23,17 +23,35 @@ export default function Newrecipe(){
         setFile(URL.createObjectURL(e.target.files[0]))
     }
 
+    function revoke(e){
+        console.log(e)
+        URL.revokeObjectURL()
+    }
+
     function handleSave(){
-        let save={
+        let document={
+            save:{
             title:title,
             image:image,
             desc:desc,
             prepntime:prepntime,
             servings:servings,
             ingredients:ingredients,
-            instructions:instructions
+            instructions:instructions,
+            userId:sessionStorage.getItem("id")
+            }
         }
-        console.log(save);
+        console.log(image)
+        axios.post("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/post-recipe.json",document)
+        .then(response=>{
+            console.log(response)
+            setTimeout(() => {
+                revoke(response.data.result)
+            }, 100);
+        })
+        .catch(err=>{
+            console.log(err)
+        })
     }
 
     

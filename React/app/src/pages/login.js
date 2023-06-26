@@ -12,6 +12,7 @@ export default function Login(props){
     function handlelogin(){
         if(email!==""){
             sessionStorage.setItem("user",email)
+            sessionStorage.setItem("id","2")
             setlogin(true)
         }
     }

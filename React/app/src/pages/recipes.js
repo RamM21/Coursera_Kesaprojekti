@@ -37,7 +37,7 @@ export default class recipes extends React.Component{
                     <h1 style={{marginLeft:"2%"}}>Recipes</h1>
                     <div style={{display:"flex",width:"100%",flexWrap:'wrap'}}>
                         {this.state.recipes.map(e=><Link to='/recipepage' draggable={false} state={e.id} className={style.card}>
-                            <img src={pic} className={style.img}></img>
+                            <img src={e.doc.image.file} className={style.img}></img>
                             <h3 className={style.title}>{e.doc.title}</h3>
                             <p className={style.text}>{e.doc.desc}</p>
                             <p className={style.text}>Serving size {e.doc.servings}</p>

@@ -13,8 +13,8 @@
     text-decoration: underline;
 }
 .img{
-    width: 300px;
-    height: 300px;
+    width: auto;
+    height: 400px;
     margin-left: 2%;
 }
 .desc{

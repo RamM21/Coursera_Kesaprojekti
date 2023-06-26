@@ -126,15 +126,15 @@ export default function Newttrpg(){
         setImage({
             name:e.target.files[0].name,
             type:e.target.files[0].type,
-            file:e.target.files[0]
+            file:URL.createObjectURL(e.target.files[0])
         })
         setAppearance(URL.createObjectURL(e.target.files[0]))
     }
 
     function handlesave(){
-        sessionStorage.setItem("userId","2")
-        let save ={
-            "id":sessionStorage.getItem("userId"),
+        let document ={
+            save:{
+            "userid":sessionStorage.getItem("id"),
             chardesc:{
                 "name":name,
                 "class":clas,
@@ -242,8 +242,14 @@ export default function Newttrpg(){
                 "persuasion":persuasion
             }
         }
-        console.log(save);
-        setSavefile(save)
+        }
+        axios.post("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/post-ttrpg.json",document)
+        .then(response=>{
+            console.log(response)
+        })
+        .catch(err=>{
+            console.log(err)
+        })
     }
     
     return(
