@@ -15,39 +15,48 @@ export default function Newrecipe(){
     const [instructions,setInstructions]=useState("")
 
     function handleImage(e){
-        setImage({
-            name:e.target.files[0].name,
-            type:e.target.files[0].type,
-            file:e.target.files[0]
-        })
+        imgtobase64(e)
         setFile(URL.createObjectURL(e.target.files[0]))
     }
 
-    function revoke(e){
-        console.log(e)
-        URL.revokeObjectURL()
+    function imgtobase64(data){
+        const reader = new FileReader()
+        console.log(data.target.files[0])
+        reader.readAsDataURL(data.target.files[0])
+
+        reader.onload = () => {
+        console.log('called: ', reader)
+        setImage({
+            name:data.target.files[0].name,
+            type:data.target.files[0].type,
+            file:reader.result.slice(22)
+        })
+        }
     }
 
     function handleSave(){
         let document={
             save:{
             title:title,
-            image:image,
             desc:desc,
             prepntime:prepntime,
             servings:servings,
             ingredients:ingredients,
             instructions:instructions,
-            userId:sessionStorage.getItem("id")
+            userId:sessionStorage.getItem("id"),
+            _attachments:{
+                "image":{
+                "content_type":image.type,
+                "data":image.file
+                }
+                }
             }
-        }
+            }
+        
         console.log(image)
         axios.post("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/post-recipe.json",document)
         .then(response=>{
             console.log(response)
-            setTimeout(() => {
-                revoke(response.data.result)
-            }, 100);
         })
         .catch(err=>{
             console.log(err)

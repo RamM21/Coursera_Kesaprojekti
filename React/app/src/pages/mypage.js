@@ -29,7 +29,13 @@ export default class mypage extends React.Component{
         axios.get("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/get-custom.json?userId="+id)
         .then(response=>{
             let arr =[]
-            arr = response.data.result.docs
+            arr = response.data.result
+            console.log(arr)
+            /*for(const x of arr){
+                if(x.doc._attachments.test){
+                x.doc._attachments.test.data=this.image(x.doc._attachments.test.data)
+                }
+            }*/
             this.setState({mycustom:arr})
         })
         .catch(err=>{
@@ -43,6 +49,7 @@ export default class mypage extends React.Component{
         .then(response=>{
             let arr =[]
             arr = response.data.result.docs
+            
             this.setState({myttrpg:arr})
         })
         .catch(err=>{
@@ -61,6 +68,19 @@ export default class mypage extends React.Component{
         .catch(err=>{
             console.log(err)
         })
+    }
+
+    image=(data)=>{
+        const byteCharacters = atob(data);
+        const byteNumbers = new Array(byteCharacters.length);
+        for (let i = 0; i < byteCharacters.length; i++) {
+            byteNumbers[i] = byteCharacters.charCodeAt(i);
+        }
+        const byteArray = new Uint8Array(byteNumbers);
+
+        let image = new Blob([byteArray], { type: 'image/jpeg' });
+        let imageUrl = URL.createObjectURL(image);
+        return imageUrl
     }
 
     render(){
@@ -89,7 +109,7 @@ export default class mypage extends React.Component{
                                 <p className={style.text}>Race {e.chardesc.race}</p>
                             </Link>)}
                             {this.state.mycustom.map(e=><Link to='/custompage' draggable={false} state={e._id} className={style.card}>
-                                <img src={e.image.file} className={style.img}></img>
+                                <img src={e._attachments["app.PNG"]} className={style.img}></img>
                                 <h3 className={style.title}>{e.title}</h3>
                                 <p className={style.text}>{e.paragraph}</p>
                             </Link>)}
