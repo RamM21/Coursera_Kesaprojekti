@@ -2,7 +2,6 @@ import React from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import Navbar from './navbar'
-import data from './data.json'
 import style from './custom.module.css'
 import pic from '../logo512.png'
 
@@ -24,7 +23,11 @@ export default class custom extends React.Component{
         .then(response=>{
             
             arr = response.data.result.filter(e=>e.id!=="_design/5a37cd9b759475008e18a3c5e5037ae264caaf12")
-            console.log(arr[3].doc._attachments)
+            for(const x of arr){
+                if(x.doc._attachments){
+                x.doc._attachments.image.data=this.image(x.doc._attachments.image.data)
+                }
+            }
             this.setState({custom:arr})
         })
         .catch(err=>{
@@ -42,7 +45,7 @@ export default class custom extends React.Component{
 
         let image = new Blob([byteArray], { type: 'image/jpeg' });
         let imageUrl = URL.createObjectURL(image);
-        this.setState({image: imageUrl});
+        return imageUrl
     }
 
     render(){
@@ -51,8 +54,8 @@ export default class custom extends React.Component{
                 <div>
                     <h1 style={{marginLeft:"2%"}}>Custom</h1>
                     <div style={{display:"flex",width:"100%",flexWrap:'wrap'}}>
-                        {this.state.custom.map(e=><Link to='/custompage' draggable={false} state={e.id} className={style.card}>
-                            <img src={e.doc._attachments} className={style.img}></img>
+                        {this.state.custom.map(e=><Link to='/custompage' draggable={false} key={e.id} state={e.id} className={style.card}>
+                            <img src={e.doc._attachments.image.data} className={style.img}></img>
                             <h3 className={style.title}>{e.doc.title}</h3>
                             <p className={style.text}>{e.doc.paragraph}</p>
                         </Link>)}

@@ -3,7 +3,6 @@ import axios from 'axios'
 import { Link,redirect } from 'react-router-dom'
 import Navbar from './navbar'
 import style from './mypage.module.css'
-import data from './data.json'
 import pic from '../logo512.png'
 
 
@@ -24,18 +23,17 @@ export default class mypage extends React.Component{
         this.getTtrpg()
     }
 
-    getCustom=()=>{
+    async getCustom(){
         let id=sessionStorage.getItem("id")
-        axios.get("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/get-custom.json?userId="+id)
+        await axios.get("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/get-custom.json?userId="+id)
         .then(response=>{
             let arr =[]
-            arr = response.data.result
-            console.log(arr)
-            /*for(const x of arr){
-                if(x.doc._attachments.test){
-                x.doc._attachments.test.data=this.image(x.doc._attachments.test.data)
+            arr = response.data.result.docs
+            for(const x of arr){
+                if(x._attachments.image){
+                x._attachments.image.data=this.image(x._attachments.image.data)
                 }
-            }*/
+            }
             this.setState({mycustom:arr})
         })
         .catch(err=>{
@@ -43,13 +41,17 @@ export default class mypage extends React.Component{
         })
     }
 
-    getTtrpg=()=>{
+    async getTtrpg(){
         let id=sessionStorage.getItem("id")
-        axios.get("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/get-ttrpg.json?userId="+id)
+        await axios.get("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/get-ttrpg.json?userId="+id)
         .then(response=>{
             let arr =[]
             arr = response.data.result.docs
-            
+            for(const x of arr){
+                if(x._attachments.image){
+                x._attachments.image.data=this.image(x._attachments.image.data)
+                }
+            }
             this.setState({myttrpg:arr})
         })
         .catch(err=>{
@@ -57,12 +59,17 @@ export default class mypage extends React.Component{
         })
     }
 
-     getRecipe=()=>{
+    async getRecipe(){
         let id=sessionStorage.getItem("id")
-         axios.get("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/get-recipes.json?userId="+id)
+        await axios.get("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/get-recipes.json?userId="+id)
         .then(response=>{
             let arr =[]
             arr = response.data.result.docs
+            for(const x of arr){
+                if(x._attachments.image){
+                x._attachments.image.data=this.image(x._attachments.image.data)
+                }
+            }
             this.setState({myrecipes:arr})
         })
         .catch(err=>{
@@ -96,20 +103,20 @@ export default class mypage extends React.Component{
                         </div>
                     </div>
                     <div style={{display:"flex",width:"100%",flexWrap:'wrap'}}>
-                            {this.state.myrecipes.map(e=><Link to='/recipepage' draggable={false} state={e._id} className={style.card}>
-                                <img src={e.image.file} className={style.img}></img>
+                            {this.state.myrecipes.map(e=><Link to='/recipepage' draggable={false} key={e._id} state={e._id} className={style.card}>
+                                <img src={e._attachments.image.data} className={style.img}></img>
                                 <h3 className={style.title}>{e.title}</h3>
                                 <p className={style.text}>{e.desc}</p>
                                 <p className={style.text}>Serving size {e.servings}</p>
                             </Link>)}
-                            {this.state.myttrpg.map(e=><Link to='/ttrpgpage' draggable={false} state={e._id} className={style.card}>
-                                <img src={e.chardesc.appearance.file} className={style.img}></img>
+                            {this.state.myttrpg.map(e=><Link to='/ttrpgpage' draggable={false} key={e._id} state={e._id} className={style.card}>
+                                <img src={e._attachments.image.data} className={style.img}></img>
                                 <h3 className={style.title}>Name {e.chardesc.name}</h3>
                                 <p className={style.text}>Class {e.chardesc.class}</p>
                                 <p className={style.text}>Race {e.chardesc.race}</p>
                             </Link>)}
-                            {this.state.mycustom.map(e=><Link to='/custompage' draggable={false} state={e._id} className={style.card}>
-                                <img src={e._attachments["app.PNG"]} className={style.img}></img>
+                            {this.state.mycustom.map(e=><Link to='/custompage' draggable={false} key={e._id} state={e._id} className={style.card}>
+                                <img src={e._attachments.image.data} className={style.img}></img>
                                 <h3 className={style.title}>{e.title}</h3>
                                 <p className={style.text}>{e.paragraph}</p>
                             </Link>)}

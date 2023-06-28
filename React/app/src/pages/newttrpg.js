@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { Link,useLocation } from 'react-router-dom'
 import Navbar from './navbar'
-import data from './data.json'
 import pic from '../logo512.png'
 import style from './newttrpg.module.css'
 
@@ -123,12 +122,23 @@ export default function Newttrpg(){
     }
 
     function handleImage(e){
-        setImage({
-            name:e.target.files[0].name,
-            type:e.target.files[0].type,
-            file:URL.createObjectURL(e.target.files[0])
-        })
+        imgtobase64(e)
         setAppearance(URL.createObjectURL(e.target.files[0]))
+    }
+
+    function imgtobase64(data){
+        const reader = new FileReader()
+        console.log(data.target.files[0])
+        reader.readAsDataURL(data.target.files[0])
+
+        reader.onload = () => {
+        console.log('called: ', reader)
+        setImage({
+            name:data.target.files[0].name,
+            type:data.target.files[0].type,
+            file:reader.result.slice(22)
+        })
+        }
     }
 
     function handlesave(){
@@ -151,8 +161,7 @@ export default function Newttrpg(){
                 "skin":skin,
                 "hair":hair,
                 "allies":allies,
-                "backstory":backstory,
-                "appearance":image
+                "backstory":backstory
             },
             "stats":{
                 "proficiency":proficiency,
@@ -240,6 +249,12 @@ export default function Newttrpg(){
                 "intimidation":intimidation,
                 "performance":performance,
                 "persuasion":persuasion
+            },
+            _attachments:{
+                "image":{
+                    "content_type":image.type,
+                    "data":image.file
+                }
             }
         }
         }

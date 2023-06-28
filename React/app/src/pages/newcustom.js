@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { Link,useLocation } from 'react-router-dom'
 import Navbar from './navbar'
-import data from './data.json'
 import pic from '../logo512.png'
 import style from './newcustom.module.css'
 

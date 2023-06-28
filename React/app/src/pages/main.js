@@ -2,7 +2,6 @@ import React from 'react'
 import axios from 'axios'
 import { Await, Link } from 'react-router-dom'
 import Navbar from './navbar'
-import data from './data.json'
 import style from './main.module.css'
 import pic from '../logo512.png'
 
@@ -29,7 +28,6 @@ export default class main extends React.Component{
         .then(response=>{
             let arr =[]
             arr = response.data.result.filter(e=>e.id!=="_design/51ab035d1c4caacddd22c5982a903909c3d7b47b")
-            console.log(arr)
             for(const x of arr){
                 if(x.doc._attachments){
                 x.doc._attachments.image.data=this.image(x.doc._attachments.image.data)
@@ -47,6 +45,11 @@ export default class main extends React.Component{
         .then(response=>{
             let arr =[]
             arr = response.data.result.filter(e=>e.id!=="_design/5a37cd9b759475008e18a3c5e5037ae264caaf12")
+            for(const x of arr){
+                if(x.doc._attachments.image){
+                x.doc._attachments.image.data=this.image(x.doc._attachments.image.data)
+                }
+            }
             this.setState({ttrpg:arr})
         })
         .catch(err=>{
@@ -60,8 +63,8 @@ export default class main extends React.Component{
             let arr =[]
             arr = response.data.result.filter(e=>e.id!=="_design/5a37cd9b759475008e18a3c5e5037ae264caaf12")
             for(const x of arr){
-                if(x.doc._attachments.test){
-                x.doc._attachments.test.data=this.image(x.doc._attachments.test.data)
+                if(x.doc._attachments.image){
+                x.doc._attachments.image.data=this.image(x.doc._attachments.image.data)
                 }
             }
             this.setState({custom:arr})
@@ -91,7 +94,7 @@ export default class main extends React.Component{
                 <div>
                     <h1 style={{marginLeft:"2%"}}>Recipes</h1>
                     <div style={{display:"flex",width:"100%",overflow:"auto"}}>
-                        {this.state.recipes.map(e=><Link to='/recipepage' draggable={false} state={e.id} className={style.card}>
+                        {this.state.recipes.map(e=><Link to='/recipepage' draggable={false} key={e.id} state={e.id} className={style.card}>
                             {e.doc._attachments ? <img src={e.doc._attachments.image.data} className={style.img}/>:<img/>}
                             <h3 className={style.title}>{e.doc.title}</h3>
                             <p className={style.text}>{e.doc.desc}</p>
@@ -100,8 +103,8 @@ export default class main extends React.Component{
                     </div>
                     <h1 style={{marginLeft:"2%"}}>Ttrpg</h1>
                     <div style={{display:"flex",width:"100%",overflow:"auto"}}>
-                        {this.state.ttrpg.map(e=><Link to='/ttrpgpage' draggable={false} state={e.id} className={style.card}>
-                            {e.doc.chardesc.appearance.file ? <img src={e.doc.chardesc.appearance} className={style.img}/>:<img/>}
+                        {this.state.ttrpg.map(e=><Link to='/ttrpgpage' draggable={false} key={e.id} state={e.id} className={style.card}>
+                            {e.doc._attachments ? <img src={e.doc._attachments.image.data} className={style.img}/>:<img/>}
                             <h3 className={style.title}>Name {e.doc.chardesc.name}</h3>
                             <p className={style.text}>Class {e.doc.chardesc.class}</p>
                             <p className={style.text}>Race {e.doc.chardesc.race}</p>
@@ -109,8 +112,8 @@ export default class main extends React.Component{
                     </div>
                     <h1 style={{marginLeft:"2%"}}>Custom</h1>
                     <div style={{display:"flex",width:"100%",overflow:"auto"}}>
-                        {this.state.custom.map(e=><Link to='/custompage' draggable={false} state={e.id} className={style.card}>
-                            {e.doc._attachments.test ? <img src={e.doc._attachments.test.data} className={style.img}/>:<img/>}
+                        {this.state.custom.map(e=><Link to='/custompage' draggable={false} key={e.id} state={e.id} className={style.card}>
+                            {e.doc._attachments ? <img src={e.doc._attachments.image.data} className={style.img}/>:<img/>}
                             <h3 className={style.title}>{e.doc.title}</h3>
                             <p className={style.text}>{e.doc.paragraph}</p>
                         </Link>)}

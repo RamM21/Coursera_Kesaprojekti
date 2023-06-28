@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link,useLocation } from 'react-router-dom'
 import Navbar from './navbar'
-import data from './data.json'
 import pic from '../logo512.png'
 import style from './ttrpgpage.module.css'
 
@@ -15,13 +14,28 @@ export default function Ttrpg(){
             if(arr.length==0){
             axios.get("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/get-ttrpg.json?id="+location.state)
             .then(response=>{
-                setArr(response.data.result)
+                let arr=response.data.result
+                arr[0].doc._attachments.image.data = image(arr[0].doc._attachments.image.data)
+                setArr(arr)
             })
             .catch(err=>{
                 console.log(err)
             })
         }
     })
+
+    function image(data){
+        const byteCharacters = atob(data);
+        const byteNumbers = new Array(byteCharacters.length);
+        for (let i = 0; i < byteCharacters.length; i++) {
+            byteNumbers[i] = byteCharacters.charCodeAt(i);
+        }
+        const byteArray = new Uint8Array(byteNumbers);
+
+        let image = new Blob([byteArray], { type: 'image/jpeg' });
+        let imageUrl = URL.createObjectURL(image);
+        return imageUrl
+    }
     
     return(
         <div>
@@ -637,7 +651,7 @@ export default function Ttrpg(){
                 </div>
                 <div style={{display:"flex"}}>
                     <div className={style.imgbox}>
-                        <img className={style.img} src={arr[0].doc.chardesc.appearance.file}></img>
+                        <img className={style.img} src={arr[0].doc._attachments.image.data}></img>
                         <div className={style.imgtext}>character appearance</div>
                     </div>
                     <div className={style.alliesbox}>
