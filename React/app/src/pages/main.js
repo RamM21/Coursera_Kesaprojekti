@@ -62,7 +62,7 @@ export default class main extends React.Component{
         .then(response=>{
             let arr =[]
             arr = response.data.result.filter(e=>e.id!=="_design/5a37cd9b759475008e18a3c5e5037ae264caaf12")
-            for(const x of arr){
+            for(let x of arr){
                 if(x.doc._attachments.image){
                 x.doc._attachments.image.data=this.image(x.doc._attachments.image.data)
                 }

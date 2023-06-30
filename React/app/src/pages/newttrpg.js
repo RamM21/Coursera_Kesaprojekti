@@ -4,9 +4,11 @@ import { Link,useLocation } from 'react-router-dom'
 import Navbar from './navbar'
 import pic from '../logo512.png'
 import style from './newttrpg.module.css'
+import {useAlert} from 'react-alert'
 
 export default function Newttrpg(){
 
+    let alert = useAlert()
     const [image,setImage]=useState({})    
     const [features,setFeatures]=useState([])
     const [featuretitle,setFeaturetitle]=useState('')
@@ -260,9 +262,13 @@ export default function Newttrpg(){
         }
         axios.post("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/post-ttrpg.json",document)
         .then(response=>{
+            if(response.data.result.ok){
+                alert.success("Data was successfully saved")
+            }
             console.log(response)
         })
         .catch(err=>{
+            alert.error("error happened try again later")
             console.log(err)
         })
     }

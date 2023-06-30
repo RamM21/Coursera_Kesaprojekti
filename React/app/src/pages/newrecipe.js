@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import pic from '../logo512.png'
 import style from './newrecipe.module.css'
+import {useAlert} from 'react-alert'
 
 export default function Newrecipe(){
     
+    let alert = useAlert()
     const [title,setTitle]=useState("")
     const [image,setImage]=useState()
     const [file,setFile]=useState()
@@ -56,9 +58,13 @@ export default function Newrecipe(){
         console.log(image)
         axios.post("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/post-recipe.json",document)
         .then(response=>{
+            if(response.data.result.ok){
+                alert.success("Data was successfully saved")
+            }
             console.log(response)
         })
         .catch(err=>{
+            alert.error("error happened try again later")
             console.log(err)
         })
     }
