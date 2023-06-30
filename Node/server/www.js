@@ -1,21 +1,13 @@
 var app = require('../index');
-var debug = require('debug')('server'),
-    http = require('http');
-const fs = require('fs')
-/*const key = fs.readFileSync('./server/server.key')
-const cert = fs.readFileSync('./server/server.cert')*/
-
-/*options={
-  key:key,
-  cert:cert
-}*/
+var debug = require('debug')('server')
+var http = require('http');
 
 //get port and store to express
 var port = normalizePort(process.env.PORT || '4000');
 app.set('port',port);
 
 //create http server
-var server = http.createServer(options,app);
+var server = http.createServer(app);
 
 //listen to port
 server.listen(port);
@@ -70,5 +62,5 @@ function normalizePort(val) {
       ? 'pipe ' + addr
       : 'port ' + addr.port;
     debug('Listening on ' + bind);
-    console.log('server online')
+    console.log(bind)
   }
