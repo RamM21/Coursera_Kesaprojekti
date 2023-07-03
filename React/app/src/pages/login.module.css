@@ -5,6 +5,13 @@
     margin-left: 40%;
     margin-top: 5%;
 }
+.passbox{
+    border: 1px solid black;
+    height: 250px;
+    width: 350px;
+    margin-left: 40%;
+    margin-top: 5%;
+}
 .input{
     margin-left: 10%;
     margin-bottom: 10%;
@@ -24,5 +31,23 @@
     margin-left: 35%;
 }
 .title2{
+    margin-left: 40%;
+}
+.pastitle{
+    text-align: center;
+}
+.pastitle2{
+    text-align: center;
+}
+.pasinput{
+    margin-left: 10%;
+    margin-bottom: 10%;
+    width: 270px;
+    height: 30px;
+}
+.pasbutton{
+    border-radius: 10px;
+    background-color: lightblue;
+    font-size: large;
     margin-left: 40%;
 }

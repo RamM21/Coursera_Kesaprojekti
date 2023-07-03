@@ -20,6 +20,7 @@ export default class main extends React.Component{
         this.getRecipes()
         this.getttrpg()
         this.getcustom()
+        console.log(sessionStorage.getItem("id"))
     }
     
 

@@ -51,7 +51,7 @@ function App() {
           <Route path='/custom' element={<Custom/>}/>
           <Route path='/custompage' element={<Custompage/>}/>
           <Route path='/signup' element={<Signup/>}/>
-          <Route path='/login' element={<Login log={setLogged} logged={logged}/>}/>
+          <Route path='/login' element={<Login log={setLogged}/>}/>
         </Routes>
       </BrowserRouter>
   );}
