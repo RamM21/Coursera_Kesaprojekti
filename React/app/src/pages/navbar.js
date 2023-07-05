@@ -7,6 +7,7 @@ export default function Navbar(props) {
     const [logout,setlogout]=useState(false)
     function handlelogout(){
         sessionStorage.removeItem("user")
+        sessionStorage.removeItem("id")
         setlogout(true)
     }
     useEffect(()=>{
@@ -15,7 +16,7 @@ export default function Navbar(props) {
             setlogout(false)
             navigate('/')
         }
-    })
+    },[logout,navigate,props])
     
     var user = sessionStorage.getItem("user")
     if(user){

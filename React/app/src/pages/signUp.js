@@ -21,7 +21,7 @@ export default function Signup(){
         }
         await axios.post("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/post-user.json",document)
         .then((response)=>{
-            if(response.data.result.ok==true){
+            if(response.data.result.ok===true){
                 alert.success("Account made succesfully")
                 setTimeout(()=>{
                     setDone(true)
@@ -43,7 +43,7 @@ export default function Signup(){
                 navigate("/login")
             },5000)
         }
-    },[done])
+    },[done,alert,navigate])
 
         return (
             <div>

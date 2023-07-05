@@ -1,9 +1,7 @@
 import React from 'react'
 import axios from 'axios'
-import { Await, Link } from 'react-router-dom'
-import Navbar from './navbar'
+import { Link } from 'react-router-dom'
 import style from './main.module.css'
-import pic from '../logo512.png'
 
 export default class main extends React.Component{
     constructor(props){
@@ -20,7 +18,6 @@ export default class main extends React.Component{
         this.getRecipes()
         this.getttrpg()
         this.getcustom()
-        console.log(sessionStorage.getItem("id"))
     }
     
 

@@ -11,16 +11,17 @@ export default function Login(props){
     const navigate = useNavigate()
     const [email,setEmail]=useState('')
     const [login,setLogin]=useState(false)
-    const [otp,setOtp]=useState()
+    const [otp,setOtp]=useState(false)
     const [password,setPassword]=useState("")
 
     function handlelogin(){
-        axios.post()
+        axios.post("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/login.json?email="+email)
         .then((response)=>{
             if(response.data.ok==false){
                 alert.info("No user with email"+email+"found")
             }else{
                 alert.success("A login link has been send to your email")
+                setOtp(true)
             }
         })
         .catch((err)=>{
@@ -29,8 +30,30 @@ export default function Login(props){
         })
     }
 
-    function handleOtp(){
-
+    async function handleOtp(){
+        let document={
+            email:email,
+            password:password
+        }
+        await axios.post("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/login.json",document)
+        .then((response)=>{
+            if(response.data.ok==false){
+                alert.info("Wrong password try again")
+            }else{
+                alert.success("login successfull")
+                sessionStorage.setItem("user",response.data.result.docs[0].email)
+                sessionStorage.setItem("id",response.data.result.docs[0]._id)
+                setEmail("")
+                setPassword("")
+                setTimeout(()=>{
+                    setLogin(true)
+                },5000)
+            }
+        })
+        .catch((err)=>{
+            alert.error("error happened try again later")
+            console.log(err)
+        })
     }
 
     useEffect(()=>{
@@ -38,7 +61,7 @@ export default function Login(props){
             props.log(true)
             navigate('/')
         }
-    })
+    },[login,navigate])
 
     
         return (
@@ -48,14 +71,14 @@ export default function Login(props){
                     <h1 className={style.pastitle}>One Time password</h1>
                     <div>
                     <h3 className={style.pastitle2}>Password</h3>
-                    <input onChange={(event)=>setPassword(event.target.value)} className={style.pasinput} type='text' />
+                    <input onChange={(event)=>setPassword(event.target.value)} value={password} className={style.pasinput} type='text' />
                     <button onClick={()=>handleOtp()} className={style.pasbutton}>Login</button>
                     </div>
                 </div>:<div className={style.box}>
                     <h1 className={style.title}>Login</h1>
                     <div>
                     <h3 className={style.title2}>Email</h3>
-                    <input onChange={(event)=>setEmail(event.target.value)} className={style.input} type='text' />
+                    <input onChange={(event)=>setEmail(event.target.value)} value={email} className={style.input} type='text' />
                     <button onClick={()=>handlelogin()} className={style.button}>Login</button>
                     </div>
                 </div>
