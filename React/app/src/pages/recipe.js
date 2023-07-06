@@ -17,25 +17,43 @@ export default function Recipe(){
     const [button,setButton]=useState(false)
     const [rating,setRating]=useState(1)
     const [comment,setComment]=useState("")
-    sessionStorage.setItem("id","2")
+
+    
+    const [options,setOptions]=useState(false)
+    const [update,setUpdate]=useState(false)
+    const [title,setTitle]=useState("")
+    const [img,setImage]=useState()
+    const [file,setFile]=useState()
+    const [desc,setDesc]=useState("")
+    const [prepntime,setPrepntime]=useState("")
+    const [servings,setServings]=useState("")
+    const [ingredients,setIngredients]=useState("")
+    const [instructions,setInstructions]=useState("")
 
     useEffect(()=>{
             if(arr.length==0){
-            axios.get("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/get-recipes.json?id="+location.state)
+            getRecipes()
+        }
+    })
+
+    async function getRecipes(){
+        await axios.get("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/get-recipes.json?id="+location.state)
             .then(response=>{
                 let arr = response.data.result
                 arr[0].doc._attachments.image.data = image(arr[0].doc._attachments.image.data)
+                if(sessionStorage.getItem("id")===arr[0].doc.userId){
+                    setOptions(true)
+                }
                 setArr(arr)
                 getReviews()
             })
             .catch(err=>{
                 console.log(err)
             })
-        }
-    })
+    }
 
-    function getReviews(){
-        axios.get("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/get-reviews.json?recipe="+location.state)
+    async function getReviews(){
+        await axios.get("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/get-reviews.json?recipe="+location.state)
         .then((response)=>{
            
             let arr = response.data.result.filter(e=>e.id!=="_design/51ab035d1c4caacddd22c5982a903909c3d7b47b")
@@ -55,7 +73,8 @@ export default function Recipe(){
         }
         const byteArray = new Uint8Array(byteNumbers);
 
-        let image = new Blob([byteArray], { type: 'image/jpeg' });
+        let image = new Blob([byteArray], { type: 'image/png' });
+        setImage(imgtobase64(image))
         let imageUrl = URL.createObjectURL(image);
         return imageUrl
     }
@@ -80,9 +99,150 @@ export default function Recipe(){
             alert.error("error happened try again later")
         })
     }
+
+    function delRecipe(){
+
+    }
+
+    function upRecipe(){
+        let document={
+            rev:arr[0].doc._rev,
+            id:arr[0].id,
+            recipe:{
+            title:title,
+            desc:desc,
+            prepntime:prepntime,
+            servings:servings,
+            ingredients:ingredients,
+            instructions:instructions,
+            userId:sessionStorage.getItem("id"),
+            _attachments:{
+                "image":{
+                "content_type":img.type,
+                "data":img.file
+                }
+                }
+            }
+            }
+
+        axios.post("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/put-document.json",document)
+        .then(response=>{
+            if(response.data.result.ok){
+                alert.success("Data was successfully saved")
+            }
+        })
+        .catch(err=>{
+            alert.error("error happened try again later")
+            console.log(err)
+        })
+    }
+
+    function handleImage(e){
+        setFile(URL.createObjectURL(e.target.files[0]))
+        imgtobase64(e)
+    }
+
+    function imgtobase64(data){
+        if(!data.target){
+            const reader = new FileReader()
+            reader.readAsDataURL(data)
+            reader.onload = () => {
+            setImage({
+                type:data.type,
+                file:reader.result.slice(22)
+            })
+            }
+        }else{
+        const reader = new FileReader()
+        reader.readAsDataURL(data.target.files[0])
+
+        reader.onload = () => {
+        setImage({
+            type:data.target.files[0].type,
+            file:reader.result.slice(22)
+        })
+        }
+    }
+    }
+
+    function updateCheck(){
+        setUpdate(true)
+        setFile(arr[0].doc._attachments.image.data)
+        setTitle(arr[0].doc.title)
+        setDesc(arr[0].doc.desc)
+        setPrepntime(arr[0].doc.prepntime)
+        setServings(arr[0].doc.servings)
+        setIngredients(arr[0].doc.ingredients)
+        setInstructions(arr[0].doc.instructions)
+    }
     
     return(
         <div>
+            {options ? <div>
+                {update ? 
+                <div className={style.page}>
+                <div>  
+                <input className={style.titleinput} defaultValue={title} onChange={(event)=>setTitle(event.target.value)} placeholder='Title of recipe' type='text'/>
+                </div>
+                {file ? <img src={file} className={style.img}></img>:<img src={pic} className={style.img}></img>}
+                <div><input type='file' onChange={handleImage}/></div>
+                <div style={{borderBottom:"2px solid black"}}/>
+                <h3 className={style.title2}>Description</h3>
+                <textarea style={{resize:"none",height:"200px",width:"90%",marginLeft:"2%"}} defaultValue={desc} onChange={(event)=>setDesc(event.target.value)}/>
+                <h3 className={style.title2}>Preparing and make time</h3>
+                <textarea style={{resize:"none",height:"200px",width:"90%",marginLeft:"2%"}} defaultValue={prepntime} onChange={(event)=>setPrepntime(event.target.value)}/>
+                <p className={style.text}>Serving size <input style={{width:"100px"}} defaultValue={servings} onChange={(event)=>setServings(event.target.value)}/></p>
+                <h3 className={style.title2}>Ingredients</h3>
+                <textarea style={{resize:"none",height:"200px",width:"90%",marginLeft:"2%"}} defaultValue={ingredients} onChange={(event)=>setIngredients(event.target.value)}/>
+                <h3 className={style.title2}>Instructions</h3>
+                <textarea style={{resize:"none",height:"200px",width:"90%",marginLeft:"2%"}} defaultValue={instructions} onChange={(event)=>setInstructions(event.target.value)}/>
+                <div><button style={{width:"150px",height:"50px",marginLeft:"45%",marginTop:"2%",marginBottom:"2%"}} onClick={()=>upRecipe()}>Update Recipe</button></div>
+            </div>:
+                <div>
+                    <div style={{display:"flex"}}>
+                        <button className={style.putBut} onClick={()=>updateCheck()}>Edit file</button>
+                        <button className={style.delBut} onClick={()=>delRecipe()}>Delete file</button>
+                    </div>
+                <div className={style.page}>  
+                    <h1 className={style.title}>{arr[0].doc.title}</h1>
+                    <img src={arr[0].doc._attachments.image.data} className={style.img}></img>
+                    <div style={{borderBottom:"2px solid black"}}/>
+                    <h3 className={style.title2}>Description</h3>
+                    <p className={style.text}>{arr[0].doc.desc}</p>
+                    <h3 className={style.title2}>Preparing and make time</h3>
+                    <p className={style.text}>{arr[0].doc.prepntime}</p>
+                    <p className={style.text}>Serving size {arr[0].doc.servings}</p>
+                    <h3 className={style.title2}>Ingredients</h3>
+                    <p className={style.text}>{arr[0].doc.ingredients}</p>
+                    <h3 className={style.title2}>Instructions</h3>
+                    <p className={style.text}>{arr[0].doc.instructions}</p>
+            </div>{sessionStorage.getItem("id") ? <button className={style.button} onClick={()=>setButton(!button)}>add Review</button>:<div></div>}
+            {button ? 
+            <div className={style.addReviewBox}>
+                <div className={style.head}>Review of recipe</div>
+                <div className={style.head2}>Rating</div>
+                <Rating
+                size='large'
+                className={style.rating}
+                onChange={(event)=>setRating(event.target.value)}
+                value={rating}
+                />
+                <div className={style.head2}>Comment</div>
+                <textarea placeholder='Write your comments about the recipe here' className={style.comment} onChange={(event)=>setComment(event.target.value)}/>
+                <button className={style.submit} onClick={()=>handleSubmit()}>Submit review</button>
+            </div>
+            :<div/>}
+            {reviews ? <div>
+                <div className={style.reviewsHead}>Reviews</div>
+                {reviews.map(e=><Card className={style.reviewBox}>
+                    <div className={style.reviewHead}>Rating</div>
+                    <Rating className={style.reviewRating} readOnly={true} value={e.doc.rating} />
+                    <div className={style.reviewHead}>Review comment</div>
+                    <textarea disabled={true} className={style.reviewComment} defaultValue={e.doc.comment} />
+                </Card>)}
+            </div>:<div/>}</div>}
+            </div>:
+            <div>
             {arr.length ? <div className={style.page}>  
                 <h1 className={style.title}>{arr[0].doc.title}</h1>
                 <img src={arr[0].doc._attachments.image.data} className={style.img}></img>
@@ -113,7 +273,7 @@ export default function Recipe(){
                 <textarea placeholder='Write your comments about the recipe here' className={style.comment} onChange={(event)=>setComment(event.target.value)}/>
                 <button className={style.submit} onClick={()=>handleSubmit()}>Submit review</button>
             </div>
-            :<div></div>}
+            :<div/>}
             {reviews ? <div>
                 <div className={style.reviewsHead}>Reviews</div>
                 {reviews.map(e=><Card className={style.reviewBox}>
@@ -122,7 +282,8 @@ export default function Recipe(){
                     <div className={style.reviewHead}>Review comment</div>
                     <textarea disabled={true} className={style.reviewComment} defaultValue={e.doc.comment} />
                 </Card>)}
-            </div>:<div></div>}
+            </div>:<div/>}
+            </div>}
         </div>
     )
 }

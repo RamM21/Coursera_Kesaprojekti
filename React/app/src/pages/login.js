@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import style from './login.module.css'
 import {useAlert} from 'react-alert'
 
@@ -17,7 +17,7 @@ export default function Login(props){
     function handlelogin(){
         axios.post("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/login.json?email="+email)
         .then((response)=>{
-            if(response.data.ok==false){
+            if(response.data.ok===false){
                 alert.info("No user with email"+email+"found")
             }else{
                 alert.success("A login link has been send to your email")
@@ -37,7 +37,7 @@ export default function Login(props){
         }
         await axios.post("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/login.json",document)
         .then((response)=>{
-            if(response.data.ok==false){
+            if(response.data.ok===false){
                 alert.info("Wrong password try again")
             }else{
                 alert.success("login successfull")
@@ -47,7 +47,7 @@ export default function Login(props){
                 setPassword("")
                 setTimeout(()=>{
                     setLogin(true)
-                },5000)
+                },2000)
             }
         })
         .catch((err)=>{
@@ -61,7 +61,7 @@ export default function Login(props){
             props.log(true)
             navigate('/')
         }
-    },[login,navigate])
+    },[login,navigate,props])
 
     
         return (

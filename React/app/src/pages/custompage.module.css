@@ -9,7 +9,7 @@
     width: 1000px;
 }
 .title{
-    margin: 5%;
+    margin: 2%;
     text-decoration: underline;
 }
 .img{
@@ -21,4 +21,36 @@
     margin-top: 2%;
     margin-bottom: 2%;
     margin-left: 2%;
+}
+.image{
+    margin-left: 2%;
+}
+.putBut{
+    font-size: large;
+    margin: 1%;
+    background-color: lightseagreen;
+}
+.delBut{
+    font-size: large;
+    margin: 1%;
+    background-color: lightseagreen;
+}
+.inputTitle{
+    margin-left: 2%;
+    width: 200px;
+    height: 30px;
+    font-weight: bold;
+}
+.textarea{
+    margin-top: 1%;
+    margin-left: 2%;
+    width: 95%;
+    height: 200px;
+    resize: none;
+}
+.button{
+    margin: 2%;
+    font-weight: bold;
+    font-size: medium;
+    background-color: lightseagreen;
 }

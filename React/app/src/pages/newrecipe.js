@@ -23,11 +23,9 @@ export default function Newrecipe(){
 
     function imgtobase64(data){
         const reader = new FileReader()
-        console.log(data.target.files[0])
         reader.readAsDataURL(data.target.files[0])
 
         reader.onload = () => {
-        console.log('called: ', reader)
         setImage({
             name:data.target.files[0].name,
             type:data.target.files[0].type,
@@ -55,13 +53,12 @@ export default function Newrecipe(){
             }
             }
         
-        console.log(image)
+        
         axios.post("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/post-recipe.json",document)
         .then(response=>{
             if(response.data.result.ok){
                 alert.success("Data was successfully saved")
             }
-            console.log(response)
         })
         .catch(err=>{
             alert.error("error happened try again later")

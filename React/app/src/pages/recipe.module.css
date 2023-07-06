@@ -22,6 +22,15 @@
 .text{
     margin-left: 2%;
 }
+.titleinput{
+    margin-left: 3%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    font-size: large;
+    font-weight: bold;
+    width: 400px;
+    height: 50px;
+}
 .button{
     margin-left: 10.5%;
     margin-top: 1%;
@@ -102,4 +111,14 @@
     resize: none;
     width: 95%;
     height: 60px;
+}
+.putBut{
+    font-size: large;
+    margin: 1%;
+    background-color: lightseagreen;
+}
+.delBut{
+    font-size: large;
+    margin: 1%;
+    background-color: lightseagreen;
 }
