@@ -68,7 +68,22 @@ export default function Custom(){
     }
 
     function delCustom(){
-
+        let document={
+            "custom":{
+                rev:arr[0].doc._rev,
+                id:arr[0].id
+            }
+        }
+        axios.post("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/del-document.json",document)
+        .then((response)=>{
+            if(response.data.result.ok){
+                alert.success("File was deleted successfully")
+            }
+        })
+        .catch((err)=>{
+            console.log(err)
+            alert.error("There was an error in deleting the file try again later")
+        })
     }
 
     function upCustom(){

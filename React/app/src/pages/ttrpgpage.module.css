@@ -22,6 +22,16 @@
     border: 2px solid black;
     margin: 1%;
 }
+.delBut{
+    font-size: large;
+    margin: 1%;
+    background-color: lightseagreen;
+}
+.editBut{
+    font-size: large;
+    margin: 1%;
+    background-color: lightseagreen;
+}
 /*character class box*/
 .charnamebox{
     border: 1px solid black;

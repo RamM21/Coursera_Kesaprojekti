@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Link,useLocation } from 'react-router-dom'
-import Navbar from './navbar'
+import { useLocation } from 'react-router-dom'
 import pic from '../logo512.png'
 import style from './recipe.module.css'
 import Rating from '@mui/material/Rating'
@@ -12,6 +11,7 @@ export default function Recipe(){
     
     let alert = useAlert()
     var location = useLocation()
+    const userid=sessionStorage.getItem("id")
     const [arr,setArr]=useState([])
     const [reviews,setReviews]=useState([])
     const [button,setButton]=useState(false)
@@ -31,7 +31,7 @@ export default function Recipe(){
     const [instructions,setInstructions]=useState("")
 
     useEffect(()=>{
-            if(arr.length==0){
+            if(arr.length===0){
             getRecipes()
         }
     })
@@ -100,8 +100,42 @@ export default function Recipe(){
         })
     }
 
-    function delRecipe(){
+    async function delReview(data){
+        let document={
+            review:{
+                id:data.doc._id,
+                rev:data.doc._rev
+            }
+        }
+        await axios.post("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/del-document.json",document)
+        .then((response)=>{
+            if(response.data.result.ok){
+                alert.success("Review was deleted successfully")
+            }
+        })
+        .catch((err)=>{
+            console.log(err)
+            alert.error("There was an error in deleting the review try again later")
+        })
+    }
 
+    async function delRecipe(){
+        let document={
+            recipe:{
+                id:arr[0].id,
+                rev:arr[0].doc._rev
+            }
+        }
+        await axios.post("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/del-document.json",document)
+        .then((response)=>{
+            if(response.data.result.ok){
+                alert.success("File was deleted successfully")
+            }
+        })
+        .catch((err)=>{
+            console.log(err)
+            alert.error("There was an error in deleting the file try again later")
+        })
     }
 
     function upRecipe(){
@@ -234,12 +268,18 @@ export default function Recipe(){
             :<div/>}
             {reviews ? <div>
                 <div className={style.reviewsHead}>Reviews</div>
-                {reviews.map(e=><Card className={style.reviewBox}>
+                {reviews.map(e=><div>{userid===e.doc.userId ? <Card className={style.reviewBox}>
                     <div className={style.reviewHead}>Rating</div>
                     <Rating className={style.reviewRating} readOnly={true} value={e.doc.rating} />
                     <div className={style.reviewHead}>Review comment</div>
                     <textarea disabled={true} className={style.reviewComment} defaultValue={e.doc.comment} />
-                </Card>)}
+                    <button className={style.delReview} onClick={()=>delReview(e)}>delete</button>
+                </Card>:<Card className={style.reviewBox}>
+                    <div className={style.reviewHead}>Rating</div>
+                    <Rating className={style.reviewRating} readOnly={true} value={e.doc.rating} />
+                    <div className={style.reviewHead}>Review comment</div>
+                    <textarea disabled={true} className={style.reviewComment} defaultValue={e.doc.comment} />
+                </Card>}</div>)}
             </div>:<div/>}</div>}
             </div>:
             <div>
@@ -276,12 +316,18 @@ export default function Recipe(){
             :<div/>}
             {reviews ? <div>
                 <div className={style.reviewsHead}>Reviews</div>
-                {reviews.map(e=><Card className={style.reviewBox}>
+                {reviews.map(e=><div>{userid===e.doc.userId ? <Card className={style.reviewBox}>
                     <div className={style.reviewHead}>Rating</div>
                     <Rating className={style.reviewRating} readOnly={true} value={e.doc.rating} />
                     <div className={style.reviewHead}>Review comment</div>
                     <textarea disabled={true} className={style.reviewComment} defaultValue={e.doc.comment} />
-                </Card>)}
+                    <button className={style.delReview} onClick={()=>delReview(e)}>delete</button>
+                </Card>:<Card className={style.reviewBox}>
+                    <div className={style.reviewHead}>Rating</div>
+                    <Rating className={style.reviewRating} readOnly={true} value={e.doc.rating} />
+                    <div className={style.reviewHead}>Review comment</div>
+                    <textarea disabled={true} className={style.reviewComment} defaultValue={e.doc.comment} />
+                </Card>}</div>)}
             </div>:<div/>}
             </div>}
         </div>
