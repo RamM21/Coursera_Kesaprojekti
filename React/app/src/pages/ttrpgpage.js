@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import axios from 'axios'
 import { useLocation } from 'react-router-dom'
 import style from './ttrpgpage.module.css'
 import Upttrpg from './upttrpg'
 import {useAlert} from 'react-alert'
+import jsPdf from 'jspdf'
 
 export default function Ttrpg(){
     
+    const ref = useRef(null)
+    const ref2 = useRef(null)
     let alert = useAlert()
     var location = useLocation()
     const [arr,setArr]=useState([])
@@ -86,6 +89,29 @@ export default function Ttrpg(){
         }
     }
     }
+
+    function downloadPdf(){
+        const content = ref.current
+        const content2 = ref2.current
+        const doc = new jsPdf()
+        doc.html(content,{
+            callback:function (doc){
+                doc.addPage()
+                doc.html(content2,{
+                    callback:function (doc){
+                        doc.save(arr[0].doc.chardesc.name+'.pdf')
+                    },
+                    width:105,
+                    windowWidth:450,
+                    autoPaging:false
+                })
+            },
+            width:105,
+            windowWidth:450,
+            autoPaging:false
+        })
+        
+    }
     
     return(
         <div>
@@ -95,7 +121,9 @@ export default function Ttrpg(){
                 <div style={{display:"flex"}}>
                 <button className={style.editBut} onClick={()=>setUpdate(true)}>Edit file</button>
                 <button className={style.delBut} onClick={()=>delTtrpg()}>Delete file</button>
+                <button className={style.pdfBut} onClick={()=>downloadPdf()}>Download pdf</button>
                 </div>
+                <div ref={ref}>
                 <div className={style.page}>  
                 <div className={style.pagetop}>
                         <div className={style.charnamebox}>
@@ -737,8 +765,10 @@ export default function Ttrpg(){
                         </div>
                     </div>
                 </div>
-            </div></div>}</div>:<div>
-                <div className={style.page}>  
+            </div></div></div>}</div>:<div>
+                <button className={style.pdfBut} onClick={()=>downloadPdf()}>Download pdf</button>
+                <div >
+                <div ref={ref} className={style.page}>  
                 <div className={style.pagetop}>
                         <div className={style.charnamebox}>
                             <div className={style.charnametext}>{arr[0].doc.chardesc.name}</div>
@@ -815,7 +845,7 @@ export default function Ttrpg(){
                                             <div style={{display:"flex"}}>
                                                 <input disabled={true} checked={arr[0].doc.skills.strengthsave} type='checkbox'/>
                                                 <div className={style.skillbonus}>
-                                                    {arr[0].doc.skills.strengthsave ? arr[0].doc.stats.strengthbonus+arr[0].doc.stats.proficiency:arr[0].doc.stats.strengthbonus}
+                                                    {arr[0].doc.skills.strengthsave ? parseInt(arr[0].doc.stats.strengthbonus)+parseInt(arr[0].doc.stats.proficiency):arr[0].doc.stats.strengthbonus}
                                                 </div>
                                                 <div>
                                                     saving throws
@@ -826,7 +856,7 @@ export default function Ttrpg(){
                                             <div style={{display:"flex"}}>
                                                 <input disabled={true} checked={arr[0].doc.skills.athletics} type='checkbox'/>
                                                 <div className={style.skillbonus}>
-                                                    {arr[0].doc.skills.athletics ? arr[0].doc.stats.strengthbonus+arr[0].doc.stats.proficiency:arr[0].doc.stats.strengthbonus}
+                                                    {arr[0].doc.skills.athletics ? parseInt(arr[0].doc.stats.strengthbonus)+parseInt(arr[0].doc.stats.proficiency):arr[0].doc.stats.strengthbonus}
                                                 </div>
                                                 <div>
                                                     athletics
@@ -852,7 +882,7 @@ export default function Ttrpg(){
                                             <div style={{display:"flex"}}>
                                                 <input disabled={true} checked={arr[0].doc.skills.dexteritysave} type='checkbox'/>
                                                 <div className={style.skillbonus}>
-                                                    {arr[0].doc.skills.dexteritysave ? arr[0].doc.stats.dexteritybonus+arr[0].doc.stats.proficiency:arr[0].doc.stats.dexteritybonus}
+                                                    {arr[0].doc.skills.dexteritysave ? parseInt(arr[0].doc.stats.dexteritybonus)+parseInt(arr[0].doc.stats.proficiency):arr[0].doc.stats.dexteritybonus}
                                                 </div>
                                                 <div>
                                                     saving throws
@@ -863,7 +893,7 @@ export default function Ttrpg(){
                                             <div style={{display:"flex"}}>
                                                 <input disabled={true} checked={arr[0].doc.skills.acrobatics} type='checkbox'/>
                                                 <div className={style.skillbonus}>
-                                                {arr[0].doc.skills.acrobatics ? arr[0].doc.stats.dexteritybonus+arr[0].doc.stats.proficiency:arr[0].doc.stats.dexteritybonus}
+                                                {arr[0].doc.skills.acrobatics ? parseInt(arr[0].doc.stats.dexteritybonus)+parseInt(arr[0].doc.stats.proficiency):arr[0].doc.stats.dexteritybonus}
                                                 </div>
                                                 <div>
                                                     acrobatics
@@ -874,7 +904,7 @@ export default function Ttrpg(){
                                             <div style={{display:"flex"}}>
                                                 <input disabled={true} checked={arr[0].doc.skills.sleightofhand} type='checkbox'/>
                                                 <div  className={style.skillbonus}>
-                                                {arr[0].doc.skills.sleightofhand ? arr[0].doc.stats.dexteritybonus+arr[0].doc.stats.proficiency:arr[0].doc.stats.dexteritybonus}
+                                                {arr[0].doc.skills.sleightofhand ? parseInt(arr[0].doc.stats.dexteritybonus)+parseInt(arr[0].doc.stats.proficiency):arr[0].doc.stats.dexteritybonus}
                                                 </div>
                                                 <div style={{textAlignLast:"right"}}>
                                                     sleight of hand
@@ -885,7 +915,7 @@ export default function Ttrpg(){
                                             <div style={{display:"flex"}}>
                                                 <input disabled={true} checked={arr[0].doc.skills.stealth} type='checkbox'/>
                                                 <div className={style.skillbonus}>
-                                                {arr[0].doc.skills.stealth ? arr[0].doc.stats.dexteritybonus+arr[0].doc.stats.proficiency:arr[0].doc.stats.dexteritybonus}
+                                                {arr[0].doc.skills.stealth ? parseInt(arr[0].doc.stats.dexteritybonus)+parseInt(arr[0].doc.stats.proficiency):arr[0].doc.stats.dexteritybonus}
                                                 </div>
                                                 <div>
                                                     stealth
@@ -911,7 +941,7 @@ export default function Ttrpg(){
                                             <div style={{display:"flex"}}>
                                                 <input disabled={true} checked={arr[0].doc.skills.constitutionsave} type='checkbox'/>
                                                 <div className={style.skillbonus}>
-                                                {arr[0].doc.skills.constitutionsave ? arr[0].doc.stats.constitutionbonus+arr[0].doc.stats.proficiency:arr[0].doc.stats.constitutionbonus}
+                                                {arr[0].doc.skills.constitutionsave ? parseInt(arr[0].doc.stats.constitutionbonus)+parseInt(arr[0].doc.stats.proficiency):arr[0].doc.stats.constitutionbonus}
                                                 </div>
                                                 <div>
                                                     saving throws
@@ -937,7 +967,7 @@ export default function Ttrpg(){
                                             <div style={{display:"flex"}}>
                                                 <input disabled={true} checked={arr[0].doc.skills.intelligencesave} type='checkbox'/>
                                                 <div className={style.skillbonus}>
-                                                {arr[0].doc.skills.intelligencesave ? arr[0].doc.stats.intelligencebonus+arr[0].doc.stats.proficiency:arr[0].doc.stats.intelligencebonus}
+                                                {arr[0].doc.skills.intelligencesave ? parseInt(arr[0].doc.stats.intelligencebonus)+parseInt(arr[0].doc.stats.proficiency):arr[0].doc.stats.intelligencebonus}
                                                 </div>
                                                 <div>
                                                     saving throws
@@ -948,7 +978,7 @@ export default function Ttrpg(){
                                             <div style={{display:"flex"}}>
                                                 <input disabled={true} checked={arr[0].doc.skills.arcana} type='checkbox'/>
                                                 <div className={style.skillbonus}>
-                                                {arr[0].doc.skills.arcana ? arr[0].doc.stats.intelligencebonus+arr[0].doc.stats.proficiency:arr[0].doc.stats.intelligencebonus}
+                                                {arr[0].doc.skills.arcana ? parseInt(arr[0].doc.stats.intelligencebonus)+parseInt(arr[0].doc.stats.proficiency):arr[0].doc.stats.intelligencebonus}
                                                 </div>
                                                 <div>
                                                     arcana
@@ -959,7 +989,7 @@ export default function Ttrpg(){
                                             <div style={{display:"flex"}}>
                                                 <input disabled={true} checked={arr[0].doc.skills.history} type='checkbox'/>
                                                 <div className={style.skillbonus}>
-                                                {arr[0].doc.skills.history ? arr[0].doc.stats.intelligencebonus+arr[0].doc.stats.proficiency:arr[0].doc.stats.intelligencebonus}
+                                                {arr[0].doc.skills.history ? parseInt(arr[0].doc.stats.intelligencebonus)+parseInt(arr[0].doc.stats.proficiency):arr[0].doc.stats.intelligencebonus}
                                                 </div>
                                                 <div>
                                                     history
@@ -970,7 +1000,7 @@ export default function Ttrpg(){
                                             <div style={{display:"flex"}}>
                                                 <input disabled={true} checked={arr[0].doc.skills.investigation} type='checkbox'/>
                                                 <div className={style.skillbonus}>
-                                                {arr[0].doc.skills.investigation ? arr[0].doc.stats.intelligencebonus+arr[0].doc.stats.proficiency:arr[0].doc.stats.intelligencebonus}
+                                                {arr[0].doc.skills.investigation ? parseInt(arr[0].doc.stats.intelligencebonus)+parseInt(arr[0].doc.stats.proficiency):arr[0].doc.stats.intelligencebonus}
                                                 </div>
                                                 <div>
                                                     investigation
@@ -981,7 +1011,7 @@ export default function Ttrpg(){
                                             <div style={{display:"flex"}}>
                                                 <input disabled={true} checked={arr[0].doc.skills.nature} type='checkbox'/>
                                                 <div className={style.skillbonus}>
-                                                {arr[0].doc.skills.nature ? arr[0].doc.stats.intelligencebonus+arr[0].doc.stats.proficiency:arr[0].doc.stats.intelligencebonus}
+                                                {arr[0].doc.skills.nature ? parseInt(arr[0].doc.stats.intelligencebonus)+parseInt(arr[0].doc.stats.proficiency):arr[0].doc.stats.intelligencebonus}
                                                 </div>
                                                 <div>
                                                     nature
@@ -992,7 +1022,7 @@ export default function Ttrpg(){
                                             <div style={{display:"flex"}}>
                                                 <input disabled={true} checked={arr[0].doc.skills.religion} type='checkbox'/>
                                                 <div className={style.skillbonus}>
-                                                {arr[0].doc.skills.religion ? arr[0].doc.stats.intelligencebonus+arr[0].doc.stats.proficiency:arr[0].doc.stats.intelligencebonus}
+                                                {arr[0].doc.skills.religion ? parseInt(arr[0].doc.stats.intelligencebonus)+parseInt(arr[0].doc.stats.proficiency):arr[0].doc.stats.intelligencebonus}
                                                 </div>
                                                 <div>
                                                     religion
@@ -1018,7 +1048,7 @@ export default function Ttrpg(){
                                             <div style={{display:"flex"}}>
                                                 <input disabled={true} checked={arr[0].doc.skills.wisdomsave} type='checkbox'/>
                                                 <div className={style.skillbonus}>
-                                                {arr[0].doc.skills.wisdomsave ? arr[0].doc.stats.wisdombonus+arr[0].doc.stats.proficiency:arr[0].doc.stats.wisdombonus}
+                                                {arr[0].doc.skills.wisdomsave ? parseInt(arr[0].doc.stats.wisdombonus)+parseInt(arr[0].doc.stats.proficiency):arr[0].doc.stats.wisdombonus}
                                                 </div>
                                                 <div>
                                                     saving throws
@@ -1029,7 +1059,7 @@ export default function Ttrpg(){
                                             <div style={{display:"flex"}}>
                                                 <input disabled={true} checked={arr[0].doc.skills.animalhandling} type='checkbox'/>
                                                 <div className={style.skillbonus}>
-                                                {arr[0].doc.skills.animalhandling ? arr[0].doc.stats.wisdombonus+arr[0].doc.stats.proficiency:arr[0].doc.stats.wisdombonus}
+                                                {arr[0].doc.skills.animalhandling ? parseInt(arr[0].doc.stats.wisdombonus)+parseInt(arr[0].doc.stats.proficiency):arr[0].doc.stats.wisdombonus}
                                                 </div>
                                                 <div>
                                                     animal handling
@@ -1040,7 +1070,7 @@ export default function Ttrpg(){
                                             <div style={{display:"flex"}}>
                                                 <input disabled={true} checked={arr[0].doc.skills.insight} type='checkbox'/>
                                                 <div className={style.skillbonus}>
-                                                {arr[0].doc.skills.insight ? arr[0].doc.stats.wisdombonus+arr[0].doc.stats.proficiency:arr[0].doc.stats.wisdombonus}
+                                                {arr[0].doc.skills.insight ? parseInt(arr[0].doc.stats.wisdombonus)+parseInt(arr[0].doc.stats.proficiency):arr[0].doc.stats.wisdombonus}
                                                 </div>
                                                 <div>
                                                     insight
@@ -1051,7 +1081,7 @@ export default function Ttrpg(){
                                             <div style={{display:"flex"}}>
                                                 <input disabled={true} checked={arr[0].doc.skills.medicine} type='checkbox'/>
                                                 <div className={style.skillbonus}>
-                                                {arr[0].doc.skills.medicine ? arr[0].doc.stats.wisdombonus+arr[0].doc.stats.proficiency:arr[0].doc.stats.wisdombonus}
+                                                {arr[0].doc.skills.medicine ? parseInt(arr[0].doc.stats.wisdombonus)+parseInt(arr[0].doc.stats.proficiency):arr[0].doc.stats.wisdombonus}
                                                 </div>
                                                 <div>
                                                     medicine
@@ -1062,7 +1092,7 @@ export default function Ttrpg(){
                                             <div style={{display:"flex"}}>
                                                 <input disabled={true} checked={arr[0].doc.skills.perception} type='checkbox'/>
                                                 <div className={style.skillbonus}>
-                                                {arr[0].doc.skills.perception ? arr[0].doc.stats.wisdombonus+arr[0].doc.stats.proficiency:arr[0].doc.stats.wisdombonus}
+                                                {arr[0].doc.skills.perception ? parseInt(arr[0].doc.stats.wisdombonus)+parseInt(arr[0].doc.stats.proficiency):arr[0].doc.stats.wisdombonus}
                                                 </div>
                                                 <div>
                                                     perception
@@ -1073,7 +1103,7 @@ export default function Ttrpg(){
                                             <div style={{display:"flex"}}>
                                                 <input disabled={true} checked={arr[0].doc.skills.survival} type='checkbox'/>
                                                 <div className={style.skillbonus}>
-                                                {arr[0].doc.skills.survival ? arr[0].doc.stats.wisdombonus+arr[0].doc.stats.proficiency:arr[0].doc.stats.wisdombonus}
+                                                {arr[0].doc.skills.survival ? parseInt(arr[0].doc.stats.wisdombonus)+parseInt(arr[0].doc.stats.proficiency):arr[0].doc.stats.wisdombonus}
                                                 </div>
                                                 <div>
                                                     survival
@@ -1099,7 +1129,7 @@ export default function Ttrpg(){
                                             <div style={{display:"flex"}}>
                                                 <input disabled={true} checked={arr[0].doc.skills.charismasave} type='checkbox'/>
                                                 <div className={style.skillbonus}>
-                                                {arr[0].doc.skills.charismasave ? arr[0].doc.stats.charismabonus+arr[0].doc.stats.proficiency:arr[0].doc.stats.charismabonus}
+                                                {arr[0].doc.skills.charismasave ? parseInt(arr[0].doc.stats.charismabonus)+parseInt(arr[0].doc.stats.proficiency):arr[0].doc.stats.charismabonus}
                                                 </div>
                                                 <div>
                                                     saving throws
@@ -1110,7 +1140,7 @@ export default function Ttrpg(){
                                             <div style={{display:"flex"}}>
                                                 <input disabled={true} checked={arr[0].doc.skills.deception} type='checkbox'/>
                                                 <div className={style.skillbonus}>
-                                                {arr[0].doc.skills.deception ? arr[0].doc.stats.charismabonus+arr[0].doc.stats.proficiency:arr[0].doc.stats.charismabonus}
+                                                {arr[0].doc.skills.deception ? parseInt(arr[0].doc.stats.charismabonus)+parseInt(arr[0].doc.stats.proficiency):arr[0].doc.stats.charismabonus}
                                                 </div>
                                                 <div>
                                                     deception
@@ -1121,7 +1151,7 @@ export default function Ttrpg(){
                                             <div style={{display:"flex"}}>
                                                 <input disabled={true} checked={arr[0].doc.skills.intimidation} type='checkbox'/>
                                                 <div className={style.skillbonus}>
-                                                {arr[0].doc.skills.intimidation ? arr[0].doc.stats.charismabonus+arr[0].doc.stats.proficiency:arr[0].doc.stats.charismabonus}
+                                                {arr[0].doc.skills.intimidation ? parseInt(arr[0].doc.stats.charismabonus)+parseInt(arr[0].doc.stats.proficiency):arr[0].doc.stats.charismabonus}
                                                 </div>
                                                 <div>
                                                     intimidation
@@ -1132,7 +1162,7 @@ export default function Ttrpg(){
                                             <div style={{display:"flex"}}>
                                                 <input disabled={true} checked={arr[0].doc.skills.performance} type='checkbox'/>
                                                 <div className={style.skillbonus}>
-                                                {arr[0].doc.skills.performance ? arr[0].doc.stats.charismabonus+arr[0].doc.stats.proficiency:arr[0].doc.stats.charismabonus}
+                                                {arr[0].doc.skills.performance ? parseInt(arr[0].doc.stats.charismabonus)+parseInt(arr[0].doc.stats.proficiency):arr[0].doc.stats.charismabonus}
                                                 </div>
                                                 <div>
                                                     performance
@@ -1143,7 +1173,7 @@ export default function Ttrpg(){
                                             <div style={{display:"flex"}}>
                                                 <input disabled={true} checked={arr[0].doc.skills.persuasion} type='checkbox'/>
                                                 <div className={style.skillbonus}>
-                                                {arr[0].doc.skills.persuasion ? arr[0].doc.stats.charismabonus+arr[0].doc.stats.proficiency:arr[0].doc.stats.charismabonus}
+                                                {arr[0].doc.skills.persuasion ? parseInt(arr[0].doc.stats.charismabonus)+parseInt(arr[0].doc.stats.proficiency):arr[0].doc.stats.charismabonus}
                                                 </div>
                                                 <div>
                                                     persuasion
@@ -1156,7 +1186,7 @@ export default function Ttrpg(){
                         </div>
                         <div>
                             <div className={style.perbox}>
-                                <div className={style.perbonus}>{arr[0].doc.skills.perception ? 8+arr[0].doc.stats.wisdombonus+arr[0].doc.stats.proficiency:8+arr[0].doc.stats.wisdombonus}</div>
+                                <div className={style.perbonus}>{arr[0].doc.skills.perception ? 8+parseInt(arr[0].doc.stats.wisdombonus)+parseInt(arr[0].doc.stats.proficiency):8+parseInt(arr[0].doc.stats.wisdombonus)}</div>
                                 <div style={{alignSelf:"center"}}>passive perception (wisdom)</div>
                             </div>
                             <div>
@@ -1321,7 +1351,7 @@ export default function Ttrpg(){
                     </div>
                 </div>
             </div>
-            <div className={style.page}>
+            <div ref={ref2} className={style.page}>
                 <div className={style.appearancebox}>
                     <div className={style.charnamebox}>
                             <div className={style.charnametext}>{arr[0].doc.chardesc.name}</div>
@@ -1379,7 +1409,7 @@ export default function Ttrpg(){
                         </div>
                     </div>
                 </div>
-            </div></div>}</div>:<div/>}
+            </div></div></div>}</div>:<div/>}
             
         </div>
     )

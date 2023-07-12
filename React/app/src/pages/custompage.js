@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
 import { useLocation } from 'react-router-dom'
 import style from './custompage.module.css'
 import pic from '../logo512.png'
 import {useAlert} from 'react-alert'
+import jsPdf from 'jspdf'
 
 export default function Custom(){
     
+    const ref = useRef(null)
     let alert=useAlert()
     var location = useLocation()
     const [arr,setArr]=useState([])
@@ -135,6 +137,18 @@ export default function Custom(){
         setText(arr[0].doc.paragraph)
         setTitle(arr[0].doc.title)
     }
+
+    function downloadPdf(){
+        const content = ref.current
+        const doc = new jsPdf()
+        doc.html(content,{
+            callback:function (doc){
+                doc.save(arr[0].doc.title+'.pdf')
+            },
+            width:100,
+            windowWidth:450
+        })
+    }
     
     
     return(
@@ -161,18 +175,21 @@ export default function Custom(){
                 <div style={{display:"flex"}}>
                     <button className={style.putBut} onClick={()=>updateCheck()}>Edit file</button>
                     <button className={style.delBut} onClick={()=>delCustom()}>Delete file</button>
+                    <button className={style.pdfBut} onClick={()=>downloadPdf()}>Download pdf</button>
                 </div>
-                <div className={style.page}>  
+                <div ref={ref} className={style.page}>  
                 <h1 className={style.title}>{arr[0].doc.title}</h1>
                 <img className={style.img} src={arr[0].doc._attachments.image.data}></img>
                 <div style={{borderBottom:"2px solid black"}}></div>
                 <div className={style.desc}>{arr[0].doc.paragraph}</div>
-            </div></div>}</div>:<div className={style.page}>  
+            </div></div>}</div>:<div>
+                <button className={style.pdfBut} onClick={()=>downloadPdf()}>Download pdf</button>
+                <div ref={ref} className={style.page}>  
                 <h1 className={style.title}>{arr[0].doc.title}</h1>
                 <img className={style.img} src={arr[0].doc._attachments.image.data}></img>
                 <div style={{borderBottom:"2px solid black"}}></div>
                 <div className={style.desc}>{arr[0].doc.paragraph}</div>
-            </div>}
+            </div></div>}
             </div>:<div/>}
         </div>
     )

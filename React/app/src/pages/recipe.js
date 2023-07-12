@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import axios from 'axios'
 import { useLocation } from 'react-router-dom'
 import pic from '../logo512.png'
@@ -6,9 +6,11 @@ import style from './recipe.module.css'
 import Rating from '@mui/material/Rating'
 import Card from '@mui/material/Card';
 import {useAlert} from 'react-alert'
+import jsPdf from 'jspdf'
 
 export default function Recipe(){
     
+    const ref = useRef(null)
     let alert = useAlert()
     var location = useLocation()
     const userid=sessionStorage.getItem("id")
@@ -209,6 +211,18 @@ export default function Recipe(){
         setIngredients(arr[0].doc.ingredients)
         setInstructions(arr[0].doc.instructions)
     }
+
+    function downloadPdf(){
+        const content = ref.current
+        const doc = new jsPdf()
+        doc.html(content,{
+            callback:function (doc){
+                doc.save(arr[0].doc.title+'.pdf')
+            },
+            width:100,
+            windowWidth:450
+        })
+    }
     
     return(
         <div>
@@ -236,8 +250,9 @@ export default function Recipe(){
                     <div style={{display:"flex"}}>
                         <button className={style.putBut} onClick={()=>updateCheck()}>Edit file</button>
                         <button className={style.delBut} onClick={()=>delRecipe()}>Delete file</button>
+                        <button className={style.pdfBut} onClick={()=>downloadPdf()}>Download pdf</button>
                     </div>
-                <div className={style.page}>  
+                <div ref={ref} className={style.page}>  
                     <h1 className={style.title}>{arr[0].doc.title}</h1>
                     <img src={arr[0].doc._attachments.image.data} className={style.img}></img>
                     <div style={{borderBottom:"2px solid black"}}/>
@@ -283,7 +298,9 @@ export default function Recipe(){
             </div>:<div/>}</div>}
             </div>:
             <div>
-            {arr.length ? <div className={style.page}>  
+            {arr.length ? <div>
+                <button className={style.pdfBut} onClick={()=>downloadPdf()}>Download pdf</button>
+                <div ref={ref} className={style.page}>  
                 <h1 className={style.title}>{arr[0].doc.title}</h1>
                 <img src={arr[0].doc._attachments.image.data} className={style.img}></img>
                 <div style={{borderBottom:"2px solid black"}}/>
@@ -296,7 +313,7 @@ export default function Recipe(){
                 <p className={style.text}>{arr[0].doc.ingredients}</p>
                 <h3 className={style.title2}>Instructions</h3>
                 <p className={style.text}>{arr[0].doc.instructions}</p>
-            </div>
+            </div></div>
             :<div/>}
             {sessionStorage.getItem("id") ? <button className={style.button} onClick={()=>setButton(!button)}>add Review</button>:<div></div>}
             {button ? 

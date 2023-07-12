@@ -4,7 +4,6 @@
     margin-top: 2%;
     margin-bottom: 2%;
     border: 2px solid black;
-    width: fit-content;
     background-color: beige;
     width: 1000px;
 }
@@ -52,5 +51,10 @@
     margin: 2%;
     font-weight: bold;
     font-size: medium;
+    background-color: lightseagreen;
+}
+.pdfBut{
+    font-size: large;
+    margin: 1%;
     background-color: lightseagreen;
 }
