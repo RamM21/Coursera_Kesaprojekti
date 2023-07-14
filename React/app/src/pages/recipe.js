@@ -10,6 +10,7 @@ import jsPdf from 'jspdf'
 
 export default function Recipe(){
     
+    
     const ref = useRef(null)
     let alert = useAlert()
     var location = useLocation()
@@ -81,12 +82,26 @@ export default function Recipe(){
         return imageUrl
     }
 
-    function handleSubmit(){
+    async function handleSubmit(){
+        let document={
+            text:comment
+        }
+        await axios.post("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/watson.json",document)
+        .then((response)=>{
+            sendReview(response.data.result.label)
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }
+
+    async function sendReview(sentiment){
         let document={
             save:{
                 userId:sessionStorage.getItem("id"),
                 rating:rating,
                 comment:comment,
+                sentiment:sentiment,
                 recipe:arr[0].doc._id
             }
         }
@@ -284,14 +299,24 @@ export default function Recipe(){
             {reviews ? <div>
                 <div className={style.reviewsHead}>Reviews</div>
                 {reviews.map(e=><div>{userid===e.doc.userId ? <Card className={style.reviewBox}>
+                    <div style={{display:"flex"}}>
+                    <div>
                     <div className={style.reviewHead}>Rating</div>
                     <Rating className={style.reviewRating} readOnly={true} value={e.doc.rating} />
+                    </div>
+                    <img style={{width:"50px",marginLeft:"auto",marginRight:"30px"}} src={"/"+e.doc.sentiment+".png"} />
+                    </div>
                     <div className={style.reviewHead}>Review comment</div>
                     <textarea disabled={true} className={style.reviewComment} defaultValue={e.doc.comment} />
                     <button className={style.delReview} onClick={()=>delReview(e)}>delete</button>
                 </Card>:<Card className={style.reviewBox}>
+                    <div style={{display:"flex"}}>
+                    <div>
                     <div className={style.reviewHead}>Rating</div>
                     <Rating className={style.reviewRating} readOnly={true} value={e.doc.rating} />
+                    </div>
+                    <img style={{width:"50px",marginLeft:"auto",marginRight:"30px"}} src={"/"+e.doc.sentiment+".png"} />
+                    </div>
                     <div className={style.reviewHead}>Review comment</div>
                     <textarea disabled={true} className={style.reviewComment} defaultValue={e.doc.comment} />
                 </Card>}</div>)}
@@ -334,14 +359,24 @@ export default function Recipe(){
             {reviews ? <div>
                 <div className={style.reviewsHead}>Reviews</div>
                 {reviews.map(e=><div>{userid===e.doc.userId ? <Card className={style.reviewBox}>
+                    <div style={{display:"flex"}}>
+                    <div>
                     <div className={style.reviewHead}>Rating</div>
                     <Rating className={style.reviewRating} readOnly={true} value={e.doc.rating} />
+                    </div>
+                    <img style={{width:"50px",marginLeft:"auto",marginRight:"30px"}} src={"/"+e.doc.sentiment+".png"} />
+                    </div>
                     <div className={style.reviewHead}>Review comment</div>
                     <textarea disabled={true} className={style.reviewComment} defaultValue={e.doc.comment} />
                     <button className={style.delReview} onClick={()=>delReview(e)}>delete</button>
                 </Card>:<Card className={style.reviewBox}>
+                    <div style={{display:"flex"}}>
+                    <div>
                     <div className={style.reviewHead}>Rating</div>
                     <Rating className={style.reviewRating} readOnly={true} value={e.doc.rating} />
+                    </div>
+                    <img style={{width:"50px",marginLeft:"auto",marginRight:"30px"}} src={"/"+e.doc.sentiment+".png"} />
+                    </div>
                     <div className={style.reviewHead}>Review comment</div>
                     <textarea disabled={true} className={style.reviewComment} defaultValue={e.doc.comment} />
                 </Card>}</div>)}
