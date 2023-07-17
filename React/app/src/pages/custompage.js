@@ -21,24 +21,21 @@ export default function Custom(){
 
     useEffect(()=>{
             if(arr.length===0){
-            getCustom()
+                axios.get("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/get-custom.json?id="+location.state)
+                .then(response=>{
+                    let arr = response.data.result
+                    arr[0].doc._attachments.image.data = image(arr[0].doc._attachments.image.data)
+                    if(sessionStorage.getItem("id")===arr[0].doc.userid){
+                        setOptions(true)
+                    }
+                    setArr(arr)
+                })
+                .catch(err=>{
+                    console.log(err)
+                })
         }
-    },[arr])
+    })
 
-    async function getCustom(){
-        await axios.get("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/get-custom.json?id="+location.state)
-            .then(response=>{
-                let arr = response.data.result
-                arr[0].doc._attachments.image.data = image(arr[0].doc._attachments.image.data)
-                if(sessionStorage.getItem("id")===arr[0].doc.userid){
-                    setOptions(true)
-                }
-                setArr(arr)
-            })
-            .catch(err=>{
-                console.log(err)
-            })
-    }
 
     function handleImage(e){
         setFile(URL.createObjectURL(e.target.files[0]))
@@ -162,7 +159,7 @@ export default function Custom(){
                         <h1 className={style.title} >Title</h1>
                         <input className={style.inputTitle} defaultValue={title} onChange={(event=>setTitle(event.target.value))} type="text" placeholder='The title of save'/>
                         <h2 className={style.image}>Image</h2>
-                        {file ? <img src={file} className={style.img}></img>:<img src={pic} className={style.img}></img>}
+                        {file ? <img src={file} alt='' className={style.img}></img>:<img src={pic} alt='' className={style.img}></img>}
                         <div><input style={{marginBottom:"1%"}} type="file" onChange={handleImage}/></div>
                         <div style={{borderBottom:"2px solid black"}}/>
                         <div>
@@ -179,14 +176,14 @@ export default function Custom(){
                 </div>
                 <div ref={ref} className={style.page}>  
                 <h1 className={style.title}>{arr[0].doc.title}</h1>
-                <img className={style.img} src={arr[0].doc._attachments.image.data}></img>
+                <img className={style.img} alt='' src={arr[0].doc._attachments.image.data}></img>
                 <div style={{borderBottom:"2px solid black"}}></div>
                 <div className={style.desc}>{arr[0].doc.paragraph}</div>
             </div></div>}</div>:<div>
                 <button className={style.pdfBut} onClick={()=>downloadPdf()}>Download pdf</button>
                 <div ref={ref} className={style.page}>  
                 <h1 className={style.title}>{arr[0].doc.title}</h1>
-                <img className={style.img} src={arr[0].doc._attachments.image.data}></img>
+                <img className={style.img} alt='' src={arr[0].doc._attachments.image.data}></img>
                 <div style={{borderBottom:"2px solid black"}}></div>
                 <div className={style.desc}>{arr[0].doc.paragraph}</div>
             </div></div>}

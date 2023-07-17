@@ -93,7 +93,7 @@ export default class main extends React.Component{
                     <h1 style={{marginLeft:"2%"}}>Recipes</h1>
                     <div style={{display:"flex",width:"100%",overflow:"auto"}}>
                         {this.state.recipes.map(e=><Link to='/recipepage' draggable={false} key={e.id} state={e.id} className={style.card}>
-                            {e.doc._attachments ? <img src={e.doc._attachments.image.data} className={style.img}/>:<img/>}
+                            {e.doc._attachments ? <img src={e.doc._attachments.image.data} alt='' className={style.img}/>:<img alt=''/>}
                             <h3 className={style.title}>{e.doc.title}</h3>
                             <p className={style.text}>{e.doc.desc}</p>
                             <p className={style.text}>Serving size {e.doc.servings}</p>
@@ -102,16 +102,16 @@ export default class main extends React.Component{
                     <h1 style={{marginLeft:"2%"}}>Ttrpg</h1>
                     <div style={{display:"flex",width:"100%",overflow:"auto"}}>
                         {this.state.ttrpg.map(e=><Link to='/ttrpgpage' draggable={false} key={e.id} state={e.id} className={style.card}>
-                            {e.doc._attachments ? <img src={e.doc._attachments.image.data} className={style.img}/>:<img/>}
+                            {e.doc._attachments ? <img src={e.doc._attachments.image.data} alt='' className={style.img}/>:<img alt=''/>}
                             <h3 className={style.title}>Name {e.doc.chardesc.name}</h3>
                             <p className={style.text}>Class {e.doc.chardesc.class}</p>
                             <p className={style.text}>Race {e.doc.chardesc.race}</p>
                         </Link>)}
                     </div>
                     <h1 style={{marginLeft:"2%"}}>Custom</h1>
-                    <div style={{display:"flex",width:"100%",overflow:"auto"}}>
+                    <div style={{display:"flex",width:"100%",overflow:"auto",marginBottom:"1%"}}>
                         {this.state.custom.map(e=><Link to='/custompage' draggable={false} key={e.id} state={e.id} className={style.card}>
-                            {e.doc._attachments ? <img src={e.doc._attachments.image.data} className={style.img}/>:<img/>}
+                            {e.doc._attachments ? <img src={e.doc._attachments.image.data} alt='' className={style.img}/>:<img alt=''/>}
                             <h3 className={style.title}>{e.doc.title}</h3>
                             <p className={style.text}>{e.doc.paragraph}</p>
                         </Link>)}

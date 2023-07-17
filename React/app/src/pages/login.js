@@ -73,6 +73,7 @@ export default function Login(props){
                     <h3 className={style.pastitle2}>Password</h3>
                     <input onChange={(event)=>setPassword(event.target.value)} value={password} className={style.pasinput} type='text' />
                     <button onClick={()=>handleOtp()} className={style.pasbutton}>Login</button>
+                    <button onClick={()=>handlelogin()} className={style.newotpBut}>Send new one time password</button>
                     </div>
                 </div>:<div className={style.box}>
                     <h1 className={style.title}>Login</h1>

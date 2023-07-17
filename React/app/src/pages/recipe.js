@@ -247,7 +247,7 @@ export default function Recipe(){
                 <div>  
                 <input className={style.titleinput} defaultValue={title} onChange={(event)=>setTitle(event.target.value)} placeholder='Title of recipe' type='text'/>
                 </div>
-                {file ? <img src={file} className={style.img}></img>:<img src={pic} className={style.img}></img>}
+                {file ? <img src={file} alt='' className={style.img}></img>:<img src={pic} alt='' className={style.img}></img>}
                 <div><input type='file' onChange={handleImage}/></div>
                 <div style={{borderBottom:"2px solid black"}}/>
                 <h3 className={style.title2}>Description</h3>
@@ -269,7 +269,7 @@ export default function Recipe(){
                     </div>
                 <div ref={ref} className={style.page}>  
                     <h1 className={style.title}>{arr[0].doc.title}</h1>
-                    <img src={arr[0].doc._attachments.image.data} className={style.img}></img>
+                    <img src={arr[0].doc._attachments.image.data} alt='' className={style.img}></img>
                     <div style={{borderBottom:"2px solid black"}}/>
                     <h3 className={style.title2}>Description</h3>
                     <p className={style.text}>{arr[0].doc.desc}</p>
@@ -304,7 +304,7 @@ export default function Recipe(){
                     <div className={style.reviewHead}>Rating</div>
                     <Rating className={style.reviewRating} readOnly={true} value={e.doc.rating} />
                     </div>
-                    <img style={{width:"50px",marginLeft:"auto",marginRight:"30px"}} src={"/"+e.doc.sentiment+".png"} />
+                    <img style={{width:"50px",marginLeft:"auto",marginRight:"30px"}} alt='' src={"/"+e.doc.sentiment+".png"} />
                     </div>
                     <div className={style.reviewHead}>Review comment</div>
                     <textarea disabled={true} className={style.reviewComment} defaultValue={e.doc.comment} />
@@ -315,7 +315,7 @@ export default function Recipe(){
                     <div className={style.reviewHead}>Rating</div>
                     <Rating className={style.reviewRating} readOnly={true} value={e.doc.rating} />
                     </div>
-                    <img style={{width:"50px",marginLeft:"auto",marginRight:"30px"}} src={"/"+e.doc.sentiment+".png"} />
+                    <img style={{width:"50px",marginLeft:"auto",marginRight:"30px"}} alt='' src={"/"+e.doc.sentiment+".png"} />
                     </div>
                     <div className={style.reviewHead}>Review comment</div>
                     <textarea disabled={true} className={style.reviewComment} defaultValue={e.doc.comment} />
@@ -327,7 +327,7 @@ export default function Recipe(){
                 <button className={style.pdfBut} onClick={()=>downloadPdf()}>Download pdf</button>
                 <div ref={ref} className={style.page}>  
                 <h1 className={style.title}>{arr[0].doc.title}</h1>
-                <img src={arr[0].doc._attachments.image.data} className={style.img}></img>
+                <img src={arr[0].doc._attachments.image.data} alt='' className={style.img}></img>
                 <div style={{borderBottom:"2px solid black"}}/>
                 <h3 className={style.title2}>Description</h3>
                 <p className={style.text}>{arr[0].doc.desc}</p>
@@ -364,7 +364,7 @@ export default function Recipe(){
                     <div className={style.reviewHead}>Rating</div>
                     <Rating className={style.reviewRating} readOnly={true} value={e.doc.rating} />
                     </div>
-                    <img style={{width:"50px",marginLeft:"auto",marginRight:"30px"}} src={"/"+e.doc.sentiment+".png"} />
+                    <img style={{width:"50px",marginLeft:"auto",marginRight:"30px"}} alt='' src={"/"+e.doc.sentiment+".png"} />
                     </div>
                     <div className={style.reviewHead}>Review comment</div>
                     <textarea disabled={true} className={style.reviewComment} defaultValue={e.doc.comment} />
@@ -375,7 +375,7 @@ export default function Recipe(){
                     <div className={style.reviewHead}>Rating</div>
                     <Rating className={style.reviewRating} readOnly={true} value={e.doc.rating} />
                     </div>
-                    <img style={{width:"50px",marginLeft:"auto",marginRight:"30px"}} src={"/"+e.doc.sentiment+".png"} />
+                    <img style={{width:"50px",marginLeft:"auto",marginRight:"30px"}} alt='' src={"/"+e.doc.sentiment+".png"} />
                     </div>
                     <div className={style.reviewHead}>Review comment</div>
                     <textarea disabled={true} className={style.reviewComment} defaultValue={e.doc.comment} />

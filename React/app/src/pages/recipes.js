@@ -1,9 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import Navbar from './navbar'
 import style from './recipes.module.css'
-import pic from '../logo512.png'
 
 export default class recipes extends React.Component{
     constructor(props){
@@ -54,7 +52,7 @@ export default class recipes extends React.Component{
                     <h1 style={{marginLeft:"2%"}}>Recipes</h1>
                     <div style={{display:"flex",width:"100%",flexWrap:'wrap'}}>
                         {this.state.recipes.map(e=><Link to='/recipepage' draggable={false} key={e.id} state={e.id} className={style.card}>
-                            <img src={e.doc._attachments.image.data} className={style.img}></img>
+                            <img src={e.doc._attachments.image.data} alt='' className={style.img}></img>
                             <h3 className={style.title}>{e.doc.title}</h3>
                             <p className={style.text}>{e.doc.desc}</p>
                             <p className={style.text}>Serving size {e.doc.servings}</p>

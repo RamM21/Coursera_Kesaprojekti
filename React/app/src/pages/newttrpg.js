@@ -1,8 +1,5 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import { Link,useLocation } from 'react-router-dom'
-import Navbar from './navbar'
-import pic from '../logo512.png'
 import style from './newttrpg.module.css'
 import {useAlert} from 'react-alert'
 
@@ -102,7 +99,6 @@ export default function Newttrpg(){
     const [intimidation,setIntimidation]=useState(false)
     const [performance,setPerformance]=useState(false)
     const [persuasion,setPersuasion]=useState(false)
-    const [savefile,setSavefile]=useState({})
 
 
     function handlefeature(){
@@ -898,7 +894,7 @@ export default function Newttrpg(){
                 </div>
                 <div style={{display:"flex"}}>
                     <div className={style.imgbox}>
-                        {appearance ? <img className={style.img} src={appearance}></img>:<input type='file' onChange={handleImage}/>}
+                        {appearance ? <img className={style.img} alt='' src={appearance}></img>:<input type='file' onChange={handleImage}/>}
                         <div className={style.imgtext}>character appearance</div>
                     </div>
                     <div className={style.alliesbox}>

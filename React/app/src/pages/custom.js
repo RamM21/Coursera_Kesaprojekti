@@ -1,9 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import Navbar from './navbar'
 import style from './custom.module.css'
-import pic from '../logo512.png'
 
 export default class custom extends React.Component{
     constructor(props){
@@ -55,7 +53,7 @@ export default class custom extends React.Component{
                     <h1 style={{marginLeft:"2%"}}>Custom</h1>
                     <div style={{display:"flex",width:"100%",flexWrap:'wrap'}}>
                         {this.state.custom.map(e=><Link to='/custompage' draggable={false} key={e.id} state={e.id} className={style.card}>
-                            <img src={e.doc._attachments.image.data} className={style.img}></img>
+                            <img src={e.doc._attachments.image.data} alt='' className={style.img}></img>
                             <h3 className={style.title}>{e.doc.title}</h3>
                             <p className={style.text}>{e.doc.paragraph}</p>
                         </Link>)}

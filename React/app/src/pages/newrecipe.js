@@ -73,7 +73,7 @@ export default function Newrecipe(){
                 <div>  
                 <input className={style.title} onChange={(event)=>setTitle(event.target.value)} placeholder='Title of recipe' type='text'/>
                 </div>
-                {file ? <img src={file} className={style.img}></img>:<img src={pic} className={style.img}></img>}
+                {file ? <img src={file} alt='' className={style.img}></img>:<img src={pic} alt='' className={style.img}></img>}
                 <div><input type='file' onChange={handleImage}/></div>
                 <div style={{borderBottom:"2px solid black"}}/>
                 <h3 className={style.title2}>Description</h3>

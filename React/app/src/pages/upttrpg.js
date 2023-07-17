@@ -904,7 +904,7 @@ export default function UpTtrpg(props){
                 </div>
                 <div style={{display:"flex"}}>
                     <div className={style.imgbox}>
-                        <img className={style.img} src={appearance}></img>
+                        <img className={style.img} alt='' src={appearance}></img>
                         <input type='file' onChange={handleImage}/>
                         <div className={style.imgtext}>character appearance</div>
                     </div>

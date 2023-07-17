@@ -1,9 +1,7 @@
 import React from 'react'
 import axios from 'axios'
-import { Link,redirect } from 'react-router-dom'
-import Navbar from './navbar'
+import { Link } from 'react-router-dom'
 import style from './mypage.module.css'
-import pic from '../logo512.png'
 
 
 export default class mypage extends React.Component{
@@ -104,19 +102,19 @@ export default class mypage extends React.Component{
                     </div>
                     <div style={{display:"flex",width:"100%",flexWrap:'wrap'}}>
                             {this.state.myrecipes.map(e=><Link to='/recipepage' draggable={false} key={e._id} state={e._id} className={style.card}>
-                                <img src={e._attachments.image.data} className={style.img}></img>
+                                <img src={e._attachments.image.data} alt='' className={style.img}></img>
                                 <h3 className={style.title}>{e.title}</h3>
                                 <p className={style.text}>{e.desc}</p>
                                 <p className={style.text}>Serving size {e.servings}</p>
                             </Link>)}
                             {this.state.myttrpg.map(e=><Link to='/ttrpgpage' draggable={false} key={e._id} state={e._id} className={style.card}>
-                                <img src={e._attachments.image.data} className={style.img}></img>
+                                <img src={e._attachments.image.data} alt='' className={style.img}></img>
                                 <h3 className={style.title}>Name {e.chardesc.name}</h3>
                                 <p className={style.text}>Class {e.chardesc.class}</p>
                                 <p className={style.text}>Race {e.chardesc.race}</p>
                             </Link>)}
                             {this.state.mycustom.map(e=><Link to='/custompage' draggable={false} key={e._id} state={e._id} className={style.card}>
-                                <img src={e._attachments.image.data} className={style.img}></img>
+                                <img src={e._attachments.image.data} alt='' className={style.img}></img>
                                 <h3 className={style.title}>{e.title}</h3>
                                 <p className={style.text}>{e.paragraph}</p>
                             </Link>)}

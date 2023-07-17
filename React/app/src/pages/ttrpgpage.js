@@ -18,7 +18,7 @@ export default function Ttrpg(){
     const [img,setImage]=useState()
     
     useEffect(()=>{
-            if(arr.length==0){
+            if(arr.length===0){
             axios.get("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/get-ttrpg.json?id="+location.state)
             .then(response=>{
                 let arr=response.data.result
@@ -736,7 +736,7 @@ export default function Ttrpg(){
                 </div>
                 <div style={{display:"flex"}}>
                     <div className={style.imgbox}>
-                        <img className={style.img} src={arr[0].doc._attachments.image.data}></img>
+                        <img className={style.img} alt='' src={arr[0].doc._attachments.image.data}></img>
                         <div className={style.imgtext}>character appearance</div>
                     </div>
                     <div className={style.alliesbox}>
@@ -1380,7 +1380,7 @@ export default function Ttrpg(){
                 </div>
                 <div style={{display:"flex"}}>
                     <div className={style.imgbox}>
-                        <img className={style.img} src={arr[0].doc._attachments.image.data}></img>
+                        <img className={style.img} alt='' src={arr[0].doc._attachments.image.data}></img>
                         <div className={style.imgtext}>character appearance</div>
                     </div>
                     <div className={style.alliesbox}>

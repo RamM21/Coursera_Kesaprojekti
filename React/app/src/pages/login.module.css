@@ -7,7 +7,7 @@
 }
 .passbox{
     border: 1px solid black;
-    height: 250px;
+    height: 260px;
     width: 350px;
     margin-left: 40%;
     margin-top: 5%;
@@ -50,4 +50,12 @@
     background-color: lightblue;
     font-size: large;
     margin-left: 40%;
+}
+.newotpBut{
+    background-color: white;
+    color: blue;
+    text-decoration: underline;
+    border: 0px;
+    margin-top: 4%;
+    margin-left: 22%;
 }

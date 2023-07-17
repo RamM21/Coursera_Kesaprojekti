@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import { Link,useLocation } from 'react-router-dom'
-import Navbar from './navbar'
 import pic from '../logo512.png'
 import style from './newcustom.module.css'
 import {useAlert} from 'react-alert'
@@ -69,7 +67,7 @@ export default function Newcustom(){
                 <h1 className={style.title} >Title</h1>
                 <input className={style.inputTitle} onChange={(event=>setTitle(event.target.value))} type="text" placeholder='The title of save'/>
                 <h2 className={style.image}>Image</h2>
-                {file ? <img src={file} className={style.img}></img>:<img src={pic} className={style.img}></img>}
+                {file ? <img src={file} alt='' className={style.img}></img>:<img src={pic} alt='' className={style.img}></img>}
                 <div><input style={{marginBottom:"1%"}} type="file" onChange={handleImage}/></div>
                 <div style={{borderBottom:"2px solid black"}}/>
                 <div>
