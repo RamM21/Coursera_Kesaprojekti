@@ -5,6 +5,7 @@ import style from './custompage.module.css'
 import pic from '../logo512.png'
 import {useAlert} from 'react-alert'
 import jsPdf from 'jspdf'
+import {Buffer} from 'buffer'
 
 export default function Custom(){
     
@@ -114,6 +115,30 @@ export default function Custom(){
         })
     }
 
+    function textToSpeech(){
+        let document = {
+            tTop:{
+                text:arr[0].doc.title+" "+arr[0].doc.paragraph
+            }
+        }
+        axios.post("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/watson.json",document)
+        .then((response)=>{
+            const buffer = Buffer.from(response.data.result)
+            const blob = new Blob([buffer])
+            const url = URL.createObjectURL(blob)
+            console.log(url)
+            let audio = new Audio(url)
+            audio.play()
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+
+
+    }
+
+    
+
     function image(data){
         const byteCharacters = atob(data);
         const byteNumbers = new Array(byteCharacters.length);
@@ -180,7 +205,10 @@ export default function Custom(){
                 <div style={{borderBottom:"2px solid black"}}></div>
                 <div className={style.desc}>{arr[0].doc.paragraph}</div>
             </div></div>}</div>:<div>
+                <div>
                 <button className={style.pdfBut} onClick={()=>downloadPdf()}>Download pdf</button>
+                <button className={style.pdfBut} onClick={()=>textToSpeech()}>Read file</button>
+                </div>
                 <div ref={ref} className={style.page}>  
                 <h1 className={style.title}>{arr[0].doc.title}</h1>
                 <img className={style.img} alt='' src={arr[0].doc._attachments.image.data}></img>
