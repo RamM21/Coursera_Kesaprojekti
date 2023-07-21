@@ -78,9 +78,9 @@ export default function Newrecipe(){
                 <div style={{borderBottom:"2px solid black"}}/>
                 <h3 className={style.title2}>Description</h3>
                 <textarea style={{resize:"none",height:"200px",width:"90%",marginLeft:"2%"}} onChange={(event)=>setDesc(event.target.value)}/>
+                <p className={style.text}>Serving size <input style={{width:"100px"}} onChange={(event)=>setServings(event.target.value)}/></p>
                 <h3 className={style.title2}>Preparing and make time</h3>
                 <textarea style={{resize:"none",height:"200px",width:"90%",marginLeft:"2%"}} onChange={(event)=>setPrepntime(event.target.value)}/>
-                <p className={style.text}>Serving size <input style={{width:"100px"}} onChange={(event)=>setServings(event.target.value)}/></p>
                 <h3 className={style.title2}>Ingredients</h3>
                 <textarea style={{resize:"none",height:"200px",width:"90%",marginLeft:"2%"}} onChange={(event)=>setIngredients(event.target.value)}/>
                 <h3 className={style.title2}>Instructions</h3>

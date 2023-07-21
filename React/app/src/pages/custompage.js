@@ -137,7 +137,27 @@ export default function Custom(){
 
     }
 
-    
+    function translatePage(){
+        let document={
+            translate:{
+                text:[arr[0].doc.title,arr[0].doc.paragraph]
+            }
+        }
+        axios.post("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/watson.json",document)
+        .then((response)=>{
+            let ar = [{
+                doc:{
+                    title:response.data.result[0].translation,
+                    paragraph:response.data.result[1].translation,
+                    _attachments:arr[0].doc._attachments
+                }
+            }]
+            setArr(ar)
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+    }
 
     function image(data){
         const byteCharacters = atob(data);
@@ -198,6 +218,8 @@ export default function Custom(){
                     <button className={style.putBut} onClick={()=>updateCheck()}>Edit file</button>
                     <button className={style.delBut} onClick={()=>delCustom()}>Delete file</button>
                     <button className={style.pdfBut} onClick={()=>downloadPdf()}>Download pdf</button>
+                    <button className={style.pdfBut} onClick={()=>translatePage()}>Translate to finnish</button>
+                    <button className={style.pdfBut} onClick={()=>textToSpeech()}>Read File</button>
                 </div>
                 <div ref={ref} className={style.page}>  
                 <h1 className={style.title}>{arr[0].doc.title}</h1>
@@ -207,6 +229,7 @@ export default function Custom(){
             </div></div>}</div>:<div>
                 <div>
                 <button className={style.pdfBut} onClick={()=>downloadPdf()}>Download pdf</button>
+                <button className={style.pdfBut} onClick={()=>translatePage()}>Translate to finnish</button>
                 <button className={style.pdfBut} onClick={()=>textToSpeech()}>Read file</button>
                 </div>
                 <div ref={ref} className={style.page}>  

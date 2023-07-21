@@ -7,6 +7,7 @@ import Rating from '@mui/material/Rating'
 import Card from '@mui/material/Card';
 import {useAlert} from 'react-alert'
 import jsPdf from 'jspdf'
+import {Buffer} from 'buffer'
 
 export default function Recipe(){
     
@@ -193,6 +194,54 @@ export default function Recipe(){
         imgtobase64(e)
     }
 
+    function textToSpeech(){
+        let document = {
+            tTop:{
+                text:arr[0].doc.title+" description "+arr[0].doc.desc+" preparations and time to make "+arr[0].doc.prepntime+" serving size "+arr[0].doc.servings+" ingredients "+arr[0].doc.ingredients+" instructions "+arr[0].doc.instructions
+            }
+        }
+        axios.post("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/watson.json",document)
+        .then((response)=>{
+            const buffer = Buffer.from(response.data.result)
+            const blob = new Blob([buffer])
+            const url = URL.createObjectURL(blob)
+            console.log(url)
+            let audio = new Audio(url)
+            audio.play()
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+
+
+    }
+
+    function translatePage(){
+        let document={
+            translate:{
+                text:[arr[0].doc.title,arr[0].doc.desc,arr[0].doc.prepntime,arr[0].doc.ingredients,arr[0].doc.instructions]
+            }
+        }
+        axios.post("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/watson.json",document)
+        .then((response)=>{
+            let ar = [{
+                doc:{
+                    title:response.data.result[0].translation,
+                    desc:response.data.result[1].translation,
+                    prepntime:response.data.result[2].translation,
+                    ingredients:response.data.result[3].translation,
+                    servings:arr[0].doc.servings,
+                    instructions:response.data.result[4].translation,
+                    _attachments:arr[0].doc._attachments
+                }
+            }]
+            setArr(ar)
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+    }
+
     function imgtobase64(data){
         if(!data.target){
             const reader = new FileReader()
@@ -252,9 +301,9 @@ export default function Recipe(){
                 <div style={{borderBottom:"2px solid black"}}/>
                 <h3 className={style.title2}>Description</h3>
                 <textarea style={{resize:"none",height:"200px",width:"90%",marginLeft:"2%"}} defaultValue={desc} onChange={(event)=>setDesc(event.target.value)}/>
+                <p className={style.text}>Serving size <input style={{width:"100px"}} defaultValue={servings} onChange={(event)=>setServings(event.target.value)}/></p>
                 <h3 className={style.title2}>Preparing and make time</h3>
                 <textarea style={{resize:"none",height:"200px",width:"90%",marginLeft:"2%"}} defaultValue={prepntime} onChange={(event)=>setPrepntime(event.target.value)}/>
-                <p className={style.text}>Serving size <input style={{width:"100px"}} defaultValue={servings} onChange={(event)=>setServings(event.target.value)}/></p>
                 <h3 className={style.title2}>Ingredients</h3>
                 <textarea style={{resize:"none",height:"200px",width:"90%",marginLeft:"2%"}} defaultValue={ingredients} onChange={(event)=>setIngredients(event.target.value)}/>
                 <h3 className={style.title2}>Instructions</h3>
@@ -266,6 +315,8 @@ export default function Recipe(){
                         <button className={style.putBut} onClick={()=>updateCheck()}>Edit file</button>
                         <button className={style.delBut} onClick={()=>delRecipe()}>Delete file</button>
                         <button className={style.pdfBut} onClick={()=>downloadPdf()}>Download pdf</button>
+                        <button className={style.pdfBut} onClick={()=>translatePage()}>Translate to finnish</button>
+                        <button className={style.pdfBut} onClick={()=>textToSpeech()}>Read File</button>
                     </div>
                 <div ref={ref} className={style.page}>  
                     <h1 className={style.title}>{arr[0].doc.title}</h1>
@@ -273,9 +324,9 @@ export default function Recipe(){
                     <div style={{borderBottom:"2px solid black"}}/>
                     <h3 className={style.title2}>Description</h3>
                     <p className={style.text}>{arr[0].doc.desc}</p>
+                    <p className={style.text}>Serving size {arr[0].doc.servings}</p>
                     <h3 className={style.title2}>Preparing and make time</h3>
                     <p className={style.text}>{arr[0].doc.prepntime}</p>
-                    <p className={style.text}>Serving size {arr[0].doc.servings}</p>
                     <h3 className={style.title2}>Ingredients</h3>
                     <p className={style.text}>{arr[0].doc.ingredients}</p>
                     <h3 className={style.title2}>Instructions</h3>
@@ -324,16 +375,20 @@ export default function Recipe(){
             </div>:
             <div>
             {arr.length ? <div>
+                <div>
                 <button className={style.pdfBut} onClick={()=>downloadPdf()}>Download pdf</button>
+                <button className={style.pdfBut} onClick={()=>translatePage()}>Translate to finnish</button>
+                <button className={style.pdfBut} onClick={()=>textToSpeech()}>Read File</button>
+                </div>
                 <div ref={ref} className={style.page}>  
                 <h1 className={style.title}>{arr[0].doc.title}</h1>
                 <img src={arr[0].doc._attachments.image.data} alt='' className={style.img}></img>
                 <div style={{borderBottom:"2px solid black"}}/>
                 <h3 className={style.title2}>Description</h3>
                 <p className={style.text}>{arr[0].doc.desc}</p>
+                <p className={style.text}>Serving size {arr[0].doc.servings}</p>
                 <h3 className={style.title2}>Preparing and make time</h3>
                 <p className={style.text}>{arr[0].doc.prepntime}</p>
-                <p className={style.text}>Serving size {arr[0].doc.servings}</p>
                 <h3 className={style.title2}>Ingredients</h3>
                 <p className={style.text}>{arr[0].doc.ingredients}</p>
                 <h3 className={style.title2}>Instructions</h3>
