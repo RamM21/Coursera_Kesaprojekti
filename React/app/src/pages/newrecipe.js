@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import pic from '../logo512.png'
 import style from './newrecipe.module.css'
 import {useAlert} from 'react-alert'
+import MicRecorder from 'mic-recorder-to-mp3'
 
 export default function Newrecipe(){
+    
     
     let alert = useAlert()
     const [title,setTitle]=useState("")
@@ -15,6 +17,25 @@ export default function Newrecipe(){
     const [servings,setServings]=useState("")
     const [ingredients,setIngredients]=useState("")
     const [instructions,setInstructions]=useState("")
+    const [isRecording,setIsRecording]=useState(false)
+    const [isBlocked,setIsBlocked]=useState(true)
+    const [mp3Recorder,setMp3recorder]=useState(new MicRecorder({bitRate:128}))
+
+    useEffect(()=>{
+        if(isBlocked){
+            navigator.getUserMedia({ audio: true },
+                () => {
+                  console.log('Permission Granted');
+                  setIsBlocked(false)
+                },
+                () => {
+                  console.log('Permission Denied');
+                  setIsBlocked(true)
+                },
+              );
+        }
+        console.log("rendered")
+    },[isBlocked])
 
     function handleImage(e){
         imgtobase64(e)
@@ -31,6 +52,56 @@ export default function Newrecipe(){
             type:data.target.files[0].type,
             file:reader.result.slice(22)
         })
+        }
+    }
+
+    function startRecording(){
+        if(isBlocked){
+            alert.info("Permission to record has been denied. To use speech to text allow use of microphone")
+        }else{
+            mp3Recorder.start()
+            .then(()=>{
+                setIsRecording(true)
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+        }
+    }
+
+    function stopRecording(place){
+        mp3Recorder.stop()
+        .getMp3()
+        .then(([buffer,blob])=>{
+            const file = new File(buffer,'file.mp3')
+            setIsRecording(false)
+            speechToText(file,place)
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+    }
+
+    function speechToText(file,place){
+        let document={
+            pTot:{
+                file:file
+            }
+        }
+        console.log(document)
+        switch(place){
+            case "description":
+                console.log("description")
+                break
+            case "prepntime":
+                console.log("prepntime")
+                break
+            case "ingredients":
+                console.log("ingredients")
+                break
+            default:
+                console.log("instructions")
+                break
         }
     }
 
@@ -76,16 +147,40 @@ export default function Newrecipe(){
                 {file ? <img src={file} alt='' className={style.img}></img>:<img src={pic} alt='' className={style.img}></img>}
                 <div><input type='file' onChange={handleImage}/></div>
                 <div style={{borderBottom:"2px solid black"}}/>
+                <div style={{display:"flex"}}>
                 <h3 className={style.title2}>Description</h3>
+                <div style={{display:"flex",marginLeft:"auto",marginRight:"8%"}}>
+                <button className={style.recordBut} disabled={isRecording} onClick={()=>startRecording()}>record</button>
+                <button className={style.stopBut} disabled={!isRecording} onClick={()=>stopRecording("description")}>stop</button>
+                </div>
+                </div>
                 <textarea style={{resize:"none",height:"200px",width:"90%",marginLeft:"2%"}} onChange={(event)=>setDesc(event.target.value)}/>
                 <p className={style.text}>Serving size <input style={{width:"100px"}} onChange={(event)=>setServings(event.target.value)}/></p>
+                <div style={{display:"flex"}}>
                 <h3 className={style.title2}>Preparing and make time</h3>
+                <div style={{display:"flex",marginLeft:"auto",marginRight:"8%"}}>
+                <button className={style.recordBut} disabled={isRecording} onClick={()=>startRecording()}>record</button>
+                <button className={style.stopBut} disabled={!isRecording} onClick={()=>stopRecording("prepntime")}>stop</button>
+                </div>
+                </div>
                 <textarea style={{resize:"none",height:"200px",width:"90%",marginLeft:"2%"}} onChange={(event)=>setPrepntime(event.target.value)}/>
+                <div style={{display:"flex"}}>
                 <h3 className={style.title2}>Ingredients</h3>
+                <div style={{display:"flex",marginLeft:"auto",marginRight:"8%"}}>
+                <button className={style.recordBut} disabled={isRecording} onClick={()=>startRecording()}>record</button>
+                <button className={style.stopBut} disabled={!isRecording} onClick={()=>stopRecording("ingredients")}>stop</button>
+                </div>
+                </div>
                 <textarea style={{resize:"none",height:"200px",width:"90%",marginLeft:"2%"}} onChange={(event)=>setIngredients(event.target.value)}/>
+                <div style={{display:"flex"}}>
                 <h3 className={style.title2}>Instructions</h3>
+                <div style={{display:"flex",marginLeft:"auto",marginRight:"8%"}}>
+                <button className={style.recordBut} disabled={isRecording} onClick={()=>startRecording()}>record</button>
+                <button className={style.stopBut} disabled={!isRecording} onClick={()=>stopRecording("instructions")}>stop</button>
+                </div>
+                </div>
                 <textarea style={{resize:"none",height:"200px",width:"90%",marginLeft:"2%"}} onChange={(event)=>setInstructions(event.target.value)}/>
-                <div><button style={{width:"150px",height:"50px",marginLeft:"45%",marginTop:"2%",marginBottom:"2%"}} onClick={()=>handleSave()}>Save Recipe</button></div>
+                <div><button className={style.saveBut} onClick={()=>handleSave()}>Save Recipe</button></div>
             </div>
         </div>
     )
