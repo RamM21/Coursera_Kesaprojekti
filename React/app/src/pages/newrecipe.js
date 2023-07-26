@@ -4,6 +4,7 @@ import pic from '../logo512.png'
 import style from './newrecipe.module.css'
 import {useAlert} from 'react-alert'
 import MicRecorder from 'mic-recorder-to-mp3'
+import {Buffer} from 'buffer'
 
 export default function Newrecipe(){
     
@@ -73,9 +74,11 @@ export default function Newrecipe(){
         mp3Recorder.stop()
         .getMp3()
         .then(([buffer,blob])=>{
-            const file = new File(buffer,'file.mp3')
             setIsRecording(false)
-            speechToText(file,place)
+            const send = new File(buffer,"file.mp3")
+            const sound = new Audio(URL.createObjectURL(send))
+            sound.play()
+            speechToText(buffer,place)
         })
         .catch(err=>{
             console.log(err)
@@ -83,12 +86,20 @@ export default function Newrecipe(){
     }
 
     function speechToText(file,place){
+        console.log(Buffer.isBuffer(file))
         let document={
             pTot:{
                 file:file
             }
         }
         console.log(document)
+        axios.post("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/watson.json",document)
+        .then(response=>{
+            console.log(response.data)
+        })
+        .catch(err=>{
+            console.log(err)
+        })
         switch(place){
             case "description":
                 console.log("description")
