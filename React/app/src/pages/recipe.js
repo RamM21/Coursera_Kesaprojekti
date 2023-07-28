@@ -205,15 +205,12 @@ export default function Recipe(){
             const buffer = Buffer.from(response.data.result)
             const blob = new Blob([buffer])
             const url = URL.createObjectURL(blob)
-            console.log(url)
             let audio = new Audio(url)
             audio.play()
         })
         .catch((err)=>{
             console.log(err)
         })
-
-
     }
 
     function translatePage(){
