@@ -1,11 +1,23 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React,{ useEffect,useState} from "react";
+import { Link,useNavigate } from "react-router-dom";
 import style from './navbar.module.css'
 
-export default function navbar(props) {
+export default function Navbar(props) {
+    const navigate = useNavigate()
+    const [logout,setlogout]=useState(false)
     function handlelogout(){
         sessionStorage.removeItem("user")
+        sessionStorage.removeItem("id")
+        setlogout(true)
     }
+    useEffect(()=>{
+        if(logout){
+            props.login(false)
+            setlogout(false)
+            navigate('/')
+        }
+    },[logout,navigate,props])
+    
     var user = sessionStorage.getItem("user")
     if(user){
     return(

@@ -1,0 +1,134 @@
+.page{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    border: 2px solid black;
+    width: fit-content;
+    background-color: beige;
+    width: 1500px;
+}
+.img{
+    width: auto;
+    height: 512px;
+    margin-left: 2%;
+}
+.title{
+    margin-left: 3%;
+    margin-top: 2%;
+}
+.title2{
+    margin-left: 2%;
+}
+.text{
+    margin-left: 2%;
+}
+.titleinput{
+    margin-left: 3%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    font-size: large;
+    font-weight: bold;
+    width: 400px;
+    height: 50px;
+}
+.button{
+    margin-left: 10.5%;
+    margin-top: 1%;
+    width: 100px;
+    height: 50px;
+    font-size: large;
+    background-color: lightskyblue;
+    font-weight: bold;
+}
+.addReviewBox{
+    margin-top: 1%;
+    margin-bottom: 1%;
+    background-color: beige;
+    border: 2px solid black;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1500px;
+}
+.head{
+    font-size: x-large;
+    font-weight: bold;
+    margin: 1%;
+}
+.head2{
+    font-size: large;
+    font-weight: bold;
+    margin-left: 1%;
+    margin-bottom: 1%;
+}
+.comment{
+    margin-left: 1%;
+    margin-bottom: 1%;
+    width: 97%;
+    height: 200px;
+    resize: none;
+    font-size: large;
+}
+.rating{
+    margin-left: 1%;
+}
+.submit{
+    margin-left: 1%;
+    margin-bottom: 1%;
+    font-size: large;
+    font-weight: bold;
+    background-color: lightskyblue;
+}
+.reviewsHead{
+    margin-top: 2%;
+    font-size: x-large;
+    font-weight: bold;
+    margin-left: 10.5%;
+    margin-bottom: 2%;
+}
+.reviewBox{
+    margin-left: 11%;
+    margin-right: auto;
+    background-color: beige;
+    border: 2px solid black;
+    width: 500px;
+    margin-bottom: 1%;
+}
+.reviewHead{
+    margin-top: 1%;
+    margin-left: 1%;
+    font-weight: bold;
+    font-size: large;
+}
+.reviewRating{
+    
+    margin-top: 1%;
+    margin-left: 1%;
+}
+.reviewComment{
+    background-color: white;
+    margin-top: 1%;
+    margin-left: 1%;
+    resize: none;
+    width: 95%;
+    height: 60px;
+}
+.putBut{
+    font-size: large;
+    margin: 1%;
+    background-color: lightseagreen;
+}
+.delBut{
+    font-size: large;
+    margin: 1%;
+    background-color: lightseagreen;
+}
+.delReview{
+    font-size: large;
+    margin: 1%;
+    background-color: lightseagreen;
+}
+.pdfBut{
+    font-size: large;
+    margin: 1%;
+    background-color: lightseagreen;
+}

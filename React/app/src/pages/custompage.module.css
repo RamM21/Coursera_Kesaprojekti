@@ -1,0 +1,60 @@
+.page{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    border: 2px solid black;
+    background-color: beige;
+    width: 1000px;
+}
+.title{
+    margin: 2%;
+    text-decoration: underline;
+}
+.img{
+    width: auto;
+    height: 400px;
+    margin-left: 2%;
+}
+.desc{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 2%;
+}
+.image{
+    margin-left: 2%;
+}
+.putBut{
+    font-size: large;
+    margin: 1%;
+    background-color: lightseagreen;
+}
+.delBut{
+    font-size: large;
+    margin: 1%;
+    background-color: lightseagreen;
+}
+.inputTitle{
+    margin-left: 2%;
+    width: 200px;
+    height: 30px;
+    font-weight: bold;
+}
+.textarea{
+    margin-top: 1%;
+    margin-left: 2%;
+    width: 95%;
+    height: 200px;
+    resize: none;
+}
+.button{
+    margin: 2%;
+    font-weight: bold;
+    font-size: medium;
+    background-color: lightseagreen;
+}
+.pdfBut{
+    font-size: large;
+    margin: 1%;
+    background-color: lightseagreen;
+}

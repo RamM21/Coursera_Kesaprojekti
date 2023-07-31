@@ -1,0 +1,418 @@
+.page{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    border: 2px solid black;
+    width: fit-content;
+    background-color: beige;
+    width: 900px;
+}
+.pagetop{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    border: 1px solid black;
+    margin-bottom: 1%;
+}
+.box{
+    width: 33%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid black;
+    margin: 1%;
+}
+/*character class box*/
+.charnamebox{
+    border: 1px solid black;
+    margin: 2%;
+    width: 40%;
+    border-radius: 50%;
+}
+.charhead{
+    font-weight: bold;
+    text-decoration: underline;
+}
+.charnametext{
+    font-weight: bold;
+    font-size: large;
+    text-align: center;
+    margin-top: 5%;
+}
+.chardescbox{
+    border: 1px solid black;
+    width: 60%;
+    margin: 1%;
+}
+.charbox{
+    margin: 1%;
+    align-self: self-start;
+}
+/*prof and inspiration css*/
+.profbox{
+    border: 2px solid black;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    display: flex;
+}
+.profbonus{
+    border: 1px solid black;
+    border-radius: 40%;
+    margin-left: auto;
+    margin-right: 2%;
+    font-size: large;
+}
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.proftext{
+    margin: 2%;
+    margin-left: 17%;
+    margin-right: auto;
+}
+.insbox{
+    border: 2px solid black;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    display: flex;
+}
+.insbonus{
+    border: 1px solid black;
+    margin-left: auto;
+    margin-right: 2%;
+    font-size: large;
+}
+.instext{
+    margin: 2%;
+    margin-left: 17%;
+    margin-right: auto;
+}
+/*stat css*/
+.statbox{
+    margin-left: 2%;
+    margin-top: 1%;
+    margin-bottom: 2%;
+    display: flex;
+    border-top: 2px solid black;
+    background-color:lightgray;
+}
+.stat{
+    border: 2px solid black;
+    background-color: beige;
+    border-radius: 20%;
+    margin: 2%;
+    margin-top: 3%;
+    width: 30%;
+    height: fit-content;
+}
+.statbonus{
+    text-align: center;
+    margin-top: 2%;
+}
+.stattext{
+    text-align: center;
+    font-size: small;
+    font-weight: bold;
+    margin:5%;
+}
+.skilltext{
+    font-size: small;
+}
+.skillbonus{
+    margin-left: 2%;
+    margin-right: 2%;
+    text-decoration: underline;
+}
+/*prof&language box css*/
+.langbox{
+    border: 2px solid black;
+    width: 95%;
+    height: 100%;
+    margin: 2%;
+}
+/*perception css*/
+.perbox{
+    border: 2px solid black;
+    display: flex;
+    margin: 2%;
+    font-size: large;
+}
+.perbonus{
+    border: 2px solid black;
+    border-radius: 50%;
+    margin: 2%;
+    padding: 1%;
+
+}
+/*armor,initiative,speed css*/
+.arbox{
+    border: 2px solid black;
+    background-color: beige;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-top: 5%;
+    width: 23%;
+}
+.chabox{
+    border: 2px solid black;
+    background-color: beige;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-top: 5%;
+    border-radius: 20%;
+    width: 25%;
+}
+/*hp box css*/
+.hpbox{
+    border: 2px solid black;
+    background-color: beige;
+    margin: 5%;
+    margin-bottom: 2%;
+    border-top-left-radius: 20%;
+    border-top-right-radius: 20%;
+}
+.maxhptext{
+    margin-left: 5%;
+    font-weight: bold;
+}
+.maxhpnum{
+    margin-left: 5%;
+}
+.curhptext{
+    text-align: center;
+    font-weight: bold;
+}
+.curhpnum{
+    text-align: center;
+}
+/*temp hp css*/
+.tempbox{
+    border: 2px solid black;
+    background-color: beige;
+    margin: 5%;
+    margin-top: 2%;
+    border-bottom-left-radius: 30%;
+    border-bottom-right-radius: 30%;
+    text-align: center;
+}
+.temphptext{
+    text-decoration: overline;
+    font-weight: bold;
+}
+/*hit dice and death save box*/
+.deathbox{
+    border: 2px solid black;
+    background-color: beige;
+    display: flex;
+    margin: 5%;
+    width: 90%;
+}
+.deathsavebox{
+    border: 1px solid black;
+    margin: 2%;
+    margin-left: 10%;
+}
+.hitdicebox{
+    border: 1px solid black;
+    margin: 2%;
+    text-align: center;
+    width: fit-content;
+    width: 40%;
+}
+.totalhitdice{
+    margin-left: 10%;
+}
+.hitdicetext{
+    font-weight: bold;
+    margin-left: 2%;
+}
+.deathtext{
+    font-weight: bold;
+}
+/*weapon box css*/
+.weaponbox{
+    border: 2px solid black;
+    margin: 5%;
+    min-height: 270px;
+    max-height: 270px;
+}
+.weaponcolumn{
+    border: 1px solid black;
+    background-color: beige;
+}
+.weaponother{
+    width: 235px;
+    height: 110px;
+    margin: 1%;
+    resize: none;
+}
+/*backpack css*/
+.bagbox{
+    border: 2px solid black;
+    margin: 5%;
+    height: fit-content;
+    width: 90%;
+}
+.coinbox{
+    border: 1px solid black;
+    display: flex;
+    width: 100%;
+}
+.coin{
+    background-color: lightgrey;
+    width: 80%;
+    margin-left: 10%;
+    overflow-x: visible;
+}
+.backpack{
+    border: 1px solid black;
+    margin: 2%;
+    overflow-wrap: break-word;
+    height: 210%;
+    width: 75%;
+}
+.backpacktext{
+    margin-top: 2%;
+    font-weight: bold;
+    text-align: center;
+}
+/*character personality and trait css*/
+.identitybox{
+    border: 2px solid black;
+    margin: 2%;
+    background-color: lightgrey;
+}
+.idenbox{
+    border: 1px solid black;
+    margin: 2%;
+    background-color: beige;
+    height: 100px;
+}
+.identext{
+    text-align: center;
+    overflow-wrap: break-word;
+    overflow-y: auto;
+}
+.traitbox{
+    border: 2px solid black;
+    margin: 2%;
+    height: 47%;
+}
+.traittext{
+    text-align: start;
+    overflow-wrap: break-word;
+    margin-left: 2%;
+    margin-top: 3%;
+    margin-bottom: auto;
+}
+.traithead{
+    text-align: center;
+}
+/*character appearance background css*/
+.appearancebox{
+    border: 2px solid black;
+    margin: 2%;
+    display: flex;
+}
+.appdescbox{
+    border: 2px solid black;
+    margin: 5px;
+    display: flex;
+    width: 100%;
+}
+.descbox{
+    width: 33%;
+}
+.deschead{
+    border-top: 1px solid black;
+    font-weight: bold;
+    margin-left: 5%;
+}
+.desctext{
+    margin-left: 6%;
+}
+.img{
+    width: 300px;
+    height: 300px;
+}
+.imgbox{
+    border: 2px solid black;
+    margin-left: 2%;
+}
+.imgtext{
+    text-align: center;
+}
+.alliesbox{
+    border: 2px solid black;
+    margin-left: 2%;
+    width: fit-content;
+    height: 330px;
+    max-height: 330px;
+    margin-right: 2%;
+}
+.allieshead{
+    text-align: center;
+}
+.alliestext{
+    border: 1px solid black;
+    width: fit-content;
+    height: 90%;
+    overflow-wrap: break-word;
+    overflow-y: auto;
+}
+.backstorybox{
+    border: 2px solid black;
+    margin: 2%;
+    width: 300px;
+    height: 500px;
+}
+.backstoryhead{
+    text-align: center;
+}
+.backstorytext{
+    border: 1px solid black;
+    margin: 1%;
+    height: 94%;
+    overflow-wrap: break-word;
+    overflow-y: auto;
+}
+.additionalbox{
+    border: 2px solid black;
+    margin-top: 4%;
+    margin-right: 1%;
+    width: fit-content;
+    height: 50%;
+}
+.additionalhead{
+    text-align: center;
+}
+.additionaltext{
+    border: 1px solid black;
+    margin: 1%;
+    overflow-wrap: break-word;
+}
+.treasurebox{
+    border: 2px solid black;
+    margin-top: 3%;
+    margin-right: 1%;
+    height: 39%;
+}
+.treasurehead{
+    text-align: center;
+}
+.treasuretext{
+    border: 1px solid black;
+    margin: 1%;
+    height: fit-content;
+    overflow-wrap: break-word;
+    overflow-y: auto;
+}
