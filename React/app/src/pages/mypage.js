@@ -28,7 +28,7 @@ export default class mypage extends React.Component{
             let arr =[]
             arr = response.data.result.docs
             for(const x of arr){
-                if(x._attachments.image){
+                if(x._attachments.image.data){
                 x._attachments.image.data=this.image(x._attachments.image.data)
                 }
             }
@@ -46,7 +46,7 @@ export default class mypage extends React.Component{
             let arr =[]
             arr = response.data.result.docs
             for(const x of arr){
-                if(x._attachments.image){
+                if(x._attachments.image.data){
                 x._attachments.image.data=this.image(x._attachments.image.data)
                 }
             }
@@ -64,7 +64,7 @@ export default class mypage extends React.Component{
             let arr =[]
             arr = response.data.result.docs
             for(const x of arr){
-                if(x._attachments.image){
+                if(x._attachments.image.data){
                 x._attachments.image.data=this.image(x._attachments.image.data)
                 }
             }
