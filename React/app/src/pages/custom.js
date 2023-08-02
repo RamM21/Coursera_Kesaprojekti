@@ -14,7 +14,7 @@ export default class custom extends React.Component{
     componentDidMount=()=>{
         this.getcustom()
     }
-
+    //Getting all custom documents from database
     getcustom=()=>{
         let arr =[]
         axios.get("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/get-custom.json")
@@ -32,7 +32,7 @@ export default class custom extends React.Component{
             console.log(err)
         })
     }
-
+    //Changing document image attachment from base64 to usable blob
     image=(data)=>{
         const byteCharacters = atob(data);
         const byteNumbers = new Array(byteCharacters.length);

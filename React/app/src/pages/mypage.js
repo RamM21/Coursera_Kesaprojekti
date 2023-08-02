@@ -20,7 +20,7 @@ export default class mypage extends React.Component{
         this.getRecipe()
         this.getTtrpg()
     }
-
+    //Getting all users custom documents
     async getCustom(){
         let id=sessionStorage.getItem("id")
         await axios.get("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/get-custom.json?userId="+id)
@@ -38,7 +38,7 @@ export default class mypage extends React.Component{
             console.log(err)
         })
     }
-
+    //Getting all users ttrpg documents
     async getTtrpg(){
         let id=sessionStorage.getItem("id")
         await axios.get("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/get-ttrpg.json?userId="+id)
@@ -56,7 +56,7 @@ export default class mypage extends React.Component{
             console.log(err)
         })
     }
-
+    //Gettin all users recipe documents
     async getRecipe(){
         let id=sessionStorage.getItem("id")
         await axios.get("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/get-recipes.json?userId="+id)
@@ -74,7 +74,7 @@ export default class mypage extends React.Component{
             console.log(err)
         })
     }
-
+    //Changing document image attachment from base64 to usable blob
     image=(data)=>{
         const byteCharacters = atob(data);
         const byteNumbers = new Array(byteCharacters.length);
