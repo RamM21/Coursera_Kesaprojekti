@@ -4,17 +4,17 @@ Kesäprojekti suunniteltiin Coursera Full Stack Developer kurssin tehtyä. Proje
 Projektin pääasiana oli käyttää cloudia mahdollisimman paljon projektin toiminnoissa. Projekti on tavallinen tietojen tallennus projekti, jossa käytetään IBM Cloudia tallentamaan ja tekemään Rest API serverittömänä.
 Projektissa käytetään myös muita IBM Cloud palveluja kuten Cloudant käytetään tietokantana ja IBM Cloud functions tekevät Rest APIn työt. Projektiin lisättiin myös IBM Cloud language translator, natural language understanding ja text to speech palvelut parantamaan ymmärrystä cloud palveluista.
 
-##Web-sovellus linkki
+## Web-sovellus linkki
 https://moonlit-phoenix-bdf1bc.netlify.app/
 
-##Frontend asennus
+## Frontend asennus
 1. Kloonaa repositorio
    git clone https://github.com/RamM21/Coursera_Kesaprojekti.git
 2. Asenna riippuvuudet
    cd React/app
    npm install
    
-##Backend asetukset
+## Backend asetukset
 1. Tarvitset IBM Cloud käyttäjän
 2. Tarvitset tarvittavat IBM Cloud palvelut
    -IBM Cloudant database
@@ -39,18 +39,18 @@ https://moonlit-phoenix-bdf1bc.netlify.app/
    -lisää tietokantoihin userid query index, jotta hakuja voidaan tehdä käyttäjän id:llä
    -lisää reviews tietokantaan recipe query index, jotta voidaan hakea review reseptin documentin id:llä
    
-##Käyttö
+## Käyttö
 1. Käynnistä frontend
    -cd React/app
    -npm start
 2. Mene selaimella http://localhost:3000
 3. Jos backend tehty oikein appi on toiminta kuntoinen
 
-##Teknologiat
+## Teknologiat
 -React
 -Node.JS
 
-##Tietokannan JSON asettelut
+## Tietokannan JSON asettelut
 1. Custom
    {
   "_id": ,
@@ -245,4 +245,4 @@ https://moonlit-phoenix-bdf1bc.netlify.app/
   "name": ""
 }
 
-##Demo linkki
+## Demo linkki
