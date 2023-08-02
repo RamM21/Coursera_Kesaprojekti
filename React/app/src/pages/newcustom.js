@@ -12,11 +12,12 @@ export default function Newcustom(){
     const [file,setFile]=useState()
     const [image,setImage]=useState()
     
+    //Giving image file handling functions
     function handleImage(e){
         imgtobase64(e)
         setFile(URL.createObjectURL(e.target.files[0]))
     }
-
+    //Changing image file data to base64 to attach usable data to document
     function imgtobase64(data){
         const reader = new FileReader()
         console.log(data.target.files[0])
@@ -31,7 +32,7 @@ export default function Newcustom(){
         })
         }
     }
-
+    //Sending custom document to be saved to database
     function handleSubmit(){
         console.log(image)
         let document={

@@ -17,11 +17,13 @@ export default function Newrecipe(){
     const [ingredients,setIngredients]=useState("")
     const [instructions,setInstructions]=useState("")
 
+    //Giving image file handling functions
     function handleImage(e){
         imgtobase64(e)
         setFile(URL.createObjectURL(e.target.files[0]))
     }
 
+    //Changing image file data to base64 to attach usable data to document
     function imgtobase64(data){
         const reader = new FileReader()
         reader.readAsDataURL(data.target.files[0])
@@ -34,7 +36,7 @@ export default function Newrecipe(){
         })
         }
     }
-
+    //Sending recipe document to be saved to database
     function handleSave(){
         let document={
             save:{

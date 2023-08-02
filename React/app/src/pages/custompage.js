@@ -20,6 +20,7 @@ export default function Custom(){
     const [text,setText]=useState("")
     const [img,setImage]=useState()
 
+    //If no information found. Get specified custom documents information from database
     useEffect(()=>{
             if(arr.length===0){
                 axios.get("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/get-custom.json?id="+location.state)
@@ -37,12 +38,12 @@ export default function Custom(){
         }
     })
 
-
+    //Giving file data to image handling functions
     function handleImage(e){
         setFile(URL.createObjectURL(e.target.files[0]))
         imgtobase64(e)
     }
-
+    //Changing image file data to base64 to attach usable data to document
     function imgtobase64(data){
         if(!data.target){
             const reader = new FileReader()
@@ -66,7 +67,7 @@ export default function Custom(){
         }
     }
     }
-
+    //Delete specified custom document from database
     function delCustom(){
         let document={
             "custom":{
@@ -85,7 +86,7 @@ export default function Custom(){
             alert.error("There was an error in deleting the file try again later")
         })
     }
-
+    //Updating custom document with new or same information to database
     function upCustom(){
         let document={
             rev:arr[0].doc._rev,
@@ -114,7 +115,7 @@ export default function Custom(){
             console.log(err)
         })
     }
-
+    //Reading custom document with IBM text to speech service
     function textToSpeech(){
         let document = {
             tTop:{
@@ -136,7 +137,7 @@ export default function Custom(){
 
 
     }
-
+    //Translating document to finnish with IBM language translator service
     function translatePage(){
         let document={
             translate:{
@@ -158,7 +159,7 @@ export default function Custom(){
             console.log(err)
         })
     }
-
+    //Changing document attachment image from base64 to usable blob
     function image(data){
         const byteCharacters = atob(data);
         const byteNumbers = new Array(byteCharacters.length);
@@ -172,14 +173,14 @@ export default function Custom(){
         let imageUrl = URL.createObjectURL(image);
         return imageUrl
     }
-
+    //If update button pressed, putting old information to be used or changed rather than start document from nothing
     function updateCheck(){
         setUpdate(true)
         setFile(arr[0].doc._attachments.image.data)
         setText(arr[0].doc.paragraph)
         setTitle(arr[0].doc.title)
     }
-
+    //Downloading a PDF of custom document
     function downloadPdf(){
         const content = ref.current
         const doc = new jsPdf()

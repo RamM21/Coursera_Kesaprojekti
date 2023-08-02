@@ -11,7 +11,7 @@ export default function Signup(){
     const[name,setName]=useState('')
     const[done,setDone]=useState(false)
     const navigate=useNavigate()
-    
+    //Sending email to be checked if exists. If doesn't exist make user with email and name
     async function handlesingup(){
         let document={
             save:{
@@ -35,7 +35,7 @@ export default function Signup(){
             console.log(err)
         })
     }
-
+    //If user creation successful redirect user to login page
     useEffect(()=>{
         if(done){
             alert.show("redirecting to login")

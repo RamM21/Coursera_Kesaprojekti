@@ -5,11 +5,14 @@ import style from './navbar.module.css'
 export default function Navbar(props) {
     const navigate = useNavigate()
     const [logout,setlogout]=useState(false)
+
+    //When logout button pressed remove user information and change to public setting
     function handlelogout(){
         sessionStorage.removeItem("user")
         sessionStorage.removeItem("id")
         setlogout(true)
     }
+    //User information removed setting to public and redirecting to main page
     useEffect(()=>{
         if(logout){
             props.login(false)

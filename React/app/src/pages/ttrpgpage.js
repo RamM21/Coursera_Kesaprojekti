@@ -17,6 +17,7 @@ export default function Ttrpg(){
     const [update,setUpdate]=useState(false)
     const [img,setImage]=useState()
     
+    //If no information found get specified ttrpg document from database
     useEffect(()=>{
             if(arr.length===0){
             axios.get("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/get-ttrpg.json?id="+location.state)
@@ -33,7 +34,7 @@ export default function Ttrpg(){
             })
         }
     })
-
+    //Delete specified ttrpg document from database
     async function delTtrpg(){
         let document={
             ttrpg:{
@@ -52,7 +53,7 @@ export default function Ttrpg(){
             alert.error("There was an error in deleting the file try again later")
         })
     }
-
+    //Changing document attachment image from base64 to usable blob
     function image(data){
         const byteCharacters = atob(data);
         const byteNumbers = new Array(byteCharacters.length);
@@ -66,7 +67,7 @@ export default function Ttrpg(){
         let imageUrl = URL.createObjectURL(image);
         return imageUrl
     }
-
+    //Changing image file data to base64 to attach usable data to document
     function imgtobase64(data){
         if(!data.target){
             const reader = new FileReader()
@@ -89,7 +90,7 @@ export default function Ttrpg(){
         }
     }
     }
-
+    //Downloading a PDF of ttrpg document
     function downloadPdf(){
         const content = ref.current
         const content2 = ref2.current

@@ -14,6 +14,7 @@ export default function Login(props){
     const [otp,setOtp]=useState(false)
     const [password,setPassword]=useState("")
 
+    //Sending email to be checked and if found change to get one time password
     function handlelogin(){
         axios.post("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/login.json?email="+email)
         .then((response)=>{
@@ -29,7 +30,7 @@ export default function Login(props){
             console.log(err)
         })
     }
-
+    //Sending one time password and if correct handle login change and storage users id and email
     async function handleOtp(){
         let document={
             email:email,
@@ -55,7 +56,7 @@ export default function Login(props){
             console.log(err)
         })
     }
-
+    //If login is successful redirect user to main page
     useEffect(()=>{
         if(login){
             props.log(true)

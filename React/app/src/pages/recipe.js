@@ -34,13 +34,14 @@ export default function Recipe(){
     const [ingredients,setIngredients]=useState("")
     const [instructions,setInstructions]=useState("")
 
+    //If information empty get information with get functions
     useEffect(()=>{
             if(arr.length===0){
             getRecipes()
             getReviews()
         }
     })
-
+    //Getting specified recipe documents information from database
     async function getRecipes(){
         await axios.get("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/get-recipes.json?id="+location.state)
             .then(response=>{
@@ -56,7 +57,7 @@ export default function Recipe(){
                 console.log(err)
             })
     }
-
+    //Getting specified recipes reviews from database
     async function getReviews(){
         await axios.get("https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/project/get-reviews.json?recipeId="+location.state)
         .then((response)=>{
@@ -67,7 +68,7 @@ export default function Recipe(){
             console.log(err)
         })
     }
-
+    //Changing document attachment image from base64 to usable blob
     function image(data){
         const byteCharacters = atob(data);
         const byteNumbers = new Array(byteCharacters.length);
@@ -81,7 +82,7 @@ export default function Recipe(){
         let imageUrl = URL.createObjectURL(image);
         return imageUrl
     }
-
+    //Getting sentiment to review comment from IBM language understanding service
     async function handleSubmit(){
         let document={
             text:comment
@@ -94,7 +95,7 @@ export default function Recipe(){
             console.log(err)
         })
     }
-
+    //Sending review document of recipe to database
     async function sendReview(sentiment){
         let document={
             save:{
@@ -116,7 +117,7 @@ export default function Recipe(){
             alert.error("error happened try again later")
         })
     }
-
+    //Deleting review document from database
     async function delReview(data){
         let document={
             review:{
@@ -135,7 +136,7 @@ export default function Recipe(){
             alert.error("There was an error in deleting the review try again later")
         })
     }
-
+    //Deleting recipe document from database
     async function delRecipe(){
         let document={
             recipe:{
@@ -154,7 +155,7 @@ export default function Recipe(){
             alert.error("There was an error in deleting the file try again later")
         })
     }
-
+    //Updating recipe document with new or same information to database
     function upRecipe(){
         let document={
             rev:arr[0].doc._rev,
@@ -187,12 +188,12 @@ export default function Recipe(){
             console.log(err)
         })
     }
-
+    //Giving file data to image handling functions
     function handleImage(e){
         setFile(URL.createObjectURL(e.target.files[0]))
         imgtobase64(e)
     }
-
+    //Reading recipe document with IBM text to speech service
     function textToSpeech(){
         let document = {
             tTop:{
@@ -211,7 +212,7 @@ export default function Recipe(){
             console.log(err)
         })
     }
-
+    //Translating document to finnish with IBM language translator service
     function translatePage(){
         let document={
             translate:{
@@ -237,7 +238,7 @@ export default function Recipe(){
             console.log(err)
         })
     }
-
+    //Changing image file data to base64 to attach usable data to document
     function imgtobase64(data){
         if(!data.target){
             const reader = new FileReader()
@@ -260,7 +261,7 @@ export default function Recipe(){
         }
     }
     }
-
+    //If update button pressed, putting old information to be used or changed rather than start document from nothing
     function updateCheck(){
         setUpdate(true)
         setFile(arr[0].doc._attachments.image.data)
@@ -271,7 +272,7 @@ export default function Recipe(){
         setIngredients(arr[0].doc.ingredients)
         setInstructions(arr[0].doc.instructions)
     }
-
+    //Downloading a PDF of recipe document
     function downloadPdf(){
         const content = ref.current
         const doc = new jsPdf()

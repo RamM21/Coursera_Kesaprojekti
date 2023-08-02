@@ -100,7 +100,7 @@ export default function UpTtrpg(props){
     const [performance,setPerformance]=useState(props.data[0].doc.skills.performance)
     const [persuasion,setPersuasion]=useState(props.data[0].doc.skills.persuasion)
 
-
+    //Adding new character feature to array
     function handlefeature(){
         let arr = [...features]
         arr.push({
@@ -109,7 +109,7 @@ export default function UpTtrpg(props){
         })
         setFeatures(arr)
     }
-
+    //Changing image file data to base64 to attach usable data to document
     function imgtobase64(data){
         if(!data.target){
             const reader = new FileReader()
@@ -132,7 +132,7 @@ export default function UpTtrpg(props){
         }
     }
     }
-
+    //Adding new character additional feature to additional array
     function handleadditionalfeature(){
         let arr = [...additionalfeatures]
         arr.push({
@@ -141,12 +141,12 @@ export default function UpTtrpg(props){
         })
         setAdditionalfeatures(arr)
     }
-
+    //Giving image file handling functions
     function handleImage(e){
         imgtobase64(e)
         setAppearance(URL.createObjectURL(e.target.files[0]))
     }
-
+    //Updating ttrpg document with new or same information to database
     function handlesave(){
         let document ={
             id:props.data[0].doc._id,

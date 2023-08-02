@@ -100,7 +100,7 @@ export default function Newttrpg(){
     const [performance,setPerformance]=useState(false)
     const [persuasion,setPersuasion]=useState(false)
 
-
+    //Adding new character feature to array
     function handlefeature(){
         let arr = [...features]
         arr.push({
@@ -109,7 +109,7 @@ export default function Newttrpg(){
         })
         setFeatures(arr)
     }
-
+    //Adding new character additional feature to additional array
     function handleadditionalfeature(){
         let arr = [...additionalfeatures]
         arr.push({
@@ -118,12 +118,12 @@ export default function Newttrpg(){
         })
         setAdditionalfeatures(arr)
     }
-
+    //Giving image file handling functions
     function handleImage(e){
         imgtobase64(e)
         setAppearance(URL.createObjectURL(e.target.files[0]))
     }
-
+    //Changing image file data to base64 to attach usable data to document
     function imgtobase64(data){
         const reader = new FileReader()
         console.log(data.target.files[0])
@@ -138,7 +138,7 @@ export default function Newttrpg(){
         })
         }
     }
-
+    //Sending ttrpg document to be saved to database
     function handlesave(){
         let document ={
             save:{
