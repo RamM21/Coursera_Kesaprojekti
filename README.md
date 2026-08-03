@@ -1,249 +1,91 @@
-# Coursera_Kesaprojekti
-##Tietoja projektista
-Kesäprojekti suunniteltiin Coursera Full Stack Developer kurssin tehtyä. Projektin ideana oli hyödyntää kurssilla opittuja asioita ja näyttää opittuja taitoja.
-Projektin pääasiana oli käyttää cloudia mahdollisimman paljon projektin toiminnoissa. Projekti on tavallinen tietojen tallennus projekti, jossa käytetään IBM Cloudia tallentamaan ja tekemään Rest API serverittömänä.
-Projektissa käytetään myös muita IBM Cloud palveluja kuten Cloudant käytetään tietokantana ja IBM Cloud functions tekevät Rest APIn työt. Projektiin lisättiin myös IBM Cloud language translator, natural language understanding ja text to speech palvelut parantamaan ymmärrystä cloud palveluista.
+# Coursera Kesäprojekti
+Full‑stack web‑sovellus, joka hyödyntää IBM Cloudin serverless API palveluita, Cloudant‑tietokantaa sekä useita AI‑rajapintoja. Projekti toteutettiin Coursera Full Stack Developer ‑kurssin kesäprojektina, ja sen tavoitteena oli demonstroida pilvipalveluiden käyttöä mahdollisimman laajasti.
 
-## Web-sovellus linkki
-https://moonlit-phoenix-bdf1bc.netlify.app/
+#Projektin tarkoitus
+kesäprojektin tavoitteet:
+- soveltaa Coursera Full Stack Developer ‑kurssilla opittuja taitoja
+- rakentaa cloud‑painotteinen full‑stack‑sovellus
+- toteuttaa backend IBM Cloud Functions ‑palvelulla (serverless REST API)
+- käyttää Cloudant‑tietokantaa dokumenttipohjaiseen datan tallennukseen
+- hyödyntää IBM Cloudin AI‑palveluita:
+  - Language Translator
+  - Natural Language Understanding
+  - Text to Speech
 
-## Frontend asennus
+# Demo
+Videoesittely: https://youtu.be/SUz44eJ945g
+
+# Sovelluksen kuvaus
+Sovellus on monipuolinen tietojen tallennus‑ ja käsittelyjärjestelmä, jossa käyttäjä voi:
+- tallentaa omia tietoja (custom‑data)
+- luoda D&D‑hahmoja
+- tallentaa reseptejä
+- kirjoittaa resepteille arvosteluja
+- hyödyntää IBM:n AI‑palveluita tekstin analysointiin, kääntämiseen ja puheeksi muuntamiseen
+Kaikki backend‑toiminnot toteutetaan serverless‑arkkitehtuurilla IBM Cloud Functions ‑palvelussa.
+
+# Teknologiat
+Frontend:
+- React
+- Node.js
+Backend / Cloud
+- IBM Cloud Functions (serverless REST API)
+- IBM Cloudant (NoSQL dokumenttitietokanta)
+- IBM Language Translator
+- IBM Natural Language Understanding
+- IBM Text to Speech
+
+# Asennus ja Käyttöönotto
+##Frontend
 1. Kloonaa repositorio
-   git clone https://github.com/RamM21/Coursera_Kesaprojekti.git
+- git clone https://github.com/RamM21/Coursera_Kesaprojekti.git
 2. Asenna riippuvuudet
-   cd React/app
-   npm install
+-  cd React/app
+- npm install
+3. Käynnistä sovellus
+  - npm start
+4. avaa selain
+- http://localhost:3000
    
-## Backend asetukset
-1. Tarvitset IBM Cloud käyttäjän
-2. Tarvitset tarvittavat IBM Cloud palvelut
-   -IBM Cloudant database
-   -IBM Language Translator
-   -IBM Natural Language Understanding
-   -IBM Text To Speech
-   -IBM Functions
-3. IBM functions asetukset
-   -Rest API kanssiossa koodit jokaiselle actionille
-   -Action runtime Node.JS 16
-   -Yksi tiedosto on yksi action
-   -Laita tarvittavat palvelu URL ja Apiavain koodeihin
-   -Vaihda frontend koodiin omat action endpoint public URL osoitteet
-5. IBM Cloudant asetukset
-   -Tee tarvittavat tietokannat
-    -custom
-    -dnd
-    -otp
-    -recipes
-    -reviews
-    -users
-   -lisää tietokantoihin userid query index, jotta hakuja voidaan tehdä käyttäjän id:llä
-   -lisää reviews tietokantaan recipe query index, jotta voidaan hakea review reseptin documentin id:llä
-   
-## Käyttö
-1. Käynnistä frontend
-   -cd React/app
-   -npm start
-2. Mene selaimella http://localhost:3000
-3. Jos backend tehty oikein appi on toiminta kuntoinen
+## Backend-arkkitehtuuri (IBM CLoud)
+Backend toimii täysin serverittömästi IBM Cloud Functions ‑palvelussa. Jokainen REST‑endpoint on oma action‑tiedostonsa.
+Tarvittavat IBM Cloud ‑palvelut
+- IBM Cloudant database
+- IBM Language Translator
+- IBM Natural Language Understanding
+- IBM Text to Speech
+- IBM Cloud Functions
+Cloud Functions -asetukset
+1. Luo action jokaiselle REST‑toiminnolle
+2. Action runtime: Node.js 16
+3. Yksi tiedosto = yksi action
+4. Lisää koodeihin:
+   - palveluiden URL‑osoitteet
+   - API‑avaimet
+5. Aseta actionit julkisiksi HTTP‑endpointiksi
+6. Lisää endpoint‑URL:t React‑frontendin ympäristömuuttujiin
 
-## Teknologiat
--React
--Node.JS
+# Cloudant‑tietokannan rakenne
+## Tietokannat:
+- custom
+- dnd
+- otp
+- recipes
+- reviews
+- users
+## Indeksit
+- Kaikkiin tietokantoihin: userid‑indeksi
+- reviews‑tietokantaan: recipe‑indeksi (haetaan reseptin ID:llä)
+## Esimerkki rakenteesta
+Dokumentit sisältävät mm. seuraavia kenttiä:
+- Custom: paragraph, title, userid, _attachments
+- Dnd: hahmon statsit, taidot, varusteet, taustatiedot, käyttäjän ID
+- Recipes: title, ingredients, instructions, userId, kuva
+- Reviews: comment, rating, recipe, sentiment, userId
+- Users: email, name
 
-## Tietokannan JSON asettelut
-1. Custom
-   {
-  "_id": ,
-  "_rev": ,
-  "paragraph": ,
-  "title": ,
-  "userid": ,
-  "_attachments": {
-    "image": {
-      "content_type": "image/png",
-      "revpos": 1,
-      "digest": "md5-iXfrucGS2cTbPeOFtfPlsg==",
-      "length": 24070,
-      "stub": true
-    }
-  }
-}
-2. Dnd
-   {
-  "_id": "",
-  "_rev": "",
-  "backpack": {
-    "attack": {
-      "other": "",
-      "weapon1": "",
-      "weapon1dmg": "",
-      "weapon2": "",
-      "weapon2dmg": "",
-      "weapon3": "",
-      "weapon3dmg": ""
-    },
-    "coins": {
-      "cp": "",
-      "ep": "",
-      "gp": "",
-      "pp": "",
-      "sp": ""
-    },
-    "items": "",
-    "treasure": ""
-  },
-  "chardesc": {
-    "age": "",
-    "aligment": "",
-    "allies": "",
-    "background": "",
-    "backstory": "",
-    "class": "",
-    "experience": "",
-    "eyes": "",
-    "hair": "",
-    "height": "",
-    "level": "",
-    "name": "",
-    "player": "",
-    "race": "",
-    "skin": "",
-    "weight": ""
-  },
-  "skills": {
-    "acrobatics": true,
-    "animalhandling": true,
-    "arcana": true,
-    "athletics": false,
-    "charismasave": false,
-    "constitutionsave": false,
-    "deception": true,
-    "dexteritysave": false,
-    "history": true,
-    "insight": true,
-    "intelligencesave": false,
-    "intimidation": false,
-    "investigation": false,
-    "medicine": false,
-    "nature": true,
-    "perception": true,
-    "performance": true,
-    "persuasion": false,
-    "religion": false,
-    "sleightofhand": true,
-    "stealth": false,
-    "strengthsave": true,
-    "survival": false,
-    "wisdomsave": false
-  },
-  "stats": {
-    "armor": "",
-    "charisma": "",
-    "charismabonus": "",
-    "constitution": "",
-    "constitutionbonus": "",
-    "curhp": "",
-    "dexterity": "",
-    "dexteritybonus": "",
-    "failure1": true,
-    "failure2": true,
-    "failure3": false,
-    "hitdice": "",
-    "hpmax": "",
-    "inspiration": "",
-    "intelligence": "",
-    "intelligencebonus": "",
-    "proficiency": "",
-    "speed": "",
-    "strength": "",
-    "strengthbonus": "",
-    "success1": true,
-    "success2": false,
-    "success3": false,
-    "temphp": "",
-    "totalhitdice": "",
-    "wisdom": "",
-    "wisdombonus": ""
-  },
-  "traits": {
-    "additionalfeatures": [
-      {
-        "desc": "",
-        "title": ""
-      },
-      {
-        "desc": "",
-        "title": ""
-      }
-    ],
-    "bonds": "",
-    "features": [
-      {
-        "desc": ,
-        "title": 
-      },
-      {
-        "desc": ,
-        "title": 
-      }
-    ],
-    "flaws": ,
-    "ideals": ,
-    "personality": ,
-    "profnlang": {
-      "lang": ,
-      "prof": 
-    }
-  },
-  "userid": ,
-  "_attachments": {
-    "image": {
-      "content_type": "image/png",
-      "revpos": 1,
-      "digest": "md5-oOWpMVedcHTiFgcMvskO3w==",
-      "length": 23755,
-      "stub": true
-    }
-  }
-}
-3. Recipes
-   {
-  "_id": "",
-  "_rev": "",
-  "desc": "",
-  "ingredients": "",
-  "instructions": "",
-  "prepntime": "",
-  "servings": "",
-  "title": "",
-  "userId": "",
-  "_attachments": {
-    "image": {
-      "content_type": "image/png",
-      "revpos": 2,
-      "digest": "md5-oOWpMVedcHTiFgcMvskO3w==",
-      "length": 23755,
-      "stub": true
-    }
-  }
-}
-4. Reviews
-   {
-  "_id": "",
-  "_rev": "",
-  "comment": "",
-  "rating": "",
-  "recipe": "",
-  "sentiment": "",
-  "userId": ""
-}
-5. Users
-   {
-  "_id": "",
-  "_rev": "",
-  "email": "",
-  "name": ""
-}
+# Autentikointi ja tietoturva
+- IBM Cloud Functions käyttää API‑avaimia ja palvelukohtaisia tunnisteita
+- Cloudant‑tietokanta on suojattu palvelukohtaisilla käyttöoikeuksilla
+- Frontend ei tee suoria tietokantayhteyksiä — kaikki kulkee action‑endpointtien kautta
 
-## Demo linkki
-https://youtu.be/SUz44eJ945g
